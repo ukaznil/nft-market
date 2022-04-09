@@ -27,10 +27,10 @@ print(r.fetch(Market.OpenSea, 'boredapeyachtclub'))  # Bored Ape Yacht Club
 
 At this moment, the following marketplaces are supported in **nft-market**.
 
-- OpenSea
-- Entrepot
-- Tofu
-- PancakeSwap
+- [OpenSea](https://opensea.io/)
+- [Entrepot](https://entrepot.app/)
+- [Tofu](https://tofunft.com/)
+- [PancakeSwap](https://pancakeswap.finance/nfts)
 
 Other marketplaces will be added in the list in the future. You can, off course, request them in issues if needed
 immediately.
