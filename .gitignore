@@ -1,0 +1,5 @@
+/.idea/
+/build/
+/dist/
+/nft_market.egg-info/
+**/__pycache__/**
