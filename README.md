@@ -35,7 +35,7 @@ $ sudo apt install firefox
 
 Besides, all Python dependencies are listed up in `requirements.txt`.
 
-Please install them by `$ pip install -r requirements.txt` if you install *nft-market* not by pip but cloning from
+Please install them by `$ pip install -r requirements.txt` if you install *nft-market* not by pip but by cloning from
 GitHub.
 
 ## Requests for adding marketplaces
