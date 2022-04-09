@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="nft_market",
-    version="0.1",
+    version="1.0",
     author="ukaznil",
     author_email="ukaznil@gmail.com",
     description="NFT information is your hands.",
