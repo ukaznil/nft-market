@@ -35,9 +35,15 @@ At this moment, the following marketplaces are supported in **nft-market**.
 Other marketplaces will be added in the list in the future. You can, off course, request them in issues if needed
 immediately.
 
-## Dependencies
+## Installation
 
-As **nft-market** depends on Firefox and its driver, you need to install them.
+You can install **nft-market** by pip.
+
+```shell
+$ pip install nft-market
+```
+
+Also, as **nft-market** depends on Firefox and its driver, you need to install them.
 
 ```shell
 [mac]
@@ -47,7 +53,5 @@ $ brew install firefox
 $ sudo apt install firefox
 ```
 
-Besides, all Python dependencies are listed up in `requirements.txt`.
-
-Please install them by `$ pip install -r requirements.txt` if you install **nft-market** not by pip but by cloning from
-GitHub.
+Besides, all Python dependencies are listed up in `requirements.txt`. Please install them
+by `$ pip install -r requirements.txt` if you install **nft-market** not by pip but by cloning from GitHub.
