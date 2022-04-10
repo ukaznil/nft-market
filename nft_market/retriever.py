@@ -77,6 +77,8 @@ class Retriever:
             func = self._retrieve_tofu
         elif market == Market.PancakeSwap:
             func = self._retrieve_pancakeswap
+        elif market == Market.Rarible:
+            func = self._retrieve_rarible
         else:
             raise NotImplementedError(market)
         # endif
@@ -195,6 +197,34 @@ class Retriever:
                                                     value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]').text)
             volume = _text2float(driver.find_element(by=By.XPATH,
                                                      value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]').text)
+
+            nft = NFTInfo(name=id,
+                          num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                          floor=floor, volume=volume)
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_rarible(self, id: str) -> NFTInfo:
+        if id.startswith('0x'):
+            url = f'https://rarible.com/collection/{id}/items'
+        else:
+            # Seems that "named" projects have a different URL schema.
+            url = f'https://rarible.com/{id}/items'
+        # endif
+
+        nft = NotImplemented
+        with _NFTWebDriver(url, **self.option) as driver:
+            num_items_all = _text2int(driver.find_element(by=By.XPATH,
+                                                          value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span').text)
+            num_listing = None
+            num_owners = _text2int(driver.find_element(by=By.XPATH,
+                                                       value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span').text)
+            floor = _text2float(driver.find_element(by=By.XPATH,
+                                                    value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span').text)
+            volume = _text2float(driver.find_element(by=By.XPATH,
+                                                     value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span').text)
 
             nft = NFTInfo(name=id,
                           num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,

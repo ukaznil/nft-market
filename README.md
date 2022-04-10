@@ -33,6 +33,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [Entrepot](https://entrepot.app/)
 - [Tofu](https://tofunft.com/)
 - [PancakeSwap](https://pancakeswap.finance/nfts)
+- [Rarible](https://rarible.com/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -68,6 +69,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | Entrepot    | &check; |         | &check;   |          | &check; | &check; |
 | Tofu        | &check; |         | &check;   |          | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
+| Rarible     | &check; | &check; |           | &check;  | &check; | &check; |   
 
 Other information may be provided in the future!
 

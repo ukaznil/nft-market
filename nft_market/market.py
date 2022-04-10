@@ -6,3 +6,4 @@ class Market(Enum):
     Tofu = auto()
     Entrepot = auto()
     PancakeSwap = auto()
+    Rarible = auto()

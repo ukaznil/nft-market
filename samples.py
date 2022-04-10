@@ -57,3 +57,17 @@ def sample_pancakeswap():
     print(r.fetch(Market.PancakeSwap, '0x98F606A4cdDE68b9f68732D21fb9bA8B5510eE48'))  # LittleGhosts
     print(r.fetch(Market.PancakeSwap, '0x467044e6A297084baAEBd53b6f1649C07527E273'))  # CyberBearz Army
     print(r.fetch(Market.PancakeSwap, '0x57A7c5d10c3F87f5617Ac1C60DA60082E44D539e'))  # Dauntless Alpies
+
+
+def sample_rarible():
+    # Rarible
+    print(r.fetch(Market.Rarible, '0x4a8c9d751eeabc5521a68fb080dd7e72e46462af'))  # Arcade Land
+    print(r.fetch(Market.Rarible, '0x3110ef5f612208724ca51f5761a69081809f03b7'))  # Impostors Genesis Aliens
+    print(r.fetch(Market.Rarible, '0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b'))  # CloneX
+    print(r.fetch(Market.Rarible, 'boredapeyachtclub'))  # BoredApeYachtClub
+    print(r.fetch(Market.Rarible, 'losmuertos'))  # Los Muertos
+    print(r.fetch(Market.Rarible, '0xeb3a9a839dfeeaf71db1b4ed6a8ae0ccb171b227'))  # MOAR by Joan Cornella
+    print(r.fetch(Market.Rarible, '0xf97df1e168c27e22eedd34c05ae0615605c5dcbf'))  # Aki Story
+    print(r.fetch(Market.Rarible, '0x4554c0b38d23450f7a32d58281a2b6e423bb27a6'))  # Kureiji
+    print(r.fetch(Market.Rarible, 'loserclub'))  # Loser Club
+    print(r.fetch(Market.Rarible, '0x98b82d9efc577b1c3aa6578342121231db2b47b9'))  # Shinsekai Portal
