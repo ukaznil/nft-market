@@ -5,10 +5,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="nft_market",
-    version="1.0",
+    version="1.1",
     author="ukaznil",
     author_email="ukaznil@gmail.com",
-    description="NFT information is your hands.",
+    description="NFT market is in your hands.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ukaznil/nft-market",
