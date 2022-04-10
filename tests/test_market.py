@@ -35,3 +35,10 @@ def test_rarible():
     print(r.fetch(Market.Rarible, '0x3110ef5f612208724ca51f5761a69081809f03b7'))  # Impostors Genesis Aliens
     print(r.fetch(Market.Rarible, '0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b'))  # CloneX
     print(r.fetch(Market.Rarible, 'boredapeyachtclub'))  # BoredApeYachtClub
+
+
+def test_ghostmarket():
+    # GhostMarket
+    print(r.fetch(Market.GhostMarket, 'neoverse'))  # Neoverse
+    print(r.fetch(Market.GhostMarket, 'tothemoon'))  # TOTHEMOON
+    print(r.fetch(Market.GhostMarket, 'humswap-bowls'))  # Humswap Bowls

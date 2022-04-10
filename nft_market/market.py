@@ -7,3 +7,4 @@ class Market(Enum):
     Entrepot = auto()
     PancakeSwap = auto()
     Rarible = auto()
+    GhostMarket = auto()

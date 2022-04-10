@@ -71,3 +71,17 @@ def sample_rarible():
     print(r.fetch(Market.Rarible, '0x4554c0b38d23450f7a32d58281a2b6e423bb27a6'))  # Kureiji
     print(r.fetch(Market.Rarible, 'loserclub'))  # Loser Club
     print(r.fetch(Market.Rarible, '0x98b82d9efc577b1c3aa6578342121231db2b47b9'))  # Shinsekai Portal
+
+
+def sample_ghostmarket():
+    # GhostMarket
+    print(r.fetch(Market.GhostMarket, 'neoverse'))  # Neoverse
+    print(r.fetch(Market.GhostMarket, 'tothemoon'))  # TOTHEMOON
+    print(r.fetch(Market.GhostMarket, 'humswap-bowls'))  # Humswap Bowls
+    print(r.fetch(Market.GhostMarket, 'puppet'))  # Puppet
+    print(r.fetch(Market.GhostMarket, 'ghost'))  # Ghost
+    print(r.fetch(Market.GhostMarket, 'somniumwave'))  # SOMNIUMWAVE
+    print(r.fetch(Market.GhostMarket, 'antcoins'))  # AntCoins
+    print(r.fetch(Market.GhostMarket, '22rs'))  # 22 Racing Series
+    print(r.fetch(Market.GhostMarket, 'fcc'))  # Featured Community
+    print(r.fetch(Market.GhostMarket, 'luckytiger'))  # LuckyTiger

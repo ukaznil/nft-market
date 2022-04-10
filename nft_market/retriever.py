@@ -79,6 +79,8 @@ class Retriever:
             func = self._retrieve_pancakeswap
         elif market == Market.Rarible:
             func = self._retrieve_rarible
+        elif market == Market.GhostMarket:
+            func = self._retrieve_ghostmarket
         else:
             raise NotImplementedError(market)
         # endif
@@ -229,6 +231,37 @@ class Retriever:
             nft = NFTInfo(name=id,
                           num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                           floor=floor, volume=volume)
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_ghostmarket(self, id: str) -> NFTInfo:
+        url = f'https://ghostmarket.io/collection/{id}'
+
+        nft = NotImplemented
+        with _NFTWebDriver(url, **self.option) as driver:
+            for c_floor in ['//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/span/div[2]/div/div/div[1]',
+                            '//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/div/div/div[1]']:
+                try:
+                    num_items_all = _text2int(driver.find_element(by=By.XPATH,
+                                                                  value='//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/div/div/div[1]').text)
+                    num_listing = None
+                    num_owners = _text2int(driver.find_element(by=By.XPATH,
+                                                               value='//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/div/div/div[1]').text)
+                    floor = _text2float(driver.find_element(by=By.XPATH,
+                                                            value=c_floor).text)
+                    volume = _text2float(driver.find_element(by=By.XPATH,
+                                                             value='//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/div/div/div[1]').text)
+
+                    nft = NFTInfo(name=id,
+                                  num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                                  floor=floor, volume=volume)
+                    break
+                except NoSuchElementException as e:
+                    continue
+                # endtry
+            # endfor
         # endwith
 
         return nft
