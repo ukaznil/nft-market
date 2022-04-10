@@ -88,13 +88,21 @@ class Retriever:
         num_retry = 0
         error = NotImplemented
         while num_retry <= self.num_retry:
+            nft = None
             try:
-                return func(id)
+                nft = func(id)
+                if nft is None:
+                    raise ValueError(id)
+                # endif
             except Exception as e:
                 error = e
                 num_retry += 1
                 time.sleep(self.sec_wait)
             # endtry
+
+            if nft is not None:
+                return nft
+            # endif
         # endwhile
 
         raise error
@@ -103,7 +111,7 @@ class Retriever:
     def _retrieve_opensea(self, id: str) -> NFTInfo:
         url = f'https://opensea.io/collection/{id}'
 
-        nft = NotImplemented
+        nft = None
         with _NFTWebDriver(url, **self.option) as driver:
             for c1 in [4, 5]:
                 try:
@@ -133,7 +141,7 @@ class Retriever:
     def _retrieve_entrepot(self, id: str) -> NFTInfo:
         url = f'https://entrepot.app/marketplace/{id}'
 
-        nft = NotImplemented
+        nft = None
         with _NFTWebDriver(url, **self.option) as driver:
             for c1 in [2, 3]:
                 try:
@@ -161,7 +169,7 @@ class Retriever:
     def _retrieve_tofu(self, id: str) -> NFTInfo:
         url = f'https://tofunft.com/collection/{id}/items'
 
-        nft = NotImplemented
+        nft = None
         with _NFTWebDriver(url, **self.option) as driver:
             num_items_all = None
             num_listing = _text2int(driver.find_element(by=By.XPATH,
@@ -184,7 +192,7 @@ class Retriever:
     def _retrieve_pancakeswap(self, id: str) -> NFTInfo:
         url = f'https://pancakeswap.finance/nfts/collections/{id}'
 
-        nft = NotImplemented
+        nft = None
         with _NFTWebDriver(url, **self.option) as driver:
             num_items_all = _text2int(driver.find_element(by=By.XPATH,
                                                           value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]').text)
@@ -212,7 +220,7 @@ class Retriever:
             url = f'https://rarible.com/{id}/items'
         # endif
 
-        nft = NotImplemented
+        nft = None
         with _NFTWebDriver(url, **self.option) as driver:
             num_items_all = _text2int(driver.find_element(by=By.XPATH,
                                                           value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span').text)
@@ -235,7 +243,7 @@ class Retriever:
     def _retrieve_ghostmarket(self, id: str) -> NFTInfo:
         url = f'https://ghostmarket.io/collection/{id}'
 
-        nft = NotImplemented
+        nft = None
         with _NFTWebDriver(url, **self.option) as driver:
             for c_floor in ['//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/span/div[2]/div/div/div[1]',
                             '//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/div/div/div[1]']:
