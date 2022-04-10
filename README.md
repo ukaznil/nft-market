@@ -38,7 +38,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [GhostMarket](https://ghostmarket.io/)
 - [Crypto.com](https://crypto.com/nft/)
 - [Gem](https://www.gem.xyz/)
-- ~~LooksRare~~ (To be added soon)
+- [LooksRare](https://looksrare.org/)
 - ~~MoBox~~ (To be added soon)
 - ~~CryptoPunks~~ (To be added soon)
 - ~~Axie Infinity~~ (To be added soon)
@@ -85,6 +85,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |
 | Crypto.com  | &check; |         | &check;   | &check;  | &check; | &check; |
 | Gem         | &check; |         | &check;   |          | &check; | &check; |
+| LooksRare   | &check; |         | &check;   | &check;  | &check; | &check; |
 
 Other information may be provided in the future!
 

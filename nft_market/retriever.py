@@ -1,3 +1,4 @@
+import itertools
 import os
 import time
 
@@ -86,6 +87,8 @@ class Retriever:
             func = self._retrieve_cryptocom
         elif market == Market.Gem:
             func = self._retrieve_gem
+        elif market == Market.LooksRare:
+            func = self._retrieve_looksrare
         else:
             raise NotImplementedError(market)
         # endif
@@ -372,6 +375,41 @@ class Retriever:
                     print(e)
                 # endif
             # endtry
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_looksrare(self, id: str) -> NFTInfo:
+        url = f'https://looksrare.org/collections/{id}'
+
+        nft = None
+        with _NFTWebDriver(url, **self.option) as driver:
+            for c_name, c_listing in itertools.product([4, 5], [6, 7]):
+                try:
+                    name = driver.find_element(by=By.XPATH,
+                                               value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1').text
+                    num_items_all = None
+                    num_listing = _text2int(driver.find_element(by=By.XPATH,
+                                                                value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[3]/div[2]').text)
+                    num_owners = _text2int(driver.find_element(by=By.XPATH,
+                                                               value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[4]/div[2]').text)
+                    floor = _text2float(driver.find_element(by=By.XPATH,
+                                                            value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[1]/div[2]/div[1]').text)
+                    volume = _text2float(driver.find_element(by=By.XPATH,
+                                                             value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[2]/div[2]/div').text)
+
+                    nft = NFTInfo(id=id, name=name,
+                                  num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                                  floor=floor, volume=volume)
+                    break
+                except NoSuchElementException as e:
+                    if self.verbose:
+                        print(e)
+                    # endif
+                    continue
+                # endtry
+            # endfor
         # endwith
 
         return nft

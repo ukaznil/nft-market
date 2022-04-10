@@ -113,3 +113,17 @@ def sample_gem():
     print(r.fetch(Market.Gem, 'official-kreepy-club'))  # OFFICIAL KREEPY CLUB
     print(r.fetch(Market.Gem, 'froyokittenscollection'))  # froyo kittens
     print(r.fetch(Market.Gem, 'mutant-ape-yacht-club'))  # Mutant Ape Yacht Club
+
+
+def sample_looksrare():
+    # LooksRare
+    print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
+    print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
+    print(r.fetch(Market.LooksRare, '0xcE25E60A89F200B1fA40f6c313047FFe386992c3'))  # dotdotdot
+    print(r.fetch(Market.LooksRare, '0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7'))  # Meebits
+    print(r.fetch(Market.LooksRare, '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'))  # Bored Ape Yacht Club
+    print(r.fetch(Market.LooksRare, '0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
+    print(r.fetch(Market.LooksRare, '0xbC578eCcA2115dAC0c93C08674edC0C7D01Fe09C'))  # InvisibleSociety
+    print(r.fetch(Market.LooksRare, '0xED5AF388653567Af2F388E6224dC7C4b3241C544'))  # Azuki
+    print(r.fetch(Market.LooksRare, '0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'))  # CloneX
+    print(r.fetch(Market.LooksRare, '0xBd785591D714f691E939de7ec6D72550a44c598c'))  # AlphaDoggg Tag
