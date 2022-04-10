@@ -163,23 +163,19 @@ class Retriever:
 
         nft = NotImplemented
         with _NFTWebDriver(url, **self.option) as driver:
-            try:
-                num_items_all = None
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]').text)
-                num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]').text)
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2] ').text)
+            num_items_all = None
+            num_listing = _text2int(driver.find_element(by=By.XPATH,
+                                                        value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]').text)
+            num_owners = _text2int(driver.find_element(by=By.XPATH,
+                                                       value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]').text)
+            floor = _text2float(driver.find_element(by=By.XPATH,
+                                                    value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]').text)
+            volume = _text2float(driver.find_element(by=By.XPATH,
+                                                     value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2] ').text)
 
-                nft = NFTInfo(name=id,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
-            except NoSuchElementException as e:
-                pass
-            # endtry
+            nft = NFTInfo(name=id,
+                          num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                          floor=floor, volume=volume)
         # endwith
 
         return nft
