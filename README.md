@@ -1,5 +1,6 @@
 # nft-market
 
+[![PyPI version](https://badge.fury.io/py/nft-market.svg)](https://badge.fury.io/py/nft-market)
 [![test](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml/badge.svg)](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml)
 
 ## What is it?
