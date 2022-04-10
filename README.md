@@ -37,6 +37,14 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [Rarible](https://rarible.com/)
 - [GhostMarket](https://ghostmarket.io/)
 - [Crypto.com](https://crypto.com/nft/)
+- ~~LooksRare~~ (To be added soon)
+- ~~MoBox~~ (To be added soon)
+- ~~CryptoPunks~~ (To be added soon)
+- ~~Axie Infinity~~ (To be added soon)
+- ~~Magic Eden~~ (To be added soon)
+- ~~BloctoPay~~ (To be added soon)
+- ~~NBA Top Shot~~ (To be added soon)
+- ~~NFTrade~~ (To be added soon)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
