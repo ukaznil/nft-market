@@ -84,6 +84,8 @@ class Retriever:
             func = self._retrieve_ghostmarket
         elif market == Market.Cryptocom:
             func = self._retrieve_cryptocom
+        elif market == Market.Gem:
+            func = self._retrieve_gem
         else:
             raise NotImplementedError(market)
         # endif
@@ -330,6 +332,37 @@ class Retriever:
                                                         value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div').text)
                 volume = _text2float(driver.find_element(by=By.XPATH,
                                                          value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div').text)
+
+                nft = NFTInfo(id=id, name=name,
+                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                              floor=floor, volume=volume)
+            except NoSuchElementException as e:
+                if self.verbose:
+                    print(e)
+                # endif
+            # endtry
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_gem(self, id: str) -> NFTInfo:
+        url = f'https://www.gem.xyz/collection/{id}'
+
+        nft = None
+        with _NFTWebDriver(url, **self.option) as driver:
+            try:
+                name = driver.find_element(by=By.XPATH,
+                                           value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div').text
+                num_items_all = None
+                num_listing = _text2int(driver.find_element(by=By.XPATH,
+                                                            value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]').text \
+                                        .replace('results', ''))
+                num_owners = None
+                floor = _text2float(driver.find_element(by=By.XPATH,
+                                                        value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]').text)
+                volume = _text2float(driver.find_element(by=By.XPATH,
+                                                         value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]').text)
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,

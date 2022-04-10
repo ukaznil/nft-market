@@ -99,3 +99,17 @@ def sample_cryptocom():
     print(r.fetch(Market.Cryptocom, '69d0601d6d4ecd0ea670835645d47b0d'))  # PsychoKitties: The Rise Of Mollies
     print(r.fetch(Market.Cryptocom, '66b8c165ad4babe1b488b4981d07438e'))  # PHAZES
     print(r.fetch(Market.Cryptocom, '6e656ea14b0863f3cf1dbd41554302d3'))  # The Art of Giving
+
+
+def sample_gem():
+    # Gem
+    print(r.fetch(Market.Gem, 'official-moar-by-joan-cornella'))  # "MOAR" by Joan Cornella
+    print(r.fetch(Market.Gem, 'hakinft-io'))  # HAKI NFT
+    print(r.fetch(Market.Gem, 'los-muertos-world'))  # Los Muertos World
+    print(r.fetch(Market.Gem, 'boredapeyachtclub'))  # Bored Ape Yacht Club
+    print(r.fetch(Market.Gem, 'arcade-land'))  # Arcade Land
+    print(r.fetch(Market.Gem, 'hikarinftofficial'))  # Hikari Official
+    print(r.fetch(Market.Gem, 'impostors-genesis-aliens'))  # Impostors Genesis Aliens
+    print(r.fetch(Market.Gem, 'official-kreepy-club'))  # OFFICIAL KREEPY CLUB
+    print(r.fetch(Market.Gem, 'froyokittenscollection'))  # froyo kittens
+    print(r.fetch(Market.Gem, 'mutant-ape-yacht-club'))  # Mutant Ape Yacht Club

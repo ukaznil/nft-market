@@ -50,3 +50,10 @@ def test_cryptocom():
     print(r.fetch(Market.Cryptocom, '6c7b1a68479f2fc35e9f81e42bcb7397'))  # Ballies Origins
     print(r.fetch(Market.Cryptocom, '82421cf8e15df0edcaa200af752a344f'))  # Loaded Lions
     print(r.fetch(Market.Cryptocom, '4ff90f089ac3ef9ce342186adc48a30d'))  # AlphaBot Society
+
+
+def test_gem():
+    # Gem
+    print(r.fetch(Market.Gem, 'official-moar-by-joan-cornella'))  # "MOAR" by Joan Cornella
+    print(r.fetch(Market.Gem, 'hakinft-io'))  # HAKI NFT
+    print(r.fetch(Market.Gem, 'los-muertos-world'))  # Los Muertos World

@@ -9,3 +9,4 @@ class Market(Enum):
     Rarible = auto()
     GhostMarket = auto()
     Cryptocom = auto()
+    Gem = auto()
