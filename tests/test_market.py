@@ -57,3 +57,10 @@ def test_gem():
     print(r.fetch(Market.Gem, 'official-moar-by-joan-cornella'))  # "MOAR" by Joan Cornella
     print(r.fetch(Market.Gem, 'hakinft-io'))  # HAKI NFT
     print(r.fetch(Market.Gem, 'los-muertos-world'))  # Los Muertos World
+
+
+def test_looksrare():
+    # LooksRare
+    print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
+    print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
+    print(r.fetch(Market.LooksRare, '0xcE25E60A89F200B1fA40f6c313047FFe386992c3'))  # dotdotdot
