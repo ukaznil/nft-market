@@ -32,7 +32,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 
 - [OpenSea](https://opensea.io/)
 - [Entrepot](https://entrepot.app/)
-- [Tofu](https://tofunft.com/)
+- [tofuNFT](https://tofunft.com/)
 - [PancakeSwap](https://pancakeswap.finance/nfts/)
 - [Rarible](https://rarible.com/)
 - [GhostMarket](https://ghostmarket.io/)
@@ -52,7 +52,7 @@ When you want to retrieve the information of the NFT of [Bored Ape Yacht Club
 . In this URL, what differs according to a NFT is the part of `boredapeyachtclub`, which is all you need to use **
 nft-market**.
 
-#### Example 2: Tofu
+#### Example 2: tofuNFT
 
 URLs look like `https://tofunft.com/collection/astardegens/items`. In this case, what **nft-market** requires is only
 the part of `astardegens`.
@@ -70,7 +70,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 |-------------|---------|---------|-----------|----------|---------|---------|
 | OpenSea     | &check; |         | &check;   | &check;  | &check; | &check; |
 | Entrepot    | &check; |         | &check;   |          | &check; | &check; |
-| Tofu        | &check; |         | &check;   |          | &check; | &check; |
+| tofuNFT     | &check; |         | &check;   |          | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
 | Rarible     | &check; | &check; |           | &check;  | &check; | &check; |
 | GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |

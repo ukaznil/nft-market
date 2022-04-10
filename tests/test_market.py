@@ -17,11 +17,11 @@ def test_entrepot():
     print(r.fetch(Market.Entrepot, 'motoko'))  # Motoko Day Drop
 
 
-def test_tofu():
-    # Tofu
-    print(r.fetch(Market.Tofu, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
-    print(r.fetch(Market.Tofu, 'samurise'))  # Lost SamuRise
-    print(r.fetch(Market.Tofu, 'gh0stlygh0sts-bsc'))  # Gh0stly Gh0sts
+def test_tofunft():
+    # tofuNFT
+    print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
+    print(r.fetch(Market.tofuNFT, 'samurise'))  # Lost SamuRise
+    print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-bsc'))  # Gh0stly Gh0sts
 
 
 def test_pancakeswap():

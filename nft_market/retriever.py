@@ -74,8 +74,8 @@ class Retriever:
             func = self._retrieve_opensea
         elif market == Market.Entrepot:
             func = self._retrieve_entrepot
-        elif market == Market.Tofu:
-            func = self._retrieve_tofu
+        elif market == Market.tofuNFT:
+            func = self._retrieve_tofunft
         elif market == Market.PancakeSwap:
             func = self._retrieve_pancakeswap
         elif market == Market.Rarible:
@@ -179,7 +179,7 @@ class Retriever:
         return nft
     # enddef
 
-    def _retrieve_tofu(self, id: str) -> NFTInfo:
+    def _retrieve_tofunft(self, id: str) -> NFTInfo:
         url = f'https://tofunft.com/collection/{id}/items'
 
         nft = None

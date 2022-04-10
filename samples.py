@@ -31,18 +31,18 @@ def sample_entrepot():
     print(r.fetch(Market.Entrepot, 'ethflower'))  # ETH Flower
 
 
-def sample_tofu():
-    # Tofu
-    print(r.fetch(Market.Tofu, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
-    print(r.fetch(Market.Tofu, 'samurise'))  # Lost SamuRise
-    print(r.fetch(Market.Tofu, 'gh0stlygh0sts-bsc'))  # Gh0stly Gh0sts
-    print(r.fetch(Market.Tofu, 'meta-warden'))  # MetaWarden
-    print(r.fetch(Market.Tofu, 'league-of-kingdoms-item'))  # League of Kingdoms ITEM
-    print(r.fetch(Market.Tofu, 'tiny-dinos-polygon'))  # tiny dinos
-    print(r.fetch(Market.Tofu, 'astardegens'))  # AstarDegens
-    print(r.fetch(Market.Tofu, 'astar-punks'))  # Astar Punks
-    print(r.fetch(Market.Tofu, 'universe-ecosystem'))  # Universe Ecosystem
-    print(r.fetch(Market.Tofu, 'node-whales'))  # Node Whales
+def sample_tofunft():
+    # tofuNFT
+    print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
+    print(r.fetch(Market.tofuNFT, 'samurise'))  # Lost SamuRise
+    print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-bsc'))  # Gh0stly Gh0sts
+    print(r.fetch(Market.tofuNFT, 'meta-warden'))  # MetaWarden
+    print(r.fetch(Market.tofuNFT, 'league-of-kingdoms-item'))  # League of Kingdoms ITEM
+    print(r.fetch(Market.tofuNFT, 'tiny-dinos-polygon'))  # tiny dinos
+    print(r.fetch(Market.tofuNFT, 'astardegens'))  # AstarDegens
+    print(r.fetch(Market.tofuNFT, 'astar-punks'))  # Astar Punks
+    print(r.fetch(Market.tofuNFT, 'universe-ecosystem'))  # Universe Ecosystem
+    print(r.fetch(Market.tofuNFT, 'node-whales'))  # Node Whales
 
 
 def sample_pancakeswap():
