@@ -8,7 +8,7 @@ setuptools.setup(
     version="1.0",
     author="ukaznil",
     author_email="ukaznil@gmail.com",
-    description="NFT information is your hands.",
+    description="NFT information is in your hands.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ukaznil/nft-market",
