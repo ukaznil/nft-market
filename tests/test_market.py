@@ -43,3 +43,10 @@ def test_ghostmarket():
     print(r.fetch(Market.GhostMarket, 'neoverse'))  # Neoverse
     print(r.fetch(Market.GhostMarket, 'tothemoon'))  # TOTHEMOON
     print(r.fetch(Market.GhostMarket, 'humswap-bowls'))  # Humswap Bowls
+
+
+def test_cryptocom():
+    # Crypto.com
+    print(r.fetch(Market.Cryptocom, '6c7b1a68479f2fc35e9f81e42bcb7397'))  # Ballies Origins
+    print(r.fetch(Market.Cryptocom, '82421cf8e15df0edcaa200af752a344f'))  # Loaded Lions
+    print(r.fetch(Market.Cryptocom, '4ff90f089ac3ef9ce342186adc48a30d'))  # AlphaBot Society

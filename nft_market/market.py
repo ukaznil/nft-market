@@ -8,3 +8,4 @@ class Market(Enum):
     PancakeSwap = auto()
     Rarible = auto()
     GhostMarket = auto()
+    Cryptocom = auto()

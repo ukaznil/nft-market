@@ -85,3 +85,17 @@ def sample_ghostmarket():
     print(r.fetch(Market.GhostMarket, '22rs'))  # 22 Racing Series
     print(r.fetch(Market.GhostMarket, 'fcc'))  # Featured Community
     print(r.fetch(Market.GhostMarket, 'luckytiger'))  # LuckyTiger
+
+
+def sample_cryptocom():
+    # Crypto.com
+    print(r.fetch(Market.Cryptocom, '6c7b1a68479f2fc35e9f81e42bcb7397'))  # Ballies Origins
+    print(r.fetch(Market.Cryptocom, '82421cf8e15df0edcaa200af752a344f'))  # Loaded Lions
+    print(r.fetch(Market.Cryptocom, '4ff90f089ac3ef9ce342186adc48a30d'))  # AlphaBot Society
+    print(r.fetch(Market.Cryptocom, 'bd2890bc85bd036bc71e999a147b7fe5'))  # Cryptoverse
+    print(r.fetch(Market.Cryptocom, 'faa3d8da88f9ee2f25267e895db71471'))  # PsychoKitties: The New Era
+    print(r.fetch(Market.Cryptocom, '282ff8943c87c682b06dfcbb531b7118'))  # POTATOES ARE HUMANS TOO
+    print(r.fetch(Market.Cryptocom, '8539b9d1f2337bf5725c75d2a47e4f0d'))  # Cosmic Creatures
+    print(r.fetch(Market.Cryptocom, '69d0601d6d4ecd0ea670835645d47b0d'))  # PsychoKitties: The Rise Of Mollies
+    print(r.fetch(Market.Cryptocom, '66b8c165ad4babe1b488b4981d07438e'))  # PHAZES
+    print(r.fetch(Market.Cryptocom, '6e656ea14b0863f3cf1dbd41554302d3'))  # The Art of Giving

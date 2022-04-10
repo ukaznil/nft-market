@@ -82,6 +82,8 @@ class Retriever:
             func = self._retrieve_rarible
         elif market == Market.GhostMarket:
             func = self._retrieve_ghostmarket
+        elif market == Market.Cryptocom:
+            func = self._retrieve_cryptocom
         else:
             raise NotImplementedError(market)
         # endif
@@ -306,6 +308,37 @@ class Retriever:
                     continue
                 # endtry
             # endfor
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_cryptocom(self, id: str) -> NFTInfo:
+        url = f'https://crypto.com/nft/collection/{id}'
+
+        nft = None
+        with _NFTWebDriver(url, **self.option) as driver:
+            try:
+                name = driver.find_element(by=By.XPATH,
+                                           value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[1]').text
+                num_items_all = None
+                num_listing = _text2int(driver.find_element(by=By.XPATH,
+                                                            value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[1]/span').text)
+                num_owners = _text2int(driver.find_element(by=By.XPATH,
+                                                           value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[2]/span').text)
+                floor = _text2float(driver.find_element(by=By.XPATH,
+                                                        value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div').text)
+                volume = _text2float(driver.find_element(by=By.XPATH,
+                                                         value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div').text)
+
+                nft = NFTInfo(id=id, name=name,
+                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                              floor=floor, volume=volume)
+            except NoSuchElementException as e:
+                if self.verbose:
+                    print(e)
+                # endif
+            # endtry
         # endwith
 
         return nft
