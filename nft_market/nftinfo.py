@@ -4,6 +4,7 @@ from typing import *
 
 @dataclasses.dataclass
 class NFTInfo:
+    id: str
     name: str
     num_items_all: Optional[int]
     num_listing: Optional[int]
