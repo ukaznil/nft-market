@@ -38,9 +38,10 @@ class _NFTWebDriver:
 
 
 def _text2float(s: str) -> float:
-    s = s.replace(',', '').replace('<', '').replace('>', '') \
+    s = s.replace(',', '').replace('<', '').replace('>', '').replace('$', '') \
         .replace('k', '*1000').replace('K', '*1000') \
-        .replace('M', '*1000000')
+        .replace('M', '*1000000') \
+        .replace('B', '*1000000000')
     f = float(eval(s))
 
     return f
@@ -51,11 +52,12 @@ def _text2int(s: str) -> int:
 
 
 class Retriever:
-    def __init__(self, sec_wait: int = 10):
+    def __init__(self, sec_wait: int = 10, num_retry: int = 5):
         self.option = {
             'sec_wait': sec_wait
             }
         self.sec_wait = sec_wait
+        self.num_retry = num_retry
     # enddef
 
     def fetch(self, market: Market, id: str) -> NFTInfo:
@@ -81,7 +83,7 @@ class Retriever:
 
         num_retry = 0
         error = NotImplemented
-        while num_retry < 5:
+        while num_retry <= self.num_retry:
             try:
                 return func(id)
             except Exception as e:
@@ -142,6 +144,7 @@ class Retriever:
                     nft = NFTInfo(name=id,
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                                   floor=floor, volume=volume)
+                    break
                 except NoSuchElementException as e:
                     continue
                 # endtry
