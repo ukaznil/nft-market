@@ -1,8 +1,9 @@
 from nft_market import Market, Retriever
 
-if __name__ == '__main__':
-    r = Retriever()
+r = Retriever(num_retry=0)
 
+
+def sample_opensea():
     # OpenSea
     print(r.fetch(Market.OpenSea, 'clonex'))  # CLONE X - X TAKASHI MURAKAMI
     print(r.fetch(Market.OpenSea, 'azuki'))  # Azuki
@@ -15,6 +16,8 @@ if __name__ == '__main__':
     print(r.fetch(Market.OpenSea, 'shinsekai-portal'))  # Shinsekai Portal
     print(r.fetch(Market.OpenSea, 'impostors-genesis-aliens'))  # Impostors Genesis Aliens
 
+
+def sample_entrepot():
     # Entrepot
     print(r.fetch(Market.Entrepot, 'btcflower'))  # BTC Flower
     print(r.fetch(Market.Entrepot, 'poked'))  # Poked bots
@@ -27,6 +30,8 @@ if __name__ == '__main__':
     print(r.fetch(Market.Entrepot, 'icdinos'))  # IC Dinos
     print(r.fetch(Market.Entrepot, 'ethflower'))  # ETH Flower
 
+
+def sample_tofu():
     # Tofu
     print(r.fetch(Market.Tofu, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
     print(r.fetch(Market.Tofu, 'samurise'))  # Lost SamuRise
@@ -39,6 +44,8 @@ if __name__ == '__main__':
     print(r.fetch(Market.Tofu, 'universe-ecosystem'))  # Universe Ecosystem
     print(r.fetch(Market.Tofu, 'node-whales'))  # Node Whales
 
+
+def sample_pancakeswap():
     # PancakeSwap
     print(r.fetch(Market.PancakeSwap, '0x0a8901b0e25deb55a87524f0cc164e9644020eba'))  # Pancake Squad
     print(r.fetch(Market.PancakeSwap, '0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07'))  # Pancake Bunnies
