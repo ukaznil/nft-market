@@ -33,7 +33,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [OpenSea](https://opensea.io/)
 - [Entrepot](https://entrepot.app/)
 - [Tofu](https://tofunft.com/)
-- [PancakeSwap](https://pancakeswap.finance/nfts)
+- [PancakeSwap](https://pancakeswap.finance/nfts/)
 - [Rarible](https://rarible.com/)
 - [GhostMarket](https://ghostmarket.io/)
 - [Crypto.com](https://crypto.com/nft/)

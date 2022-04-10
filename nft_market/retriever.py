@@ -157,12 +157,12 @@ class Retriever:
                                                value=f'//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[3]/h1').text
                     num_items_all = None
                     num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                                value='//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/strong').text)
+                                                                value=f'//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/strong').text)
                     num_owners = None
                     floor = _text2float(driver.find_element(by=By.XPATH,
                                                             value=f'//*[@id="mainListings"]/div[2]/div/div[2]/div[2]/div/div[1]/div/a/div[{c1}]/div/div[4]/p').text)
                     volume = _text2float(driver.find_element(by=By.XPATH,
-                                                             value='//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong').text)
+                                                             value=f'//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong').text)
                     nft = NFTInfo(id=id, name=name,
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                                   floor=floor, volume=volume)
@@ -189,13 +189,13 @@ class Retriever:
                                            value=f'//*[@id="__next"]/div[2]/div[1]/div[1]/h1').text
                 num_items_all = None
                 num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]').text)
+                                                            value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]').text)
                 num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]').text)
+                                                           value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]').text)
                 floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]').text)
+                                                        value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]').text)
                 volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value='//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2] ').text)
+                                                         value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2] ').text)
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
@@ -219,14 +219,14 @@ class Retriever:
                 name = driver.find_element(by=By.XPATH,
                                            value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[1]/h1').text
                 num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                              value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]').text)
+                                                              value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]').text)
                 num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[2]/div[2]').text)
+                                                            value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[2]/div[2]').text)
                 num_owners = None
                 floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]').text)
+                                                        value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]').text)
                 volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value='//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]').text)
+                                                         value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]').text)
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
@@ -255,14 +255,14 @@ class Retriever:
                 name = driver.find_element(by=By.XPATH,
                                            value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/span').text
                 num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                              value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span').text)
+                                                              value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span').text)
                 num_listing = None
                 num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span').text)
+                                                           value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span').text)
                 floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span').text)
+                                                        value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span').text)
                 volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value='//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span').text)
+                                                         value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span').text)
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
@@ -288,14 +288,14 @@ class Retriever:
                     name = driver.find_element(by=By.XPATH,
                                                value=f'//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]').text
                     num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                                  value='//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/div/div/div[1]').text)
+                                                                  value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/div/div/div[1]').text)
                     num_listing = None
                     num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                               value='//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/div/div/div[1]').text)
+                                                               value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/div/div/div[1]').text)
                     floor = _text2float(driver.find_element(by=By.XPATH,
                                                             value=c_floor).text)
                     volume = _text2float(driver.find_element(by=By.XPATH,
-                                                              value='//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/div/div/div[1]').text)
+                                                             value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/div/div/div[1]').text)
 
                     nft = NFTInfo(id=id, name=name,
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
