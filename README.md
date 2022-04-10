@@ -23,7 +23,7 @@ print(r.fetch(Market.OpenSea, 'boredapeyachtclub'))  # Bored Ape Yacht Club
 
 # [Output]
 # type: nft_market.NFTInfo
-# NFTInfo(name='boredapeyachtclub', num_items_all=None, num_listing=10000, num_owners=6400, floor=110.0, volume=487100.0)
+# NFTInfo(id='boredapeyachtclub', name='Bored Ape Yacht Club', num_items_all=None, num_listing=10000, num_owners=6400, floor=111.0, volume=487600.0)
 ```
 
 ### Currently supported marketplaces
