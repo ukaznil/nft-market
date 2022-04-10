@@ -35,11 +35,11 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [PancakeSwap](https://pancakeswap.finance/nfts)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
-immediately.
+immediately. Either PRs or issues are always welcome!
 
 ### How to get the ID of a NFT?
 
-Although it dependson which marketplace you use, you can basically find it in the URL.
+Although it depends on which marketplace you use, you can basically find it in the URL.
 
 #### Example 1: OpenSea
 
@@ -55,7 +55,7 @@ the part of `astardegens`.
 
 #### Other examples
 
-We have several example of usage in [samples.py](https://github.com/ukaznil/nft-market/blob/master/samples.py) for
+We have several examples of the usage in [samples.py](https://github.com/ukaznil/nft-market/blob/master/samples.py) for
 references.
 
 ### Available information
@@ -68,6 +68,8 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | Entrepot    | &check; |         | &check;   |          | &check; | &check; |
 | Tofu        | &check; |         | &check;   |          | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
+
+Other information may be provided in the future!
 
 ## Installation
 
