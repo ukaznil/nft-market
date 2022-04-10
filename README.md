@@ -13,7 +13,7 @@ Tofu, PancakeSwap, etc) can be obtained.
 **nft-market** provides simple APIs that return market information just by your giving the following arguments.
 
 - The marketplace (from `nft_market.Market`)
-- the ID of a specific NFT (See the below in detail.)
+- the ID of a specific NFT ([See the below in detail](https://github.com/ukaznil/nft-market#how-to-get-the-id-of-a-nft))
 
 ```python
 from nft_market import Market, Retriever
