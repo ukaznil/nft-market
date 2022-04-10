@@ -23,7 +23,7 @@ class _NFTWebDriver:
 
     def __enter__(self):
         self.driver = webdriver.Firefox(options=self.options, service=Service(log_path=os.devnull))
-        self.driver.switch_to.new_window()
+        self.driver.maximize_window()
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
