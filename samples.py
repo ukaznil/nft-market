@@ -127,3 +127,17 @@ def sample_looksrare():
     print(r.fetch(Market.LooksRare, '0xED5AF388653567Af2F388E6224dC7C4b3241C544'))  # Azuki
     print(r.fetch(Market.LooksRare, '0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'))  # CloneX
     print(r.fetch(Market.LooksRare, '0xBd785591D714f691E939de7ec6D72550a44c598c'))  # AlphaDoggg Tag
+
+
+def sample_nftrade():
+    # NFTrade
+    print(r.fetch(Market.NFTrade, 'polygon/0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
+    print(r.fetch(Market.NFTrade, 'bsc/0x8815fae8feb5e1b2f8a6c7c948d9fd1866e07a4f'))  # Mines of Dalarnia Land Plots
+    print(r.fetch(Market.NFTrade, 'avalanche/0xaab56a5a22db41d6663aab0f8f0bed979c84c569'))  # PIRATE CHEST v2
+    print(r.fetch(Market.NFTrade, 'avalanche/0x023a1eafc590d790fabd1d00872881c2a9e3c74a'))  # Louverture
+    print(r.fetch(Market.NFTrade, 'bsc/0xe9b9497798b5fe949039c01b1a772bdcb7e9ba10'))  # Gamer NFLs
+    print(r.fetch(Market.NFTrade, 'avalanche/0xa69fee085a4c38656ce9c37a064a330725307482'))  # Avalant
+    print(r.fetch(Market.NFTrade, 'avalanche/0x4a8e6a9b93e55af71882f3afaa10141715ce5fd2'))  # Tiny Bones Club
+    print(r.fetch(Market.NFTrade, 'avalanche/0xeab33f781ada4ee7e91fd63ad87c5bb47ffb8a83'))  # Yield Hunt
+    print(r.fetch(Market.NFTrade, 'avalanche/0xd5c6064e09ff127e24900adfb8559c4ee0634729'))  # NodeBears
+    print(r.fetch(Market.NFTrade, 'avalanche/0x6cc4cc814c7154fb67965c8044cc803b3199ec53'))  # Pizza Game Chef Tools
