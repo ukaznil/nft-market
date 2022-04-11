@@ -11,3 +11,4 @@ class Market(Enum):
     Cryptocom = auto()
     Gem = auto()
     LooksRare = auto()
+    NFTrade = auto()

@@ -64,3 +64,10 @@ def test_looksrare():
     print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
     print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
     print(r.fetch(Market.LooksRare, '0xcE25E60A89F200B1fA40f6c313047FFe386992c3'))  # dotdotdot
+
+
+def test_nftrade():
+    # NFTrade
+    print(r.fetch(Market.NFTrade, '0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
+    print(r.fetch(Market.NFTrade, '0x8815fae8feb5e1b2f8a6c7c948d9fd1866e07a4f'))  # Mines of Dalarnia Land Plots
+    print(r.fetch(Market.NFTrade, '0xaab56a5a22db41d6663aab0f8f0bed979c84c569'))  # PIRATE CHEST v2
