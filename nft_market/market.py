@@ -12,3 +12,4 @@ class Market(Enum):
     Gem = auto()
     LooksRare = auto()
     NFTrade = auto()
+    Solanart = auto()

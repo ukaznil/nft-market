@@ -41,7 +41,7 @@ class _NFTWebDriver:
 def _text2float(s: str) -> float:
     s = s.replace(',', '').replace('<', '').replace('>', '').replace('$', '') \
         .replace('k', '*1000').replace('K', '*1000') \
-        .replace('M', '*1000000') \
+        .replace('m', '*1000000').replace('M', '*1000000') \
         .replace('B', '*1000000000')
     f = float(eval(s))
 
@@ -91,6 +91,8 @@ class Retriever:
             func = self._retrieve_looksrare
         elif market == Market.NFTrade:
             func = self._retrieve_nftrade
+        elif market == Market.Solanart:
+            func = self._retrieve_solanart
         else:
             raise NotImplementedError(market)
         # endif
@@ -432,6 +434,41 @@ class Retriever:
                                                         value=f'//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[1]/div[2]').text)
                 volume = _text2float(driver.find_element(by=By.XPATH,
                                                          value=f'//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[4]/div[2]').text)
+
+                nft = NFTInfo(id=id, name=name,
+                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                              floor=floor, volume=volume)
+            except NoSuchElementException as e:
+                if self.verbose:
+                    print(e)
+                # endif
+            # endtry
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_solanart(self, id: str) -> NFTInfo:
+        url = f'https://solanart.io/collections/{id}'
+
+        nft = None
+        with _NFTWebDriver(url, **self.option) as driver:
+            try:
+                name = driver.find_element(by=By.XPATH,
+                                           value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2').text
+                num_items_all = _text2int(driver.find_element(by=By.XPATH,
+                                                              value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]').text)
+                num_listing = _text2int(driver.find_element(by=By.XPATH,
+                                                            value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[3]/div[2]/div[2]/div[2]').text \
+                                        .split(' ')[0])
+                num_owners = _text2int(driver.find_element(by=By.XPATH,
+                                                           value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]').text)
+                floor = _text2float(driver.find_element(by=By.XPATH,
+                                                        value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]').text \
+                                    .split(' ')[0])
+                volume = _text2float(driver.find_element(by=By.XPATH,
+                                                         value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[7]/div[1]').text \
+                                     .replace('◎', ''))
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,

@@ -141,3 +141,17 @@ def sample_nftrade():
     print(r.fetch(Market.NFTrade, 'avalanche/0xeab33f781ada4ee7e91fd63ad87c5bb47ffb8a83'))  # Yield Hunt
     print(r.fetch(Market.NFTrade, 'avalanche/0xd5c6064e09ff127e24900adfb8559c4ee0634729'))  # NodeBears
     print(r.fetch(Market.NFTrade, 'avalanche/0x6cc4cc814c7154fb67965c8044cc803b3199ec53'))  # Pizza Game Chef Tools
+
+
+def sample_solanart():
+    # Solanart
+    print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
+    print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
+    print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
+    print(r.fetch(Market.Solanart, 'degeneratetrashpandas'))  # Degenerate Trash Pandas
+    print(r.fetch(Market.Solanart, 'degenerate_ape_kindergarten'))  # Degenerate Ape Kindergarten
+    print(r.fetch(Market.Solanart, 'grimsyndicate'))  # Grim Syndicate
+    print(r.fetch(Market.Solanart, 'cyberpharmacist'))  # Cyber Pharmacy
+    print(r.fetch(Market.Solanart, 'famousfoxfederation'))  # Famous Fox Federation
+    print(r.fetch(Market.Solanart, 'nyanheroes'))  # Nyan Heroes
+    print(r.fetch(Market.Solanart, 'verseestatexvincentfaudemer'))  # Verse Estate

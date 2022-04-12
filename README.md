@@ -40,6 +40,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [Gem](https://www.gem.xyz/)
 - [LooksRare](https://looksrare.org/)
 - [NFTrade](https://nftrade.com/)
+- [Solanart](https://solanart.io/)
 - ~~MoBox~~ (To be added soon)
 - ~~CryptoPunks~~ (To be added soon)
 - ~~Axie Infinity~~ (To be added soon)
@@ -86,7 +87,8 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | Crypto.com  | &check; |         | &check;   | &check;  | &check; | &check; |
 | Gem         | &check; |         | &check;   |          | &check; | &check; |
 | LooksRare   | &check; |         | &check;   | &check;  | &check; | &check; |
-| NFTrade     | &check; |         |           |          | &check; | &check; | 
+| NFTrade     | &check; |         |           |          | &check; | &check; |
+| Solanart    | &check; | &check; | &check;   | &check;  | &check; | &check; |
 
 Other information may be provided in the future!
 
