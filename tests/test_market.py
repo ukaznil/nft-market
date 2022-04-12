@@ -78,3 +78,10 @@ def sample_solanart():
     print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
     print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
     print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
+
+
+def test_magiceden():
+    # MagicEden
+    print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
+    print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
+    print(r.fetch(Market.MagicEden, 'degods'))  # DeGods

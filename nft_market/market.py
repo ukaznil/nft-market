@@ -13,3 +13,4 @@ class Market(Enum):
     LooksRare = auto()
     NFTrade = auto()
     Solanart = auto()
+    MagicEden = auto()
