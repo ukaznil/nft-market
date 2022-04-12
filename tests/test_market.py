@@ -1,6 +1,6 @@
 from nft_market import Market, Retriever
 
-r = Retriever()
+r = Retriever(num_retry=0, verbose=True)
 
 
 def test_opensea():
