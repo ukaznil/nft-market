@@ -68,12 +68,12 @@ def test_looksrare():
 
 def test_nftrade():
     # NFTrade
-    print(r.fetch(Market.NFTrade, '0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
-    print(r.fetch(Market.NFTrade, '0x8815fae8feb5e1b2f8a6c7c948d9fd1866e07a4f'))  # Mines of Dalarnia Land Plots
-    print(r.fetch(Market.NFTrade, '0xaab56a5a22db41d6663aab0f8f0bed979c84c569'))  # PIRATE CHEST v2
+    print(r.fetch(Market.NFTrade, 'polygon/0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
+    print(r.fetch(Market.NFTrade, 'bsc/0x8815fae8feb5e1b2f8a6c7c948d9fd1866e07a4f'))  # Mines of Dalarnia Land Plots
+    print(r.fetch(Market.NFTrade, 'avalanche/0xaab56a5a22db41d6663aab0f8f0bed979c84c569'))  # PIRATE CHEST v2
 
 
-def sample_solanart():
+def test_solanart():
     # Solanart
     print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
     print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
