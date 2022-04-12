@@ -41,12 +41,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [LooksRare](https://looksrare.org/)
 - [NFTrade](https://nftrade.com/)
 - [Solanart](https://solanart.io/)
-- ~~MoBox~~ (To be added soon)
-- ~~CryptoPunks~~ (To be added soon)
-- ~~Axie Infinity~~ (To be added soon)
-- ~~Magic Eden~~ (To be added soon)
-- ~~BloctoPay~~ (To be added soon)
-- ~~NBA Top Shot~~ (To be added soon)
+- Magic Eden (To be added soon)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
