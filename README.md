@@ -13,7 +13,7 @@ Tofu, PancakeSwap, etc) can be obtained.
 **nft-market** provides simple APIs that return market information just by your giving the following arguments.
 
 - The marketplace (from `nft_market.Market`)
-- the ID of a specific NFT (See the below in detail.)
+- the ID of a specific NFT ([See the below in detail](https://github.com/ukaznil/nft-market#how-to-get-the-id-of-a-nft))
 
 ```python
 from nft_market import Market, Retriever
@@ -23,7 +23,7 @@ print(r.fetch(Market.OpenSea, 'boredapeyachtclub'))  # Bored Ape Yacht Club
 
 # [Output]
 # type: nft_market.NFTInfo
-# NFTInfo(name='boredapeyachtclub', num_items_all=None, num_listing=10000, num_owners=6400, floor=110.0, volume=487100.0)
+# NFTInfo(id='boredapeyachtclub', name='Bored Ape Yacht Club', num_items_all=None, num_listing=10000, num_owners=6400, floor=111.0, volume=487600.0)
 ```
 
 ### Currently supported marketplaces
@@ -32,10 +32,15 @@ At this moment, the following marketplaces are supported in **nft-market**.
 
 - [OpenSea](https://opensea.io/)
 - [Entrepot](https://entrepot.app/)
-- [Tofu](https://tofunft.com/)
-- [PancakeSwap](https://pancakeswap.finance/nfts)
+- [tofuNFT](https://tofunft.com/)
+- [PancakeSwap](https://pancakeswap.finance/nfts/)
 - [Rarible](https://rarible.com/)
 - [GhostMarket](https://ghostmarket.io/)
+- [Crypto.com](https://crypto.com/nft/)
+- [Gem](https://www.gem.xyz/)
+- [LooksRare](https://looksrare.org/)
+- [NFTrade](https://nftrade.com/)
+- [Solanart](https://solanart.io/)
 - [MagicEden](https://magiceden.io/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
@@ -52,7 +57,7 @@ When you want to retrieve the information of the NFT of [Bored Ape Yacht Club
 . In this URL, what differs according to a NFT is the part of `boredapeyachtclub`, which is all you need to use **
 nft-market**.
 
-#### Example 2: Tofu
+#### Example 2: tofuNFT
 
 URLs look like `https://tofunft.com/collection/astardegens/items`. In this case, what **nft-market** requires is only
 the part of `astardegens`.
@@ -70,10 +75,15 @@ What you can retrieve may change by a marketplace you specify, as follows.
 |-------------|---------|---------|-----------|----------|---------|---------|
 | OpenSea     | &check; |         | &check;   | &check;  | &check; | &check; |
 | Entrepot    | &check; |         | &check;   |          | &check; | &check; |
-| Tofu        | &check; |         | &check;   |          | &check; | &check; |
+| tofuNFT     | &check; |         | &check;   |          | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
 | Rarible     | &check; | &check; |           | &check;  | &check; | &check; |
 | GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |
+| Crypto.com  | &check; |         | &check;   | &check;  | &check; | &check; |
+| Gem         | &check; |         | &check;   |          | &check; | &check; |
+| LooksRare   | &check; |         | &check;   | &check;  | &check; | &check; |
+| NFTrade     | &check; |         |           |          | &check; | &check; |
+| Solanart    | &check; | &check; | &check;   | &check;  | &check; | &check; |
 | MagicEden   | &check; |         | &check;   |          | &check; | &check; |
 
 Other information may be provided in the future!
@@ -83,7 +93,7 @@ Other information may be provided in the future!
 You can install **nft-market** by pip.
 
 ```shell
-pip install nft-market
+$ pip install nft-market
 ```
 
 Also, as **nft-market** depends on Firefox and its driver, you need to install them.
