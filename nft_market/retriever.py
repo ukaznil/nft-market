@@ -501,14 +501,14 @@ class Retriever:
                                                             value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]').text)
                 num_owners = None
                 floor = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
-                                                     value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]').text))
+                                                                         value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]').text))
                 volume = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
-                                                         value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]').text))
+                                                                          value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]').text))
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except Exception as e:
+            except NoSuchElementException as e:
                 if self.verbose:
                     print(e)
                 # endif
