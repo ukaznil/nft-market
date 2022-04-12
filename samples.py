@@ -1,6 +1,6 @@
 from nft_market import Market, Retriever
 
-r = Retriever(num_retry=0)
+r = Retriever(num_retry=0, verbose=True)
 
 
 def sample_opensea():
@@ -31,18 +31,18 @@ def sample_entrepot():
     print(r.fetch(Market.Entrepot, 'ethflower'))  # ETH Flower
 
 
-def sample_tofu():
-    # Tofu
-    print(r.fetch(Market.Tofu, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
-    print(r.fetch(Market.Tofu, 'samurise'))  # Lost SamuRise
-    print(r.fetch(Market.Tofu, 'gh0stlygh0sts-bsc'))  # Gh0stly Gh0sts
-    print(r.fetch(Market.Tofu, 'meta-warden'))  # MetaWarden
-    print(r.fetch(Market.Tofu, 'league-of-kingdoms-item'))  # League of Kingdoms ITEM
-    print(r.fetch(Market.Tofu, 'tiny-dinos-polygon'))  # tiny dinos
-    print(r.fetch(Market.Tofu, 'astardegens'))  # AstarDegens
-    print(r.fetch(Market.Tofu, 'astar-punks'))  # Astar Punks
-    print(r.fetch(Market.Tofu, 'universe-ecosystem'))  # Universe Ecosystem
-    print(r.fetch(Market.Tofu, 'node-whales'))  # Node Whales
+def sample_tofunft():
+    # tofuNFT
+    print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
+    print(r.fetch(Market.tofuNFT, 'samurise'))  # Lost SamuRise
+    print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-bsc'))  # Gh0stly Gh0sts
+    print(r.fetch(Market.tofuNFT, 'meta-warden'))  # MetaWarden
+    print(r.fetch(Market.tofuNFT, 'league-of-kingdoms-item'))  # League of Kingdoms ITEM
+    print(r.fetch(Market.tofuNFT, 'tiny-dinos-polygon'))  # tiny dinos
+    print(r.fetch(Market.tofuNFT, 'astardegens'))  # AstarDegens
+    print(r.fetch(Market.tofuNFT, 'astar-punks'))  # Astar Punks
+    print(r.fetch(Market.tofuNFT, 'universe-ecosystem'))  # Universe Ecosystem
+    print(r.fetch(Market.tofuNFT, 'node-whales'))  # Node Whales
 
 
 def sample_pancakeswap():
@@ -85,3 +85,87 @@ def sample_ghostmarket():
     print(r.fetch(Market.GhostMarket, '22rs'))  # 22 Racing Series
     print(r.fetch(Market.GhostMarket, 'fcc'))  # Featured Community
     print(r.fetch(Market.GhostMarket, 'luckytiger'))  # LuckyTiger
+
+
+def sample_cryptocom():
+    # Crypto.com
+    print(r.fetch(Market.Cryptocom, '6c7b1a68479f2fc35e9f81e42bcb7397'))  # Ballies Origins
+    print(r.fetch(Market.Cryptocom, '82421cf8e15df0edcaa200af752a344f'))  # Loaded Lions
+    print(r.fetch(Market.Cryptocom, '4ff90f089ac3ef9ce342186adc48a30d'))  # AlphaBot Society
+    print(r.fetch(Market.Cryptocom, 'bd2890bc85bd036bc71e999a147b7fe5'))  # Cryptoverse
+    print(r.fetch(Market.Cryptocom, 'faa3d8da88f9ee2f25267e895db71471'))  # PsychoKitties: The New Era
+    print(r.fetch(Market.Cryptocom, '282ff8943c87c682b06dfcbb531b7118'))  # POTATOES ARE HUMANS TOO
+    print(r.fetch(Market.Cryptocom, '8539b9d1f2337bf5725c75d2a47e4f0d'))  # Cosmic Creatures
+    print(r.fetch(Market.Cryptocom, '69d0601d6d4ecd0ea670835645d47b0d'))  # PsychoKitties: The Rise Of Mollies
+    print(r.fetch(Market.Cryptocom, '66b8c165ad4babe1b488b4981d07438e'))  # PHAZES
+    print(r.fetch(Market.Cryptocom, '6e656ea14b0863f3cf1dbd41554302d3'))  # The Art of Giving
+
+
+def sample_gem():
+    # Gem
+    print(r.fetch(Market.Gem, 'official-moar-by-joan-cornella'))  # "MOAR" by Joan Cornella
+    print(r.fetch(Market.Gem, 'hakinft-io'))  # HAKI NFT
+    print(r.fetch(Market.Gem, 'los-muertos-world'))  # Los Muertos World
+    print(r.fetch(Market.Gem, 'boredapeyachtclub'))  # Bored Ape Yacht Club
+    print(r.fetch(Market.Gem, 'arcade-land'))  # Arcade Land
+    print(r.fetch(Market.Gem, 'hikarinftofficial'))  # Hikari Official
+    print(r.fetch(Market.Gem, 'impostors-genesis-aliens'))  # Impostors Genesis Aliens
+    print(r.fetch(Market.Gem, 'official-kreepy-club'))  # OFFICIAL KREEPY CLUB
+    print(r.fetch(Market.Gem, 'froyokittenscollection'))  # froyo kittens
+    print(r.fetch(Market.Gem, 'mutant-ape-yacht-club'))  # Mutant Ape Yacht Club
+
+
+def sample_looksrare():
+    # LooksRare
+    print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
+    print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
+    print(r.fetch(Market.LooksRare, '0xcE25E60A89F200B1fA40f6c313047FFe386992c3'))  # dotdotdot
+    print(r.fetch(Market.LooksRare, '0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7'))  # Meebits
+    print(r.fetch(Market.LooksRare, '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'))  # Bored Ape Yacht Club
+    print(r.fetch(Market.LooksRare, '0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
+    print(r.fetch(Market.LooksRare, '0x7a376C1F8eDF7BA7Eb94A7438a8313a17D830FF8'))  # ProjectKevins
+    print(r.fetch(Market.LooksRare, '0xED5AF388653567Af2F388E6224dC7C4b3241C544'))  # Azuki
+    print(r.fetch(Market.LooksRare, '0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'))  # CloneX
+    print(r.fetch(Market.LooksRare, '0xBd785591D714f691E939de7ec6D72550a44c598c'))  # AlphaDoggg Tag
+
+
+def sample_nftrade():
+    # NFTrade
+    print(r.fetch(Market.NFTrade, 'polygon/0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
+    print(r.fetch(Market.NFTrade, 'bsc/0x8815fae8feb5e1b2f8a6c7c948d9fd1866e07a4f'))  # Mines of Dalarnia Land Plots
+    print(r.fetch(Market.NFTrade, 'avalanche/0xaab56a5a22db41d6663aab0f8f0bed979c84c569'))  # PIRATE CHEST v2
+    print(r.fetch(Market.NFTrade, 'avalanche/0x023a1eafc590d790fabd1d00872881c2a9e3c74a'))  # Louverture
+    print(r.fetch(Market.NFTrade, 'bsc/0xe9b9497798b5fe949039c01b1a772bdcb7e9ba10'))  # Gamer NFLs
+    print(r.fetch(Market.NFTrade, 'avalanche/0xa69fee085a4c38656ce9c37a064a330725307482'))  # Avalant
+    print(r.fetch(Market.NFTrade, 'avalanche/0x4a8e6a9b93e55af71882f3afaa10141715ce5fd2'))  # Tiny Bones Club
+    print(r.fetch(Market.NFTrade, 'avalanche/0xeab33f781ada4ee7e91fd63ad87c5bb47ffb8a83'))  # Yield Hunt
+    print(r.fetch(Market.NFTrade, 'avalanche/0xd5c6064e09ff127e24900adfb8559c4ee0634729'))  # NodeBears
+    print(r.fetch(Market.NFTrade, 'avalanche/0x6cc4cc814c7154fb67965c8044cc803b3199ec53'))  # Pizza Game Chef Tools
+
+
+def sample_solanart():
+    # Solanart
+    print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
+    print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
+    print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
+    print(r.fetch(Market.Solanart, 'degeneratetrashpandas'))  # Degenerate Trash Pandas
+    print(r.fetch(Market.Solanart, 'degenerate_ape_kindergarten'))  # Degenerate Ape Kindergarten
+    print(r.fetch(Market.Solanart, 'grimsyndicate'))  # Grim Syndicate
+    print(r.fetch(Market.Solanart, 'cyberpharmacist'))  # Cyber Pharmacy
+    print(r.fetch(Market.Solanart, 'famousfoxfederation'))  # Famous Fox Federation
+    print(r.fetch(Market.Solanart, 'nyanheroes'))  # Nyan Heroes
+    print(r.fetch(Market.Solanart, 'verseestatexvincentfaudemer'))  # Verse Estate
+
+
+def sample_magiceden():
+    # MagicEden
+    print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
+    print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
+    print(r.fetch(Market.MagicEden, 'degods'))  # DeGods
+    print(r.fetch(Market.MagicEden, 'degendojonft'))  # Degen Dojo
+    print(r.fetch(Market.MagicEden, 'cosmic_ape_crusaders'))  # Cosmic Ape Crusaders
+    print(r.fetch(Market.MagicEden, 'atadians'))  # OG Atadians
+    print(r.fetch(Market.MagicEden, 'blocksmith_labs'))  # Blocksmith Labs
+    print(r.fetch(Market.MagicEden, 'decimusdynamics'))  # Decimus Dynamics
+    print(r.fetch(Market.MagicEden, 'dhly'))  # Dahlys
+    print(r.fetch(Market.MagicEden, 'fellowapes'))  # Fellow Apes
