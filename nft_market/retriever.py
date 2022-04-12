@@ -38,6 +38,7 @@ class _NFTWebDriver:
 
 
 def _text2float(s: str) -> float:
+    print(s)
     s = s.replace(',', '').replace('<', '').replace('>', '').replace('$', '') \
         .replace('k', '*1000').replace('K', '*1000') \
         .replace('M', '*1000000') \
@@ -82,6 +83,8 @@ class Retriever:
             func = self._retrieve_rarible
         elif market == Market.GhostMarket:
             func = self._retrieve_ghostmarket
+        elif market == Market.MagicEden:
+            func = self._retrieve_magiceden
         else:
             raise NotImplementedError(market)
         # endif
@@ -306,6 +309,39 @@ class Retriever:
                     continue
                 # endtry
             # endfor
+        # endwith
+
+        return nft
+    # enddef
+
+    def _retrieve_magiceden(self, id: str) -> NFTInfo:
+        def _remove_sol_mark(s: str) -> str:
+            return s.strip(" ◎")
+        
+        url = f'https://magiceden.io/marketplace/{id}'
+
+        nft = None
+        with _NFTWebDriver(url, **self.option) as driver:
+            try:
+                name = driver.find_element(by=By.XPATH,
+                                           value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1').text
+                num_items_all = None
+                num_listing = _text2int(driver.find_element(by=By.XPATH,
+                                                            value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]').text)
+                num_owners = None
+                floor = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
+                                                     value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]').text))
+                volume = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
+                                                         value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]').text))
+
+                nft = NFTInfo(id=id, name=name,
+                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
+                              floor=floor, volume=volume)
+            except Exception as e:
+                if self.verbose:
+                    print(e)
+                # endif
+            # endtry
         # endwith
 
         return nft

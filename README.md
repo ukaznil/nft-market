@@ -36,6 +36,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [PancakeSwap](https://pancakeswap.finance/nfts)
 - [Rarible](https://rarible.com/)
 - [GhostMarket](https://ghostmarket.io/)
+- [MagicEden](https://magiceden.io/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -72,7 +73,8 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | Tofu        | &check; |         | &check;   |          | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
 | Rarible     | &check; | &check; |           | &check;  | &check; | &check; |
-| GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |   
+| GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |
+| MagicEden   | &check; |         | &check;   |          | &check; | &check; |
 
 Other information may be provided in the future!
 
@@ -81,7 +83,7 @@ Other information may be provided in the future!
 You can install **nft-market** by pip.
 
 ```shell
-$ pip install nft-market
+pip install nft-market
 ```
 
 Also, as **nft-market** depends on Firefox and its driver, you need to install them.

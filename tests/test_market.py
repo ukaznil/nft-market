@@ -43,3 +43,10 @@ def test_ghostmarket():
     print(r.fetch(Market.GhostMarket, 'neoverse'))  # Neoverse
     print(r.fetch(Market.GhostMarket, 'tothemoon'))  # TOTHEMOON
     print(r.fetch(Market.GhostMarket, 'humswap-bowls'))  # Humswap Bowls
+
+
+def test_magiceden():
+    # MagicEden
+    print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
+    print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
+    print(r.fetch(Market.MagicEden, 'degods'))  # DeGods

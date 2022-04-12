@@ -1,6 +1,6 @@
 from nft_market import Market, Retriever
 
-r = Retriever(num_retry=0)
+r = Retriever(num_retry=0, verbose=True)
 
 
 def sample_opensea():
@@ -85,3 +85,17 @@ def sample_ghostmarket():
     print(r.fetch(Market.GhostMarket, '22rs'))  # 22 Racing Series
     print(r.fetch(Market.GhostMarket, 'fcc'))  # Featured Community
     print(r.fetch(Market.GhostMarket, 'luckytiger'))  # LuckyTiger
+
+
+def sample_magiceden():
+    # MagicEden
+    print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
+    print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
+    print(r.fetch(Market.MagicEden, 'degods'))  # DeGods
+    print(r.fetch(Market.MagicEden, 'degendojonft'))  # Degen Dojo
+    print(r.fetch(Market.MagicEden, 'cosmic_ape_crusaders'))  # Cosmic Ape Crusaders
+    print(r.fetch(Market.MagicEden, 'atadians'))  # OG Atadians
+    print(r.fetch(Market.MagicEden, 'blocksmith_labs'))  # Blocksmith Labs
+    print(r.fetch(Market.MagicEden, 'decimusdynamics'))  # Decimus Dynamics
+    print(r.fetch(Market.MagicEden, 'dhly'))  # Dahlys
+    print(r.fetch(Market.MagicEden, 'fellowapes'))  # Fellow Apes
