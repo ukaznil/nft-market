@@ -1,6 +1,7 @@
 import itertools
 import os
 import time
+from warnings import warn
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -147,7 +148,7 @@ class Retriever:
                     break
                 except NoSuchElementException as e:
                     if self.verbose:
-                        print(e)
+                        warn(e.msg)
                     # endif
                     continue
                 # endtry
@@ -180,7 +181,7 @@ class Retriever:
                     break
                 except NoSuchElementException as e:
                     if self.verbose:
-                        print(e)
+                        warn(e.msg)
                     # endif
                     continue
                 # endtry
@@ -211,9 +212,9 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except Exception as e:
+            except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -242,9 +243,9 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except Exception as e:
+            except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -278,9 +279,9 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except Exception as e:
+            except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -313,7 +314,7 @@ class Retriever:
                     break
                 except NoSuchElementException as e:
                     if self.verbose:
-                        print(e)
+                        warn(e.msg)
                     # endif
                     continue
                 # endtry
@@ -346,7 +347,7 @@ class Retriever:
                               floor=floor, volume=volume)
             except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -377,7 +378,7 @@ class Retriever:
                               floor=floor, volume=volume)
             except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -410,7 +411,7 @@ class Retriever:
                     break
                 except NoSuchElementException as e:
                     if self.verbose:
-                        print(e)
+                        warn(e.msg)
                     # endif
                     continue
                 # endtry
@@ -441,7 +442,7 @@ class Retriever:
                               floor=floor, volume=volume)
             except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -476,7 +477,7 @@ class Retriever:
                               floor=floor, volume=volume)
             except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
@@ -509,7 +510,7 @@ class Retriever:
                               floor=floor, volume=volume)
             except NoSuchElementException as e:
                 if self.verbose:
-                    print(e)
+                    warn(e.msg)
                 # endif
             # endtry
         # endwith
