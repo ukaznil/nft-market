@@ -42,6 +42,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [NFTrade](https://nftrade.com/)
 - [Solanart](https://solanart.io/)
 - [Magic Eden](https://magiceden.io/)
+- [XANALIA](https://www.xanalia.com/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -85,6 +86,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | NFTrade     | &check; |         |           |          | &check; | &check; |
 | Solanart    | &check; | &check; | &check;   | &check;  | &check; | &check; |
 | Magic Eden  | &check; |         | &check;   |          | &check; | &check; |
+| XANALIA     | &check; | &check; |           | &check;  | &check; | &check; | 
 
 Other information may be provided in the future!
 

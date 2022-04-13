@@ -169,3 +169,24 @@ def sample_magiceden():
     print(r.fetch(Market.MagicEden, 'decimusdynamics'))  # Decimus Dynamics
     print(r.fetch(Market.MagicEden, 'dhly'))  # Dahlys
     print(r.fetch(Market.MagicEden, 'fellowapes'))  # Fellow Apes
+
+
+def sample_xanalia():
+    # XANALIA
+    print(r.fetch(Market.XANALIA, 'collections/blindbox/62113e1774d1af3e04bc313d'))  # ULTRAMAN
+    print(r.fetch(Market.XANALIA, 'collections/blindbox/624d51f705901f306d552f25'))  # Rooster Fighter
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/623b46a6f9b8020cf8c9c167/0xE737d5A35A41fFd6072503BCA9C3013632287305'))  # XANA Alpha pass
+    print(r.fetch(Market.XANALIA, 'collection/underground_city'))  # underground_city
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/61ea500dd6b5cb14adc7703a/0xE5A34Ca6a9a43d05Be4F23Cf8b8AA319099e326B'))  # Masami Tanaka
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/61f2965cec90c7ef60603e96/0xc715aCf1dbE37978dF21D945857f36d22d5097aB'))  # Momento Series
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/621341b6499b06610040cd3a/0x5D20CB885d960B52350262B2989033460C1448B7'))  # The Inflorescence
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/6231783fdbf3f95b07f8fb5c/0xB11F73B3A221FEA1e3395f15721E5a8c2C0735fD'))  # The Tripp
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/61f3a7d25824090df3ee8dc1/61f3a7d25824090df3ee8dc1'))  # Natalia From Moscow
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/61bd83fa1145b8b8d1524493/0x5bfcfCBfb35298052238E191569f7E300b9b74B1'))  # Angels and Demons
