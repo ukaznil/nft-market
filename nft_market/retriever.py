@@ -293,20 +293,19 @@ class Retriever:
 
         nft = None
         with _NFTWebDriver(url, **self.option) as driver:
-            for c_floor in ['//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/span/div[2]/div/div/div[1]',
-                            '//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/div/div/div[1]']:
+            for c_floor in ['span/div[2]/', '', ]:
                 try:
                     name = driver.find_element(by=By.XPATH,
                                                value=f'//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]').text
                     num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                                  value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/div/div/div[1]').text)
+                                                                  value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]').text)
                     num_listing = None
                     num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                               value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/div/div/div[1]').text)
+                                                               value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/span/div[2]/div/div/div[1]').text)
                     floor = _text2float(driver.find_element(by=By.XPATH,
-                                                            value=c_floor).text)
+                                                            value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/{c_floor}div/div/div[1]').text)
                     volume = _text2float(driver.find_element(by=By.XPATH,
-                                                             value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/div/div/div[1]').text)
+                                                             value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]').text)
 
                     nft = NFTInfo(id=id, name=name,
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
@@ -495,15 +494,15 @@ class Retriever:
         with _NFTWebDriver(url, **self.option) as driver:
             try:
                 name = driver.find_element(by=By.XPATH,
-                                           value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1').text
+                                           value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1').text
                 num_items_all = None
                 num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]').text)
+                                                            value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]').text)
                 num_owners = None
                 floor = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
-                                                                         value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]').text))
+                                                                         value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]').text))
                 volume = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
-                                                                          value='//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]').text))
+                                                                          value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]').text))
 
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
