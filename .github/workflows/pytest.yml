@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
 jobs:
   build:
@@ -17,6 +18,8 @@ jobs:
           architecture: x64
       - name: Install dependencies
         run: |
+          apt-get update
+          apt-get install -y --no-install-recommends firefox
           python -m pip install --upgrade pip
           python -m pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
