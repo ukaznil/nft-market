@@ -467,7 +467,7 @@ class Retriever:
                                                            value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]').text)
                 floor = _text2float(driver.find_element(by=By.XPATH,
                                                         value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]').text \
-                                    .split(' ')[0])
+                                    .replace('◎', ''))
                 volume = _text2float(driver.find_element(by=By.XPATH,
                                                          value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[7]/div[1]').text \
                                      .replace('◎', ''))
