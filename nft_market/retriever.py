@@ -20,6 +20,7 @@ class _NFTWebDriver:
 
         options = Options()
         options.add_argument('--headless')
+        options.add_argument('--incognito')
         self.options = options
     # enddef
 
