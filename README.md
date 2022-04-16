@@ -1,7 +1,7 @@
 # nft-market
 
 [![PyPI version](https://badge.fury.io/py/nft-market.svg)](https://badge.fury.io/py/nft-market)
-[![test](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml/badge.svg)](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml)
+[![test](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml/badge.svg?branch=master)](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml)
 
 ## What is it?
 
@@ -42,6 +42,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [NFTrade](https://nftrade.com/)
 - [Solanart](https://solanart.io/)
 - [Magic Eden](https://magiceden.io/)
+- [XANALIA](https://www.xanalia.com/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -75,7 +76,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 |-------------|---------|---------|-----------|----------|---------|---------|
 | OpenSea     | &check; |         | &check;   | &check;  | &check; | &check; |
 | Entrepot    | &check; |         | &check;   |          | &check; | &check; |
-| tofuNFT     | &check; |         | &check;   |          | &check; | &check; |
+| tofuNFT     | &check; |         | &check;   | &check;  | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
 | Rarible     | &check; | &check; |           | &check;  | &check; | &check; |
 | GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |
@@ -85,6 +86,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | NFTrade     | &check; |         |           |          | &check; | &check; |
 | Solanart    | &check; | &check; | &check;   | &check;  | &check; | &check; |
 | Magic Eden  | &check; |         | &check;   |          | &check; | &check; |
+| XANALIA     | &check; | &check; |           | &check;  | &check; | &check; | 
 
 Other information may be provided in the future!
 
@@ -108,3 +110,41 @@ $ sudo apt install firefox
 
 Besides, all Python dependencies are listed up in `requirements.txt`. Please install them
 by `$ pip install -r requirements.txt` if you install **nft-market** not by pip but by cloning from GitHub.
+
+## For developers
+
+You can run tests similarly as GitHub Actions in your local environment by using [ACT](https://github.com/nektos/act).
+We highly recommend you try this for at least what you added before push.
+
+### Installation
+
+```shell
+# mac
+$ brew install act
+
+# Linux
+$ curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+# Windows Chocolatey
+$ choco install act-cli
+
+# Windows Scoop
+$ scoop install act
+```
+
+### How to use act?
+
+Make sure that you're already running Docker Desktop, and then just run act!
+
+```shell
+$ act push --container-architecture linux/amd64
+```
+
+Note that when you see choices as for the default size of images, you need at least "Medium".
+
+```shell
+Default image and other options can be changed manually in ~/.actrc (please refer to https://github.com/nektos/act#configuration for additional information about file structure)  [Use arrows to move, type to filter, ? for more help]
+  Large
+> Medium
+  Micro
+```

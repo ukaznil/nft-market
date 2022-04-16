@@ -14,3 +14,4 @@ class Market(Enum):
     NFTrade = auto()
     Solanart = auto()
     MagicEden = auto()
+    XANALIA = auto()

@@ -75,13 +75,25 @@ def test_nftrade():
 
 def test_solanart():
     # Solanart
-    print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
-    print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
-    print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
+    # See this issue: https://github.com/ukaznil/nft-market/issues/2
+    pass
+    # print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
+    # print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
+    # print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
 
 
 def test_magiceden():
     # MagicEden
-    print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
-    print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
-    print(r.fetch(Market.MagicEden, 'degods'))  # DeGods
+    # See this issue: https://github.com/ukaznil/nft-market/issues/2
+    pass
+    # print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
+    # print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
+    # print(r.fetch(Market.MagicEden, 'degods'))  # DeGods
+
+
+def test_xanalia():
+    # XANALIA
+    print(r.fetch(Market.XANALIA, 'collections/blindbox/62113e1774d1af3e04bc313d'))  # ULTRAMAN
+    print(r.fetch(Market.XANALIA, 'collections/blindbox/624d51f705901f306d552f25'))  # Rooster Fighter
+    print(r.fetch(Market.XANALIA,
+                  'collection-details/623b46a6f9b8020cf8c9c167/0xE737d5A35A41fFd6072503BCA9C3013632287305'))  # XANA Alpha pass
