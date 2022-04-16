@@ -82,9 +82,11 @@ def test_solanart():
 
 def test_magiceden():
     # MagicEden
-    print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
-    print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
-    print(r.fetch(Market.MagicEden, 'degods'))  # DeGods
+    # See this issue: https://github.com/ukaznil/nft-market/issues/2
+    pass
+    # print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
+    # print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
+    # print(r.fetch(Market.MagicEden, 'degods'))  # DeGods
 
 
 def test_xanalia():
