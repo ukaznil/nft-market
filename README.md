@@ -1,7 +1,7 @@
 # nft-market
 
 [![PyPI version](https://badge.fury.io/py/nft-market.svg)](https://badge.fury.io/py/nft-market)
-[![test](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml/badge.svg)](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml)
+[![test](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml/badge.svg?branch=master)](https://github.com/ukaznil/nft-market/actions/workflows/pytest.yml)
 
 ## What is it?
 
@@ -76,7 +76,7 @@ What you can retrieve may change by a marketplace you specify, as follows.
 |-------------|---------|---------|-----------|----------|---------|---------|
 | OpenSea     | &check; |         | &check;   | &check;  | &check; | &check; |
 | Entrepot    | &check; |         | &check;   |          | &check; | &check; |
-| tofuNFT     | &check; |         | &check;   |          | &check; | &check; |
+| tofuNFT     | &check; |         | &check;   | &check;  | &check; | &check; |
 | PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
 | Rarible     | &check; | &check; |           | &check;  | &check; | &check; |
 | GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |
