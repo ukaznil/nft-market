@@ -8,21 +8,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
           architecture: x64
+
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends firefox
-          python -m pip install --upgrade pip
-          python -m pip install pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          sudo apt-get install -y --no-install-recommends firefox firefox-geckodriver
+          pip install --user --upgrade pip
+          pip install --user pytest
+          if [ -f requirements.txt ]; then pip install --user -r requirements.txt; fi
       - name: Test with pytest
         run: |
           python -m pytest -s

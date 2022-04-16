@@ -110,3 +110,41 @@ $ sudo apt install firefox
 
 Besides, all Python dependencies are listed up in `requirements.txt`. Please install them
 by `$ pip install -r requirements.txt` if you install **nft-market** not by pip but by cloning from GitHub.
+
+## For developers
+
+You can run tests similarly as GitHub Actions in your local environment by using [ACT](https://github.com/nektos/act).
+We highly recommend you try this for at least what you added before push.
+
+### Installation
+
+```shell
+# mac
+$ brew install act
+
+# Linux
+$ curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+# Windows Chocolatey
+$ choco install act-cli
+
+# Windows Scoop
+$ scoop install act
+```
+
+### How to use act?
+
+Make sure that you're already running Docker Desktop, and then just run act!
+
+```shell
+$ act push --container-architecture linux/amd64
+```
+
+Note that when you see choices as for the default size of images, you need at least "Medium".
+
+```shell
+Default image and other options can be changed manually in ~/.actrc (please refer to https://github.com/nektos/act#configuration for additional information about file structure)  [Use arrows to move, type to filter, ? for more help]
+  Large
+> Medium
+  Micro
+```
