@@ -6,7 +6,6 @@ from functools import cached_property
 from typing import *
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import Service
@@ -166,7 +165,7 @@ class Retriever:
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                                   floor=floor, volume=volume)
                     break
-                except NoSuchElementException as e:
+                except Exception as e:
                     error = e
                     continue
                 # endtry
@@ -198,7 +197,7 @@ class Retriever:
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                                   floor=floor, volume=volume)
                     break
-                except NoSuchElementException as e:
+                except Exception as e:
                     error = e
                     continue
                 # endtry
@@ -230,7 +229,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -260,7 +259,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -295,7 +294,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -327,7 +326,7 @@ class Retriever:
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                                   floor=floor, volume=volume)
                     break
-                except NoSuchElementException as e:
+                except Exception as e:
                     error = e
                     continue
                 # endtry
@@ -359,7 +358,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -389,7 +388,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -421,7 +420,7 @@ class Retriever:
                                   num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                                   floor=floor, volume=volume)
                     break
-                except NoSuchElementException as e:
+                except Exception as e:
                     error = e
                     continue
                 # endtry
@@ -451,7 +450,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -475,9 +474,6 @@ class Retriever:
                                         .split(' ')[0])
                 num_owners = _text2int(driver.find_element(by=By.XPATH,
                                                            value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]').text)
-                # //*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]
-                # //*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]
-                # //*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]
                 floor = _text2float(driver.find_element(by=By.XPATH,
                                                         value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]').text \
                                     .replace('◎', ''))
@@ -488,7 +484,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -522,7 +518,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
@@ -552,7 +548,7 @@ class Retriever:
                 nft = NFTInfo(id=id, name=name,
                               num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
                               floor=floor, volume=volume)
-            except NoSuchElementException as e:
+            except Exception as e:
                 error = e
             # endtry
         # endwith
