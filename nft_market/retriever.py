@@ -317,7 +317,7 @@ class Retriever:
     # enddef
 
     def _retrieve_ghostmarket(self, id: str) -> Tuple[NFTInfo, Exception]:
-        url = f'https://ghostmarket.io/collection/{id}'
+        url = f'https://ghostmarket.io/collection/{id}/?tab=nfts'
 
         nft = None
         try:
