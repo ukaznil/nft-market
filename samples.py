@@ -190,3 +190,11 @@ def sample_xanalia():
                   'collection-details/61f3a7d25824090df3ee8dc1/61f3a7d25824090df3ee8dc1'))  # Natalia From Moscow
     print(r.fetch(Market.XANALIA,
                   'collection-details/61bd83fa1145b8b8d1524493/0x5bfcfCBfb35298052238E191569f7E300b9b74B1'))  # Angels and Demons
+
+
+def sample_cetoswap():
+    # CetoSwap
+    print(r.fetch(Market.CetoSwap, 'zombie'))  # Crazy Zombie
+    print(r.fetch(Market.CetoSwap, 'shoes'))  # Dragon Boots
+    print(r.fetch(Market.CetoSwap, 'cars'))  # IC CARS
+    # print(r.fetch(Market.CetoSwap, 'eggs'))  # Bobo Eggs
