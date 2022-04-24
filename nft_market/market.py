@@ -15,3 +15,4 @@ class Market(Enum):
     Solanart = auto()
     MagicEden = auto()
     XANALIA = auto()
+    CetoSwap = auto()
