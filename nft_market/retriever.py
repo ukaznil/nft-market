@@ -100,6 +100,8 @@ class Retriever:
             func = self._retrieve_xanalia
         elif market == Market.CetoSwap:
             func = self._retrieve_cetoswap
+        elif market == Market.Coinbase:
+            func = self._retrieve_coinbase
         else:
             raise NotImplementedError(market)
         # endif
@@ -481,6 +483,55 @@ class Retriever:
                     .num_owners('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[2]/div/div/div/div[1]') \
                     .floor('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[4]/div/div/div/div[1]/div/div') \
                     .volume('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[3]/div/div/div/div[1]/div/div') \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_coinbase(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://nft.coinbase.com/collection/{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/h1/span/span[1]') \
+                    .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[1]/dt') \
+                    .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[2]/dt') \
+                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[3]/dt',
+                           lambda s: s.split(' ')[0]) \
+                    .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[4]/dt',
+                            lambda s: s.split(' ')[0]) \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_empty(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('') \
+                    .num_items_all('') \
+                    .num_listing('') \
+                    .num_owners('') \
+                    .floor('') \
+                    .volume('') \
                     .build()
             # endwith
         except Exception as e:

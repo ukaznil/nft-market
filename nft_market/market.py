@@ -16,3 +16,4 @@ class Market(Enum):
     MagicEden = auto()
     XANALIA = auto()
     CetoSwap = auto()
+    Coinbase = auto()
