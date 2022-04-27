@@ -2,7 +2,6 @@ import itertools
 import logging
 import os
 import time
-from functools import cached_property
 from typing import *
 
 from selenium import webdriver
@@ -15,17 +14,10 @@ from nft_market.market import Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
-class _WebDriver:
-    @cached_property
-    def executable_path(self) -> str:
-        return GeckoDriverManager(log_level=logging.NOTSET).install()
-    # enddef
-
-
 class _WebFetcher:
-    def __init__(self, url: str, webdriver: _WebDriver, sec_wait: int):
+    def __init__(self, url: str, executable_path: str, sec_wait: int):
         self.url = url
-        self.executable_path = webdriver.executable_path
+        self.executable_path = executable_path
         self.sec_wait = sec_wait
 
         options = Options()
@@ -55,7 +47,7 @@ class _WebFetcher:
 class Retriever:
     def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False):
         self.option = {
-            'webdriver': _WebDriver(),
+            'executable_path': GeckoDriverManager(log_level=logging.NOTSET).install(),
             'sec_wait': sec_wait
             }
         self.sec_wait = sec_wait
