@@ -494,11 +494,11 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/h1/span/span[1]') \
-                    .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[1]/dt') \
-                    .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[2]/dt') \
-                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[3]/dt',
+                    .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[1]/span[1]') \
+                    .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[2]/span[1]') \
+                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]',
                            lambda s: s.split(' ')[0]) \
-                    .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/dl/div[4]/dt',
+                    .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
                             lambda s: s.split(' ')[0]) \
                     .build()
             # endwith
@@ -510,6 +510,7 @@ class Retriever:
     # enddef
 
     def _retrieve_empty(self, id: str) -> Tuple[NFTInfo, Exception]:
+        raise NotImplementedError
         url = f'{id}'
 
         nft = None
