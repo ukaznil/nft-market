@@ -43,6 +43,8 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [Solanart](https://solanart.io/)
 - [Magic Eden](https://magiceden.io/)
 - [XANALIA](https://www.xanalia.com/)
+- [CetoSwap](https://7pnex-saaaa-aaaai-qbhwa-cai.raw.ic0.app/)
+- [Coinbase](https://nft.coinbase.com/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -87,6 +89,8 @@ What you can retrieve may change by a marketplace you specify, as follows.
 | Solanart    | &check; | &check; | &check;   | &check;  | &check; | &check; |
 | Magic Eden  | &check; |         | &check;   |          | &check; | &check; |
 | XANALIA     | &check; | &check; |           | &check;  | &check; | &check; | 
+| CetoSwap    | &check; | &check; | &check;   | &check;  | &check; | &check; | 
+| Coinbase    | &check; |         | &check;   | &check;  | &check; | &check; |
 
 Other information may be provided in the future!
 

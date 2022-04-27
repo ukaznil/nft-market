@@ -2,31 +2,22 @@ import itertools
 import logging
 import os
 import time
-from functools import cached_property
 from typing import *
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import Service
 from webdriver_manager.firefox import GeckoDriverManager
 
 from nft_market.market import Market
-from nft_market.nftinfo import NFTInfo
-
-
-class _WebDriver:
-    @cached_property
-    def executable_path(self) -> str:
-        return GeckoDriverManager(log_level=logging.NOTSET).install()
-    # enddef
+from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
 class _WebFetcher:
-    def __init__(self, url: str, webdriver: _WebDriver, sec_wait: int):
+    def __init__(self, url: str, executable_path: str, sec_wait: int):
         self.url = url
-        self.executable_path = webdriver.executable_path
+        self.executable_path = executable_path
         self.sec_wait = sec_wait
 
         options = Options()
@@ -53,29 +44,10 @@ class _WebFetcher:
     # enddef
 
 
-def _text2float(s: str) -> float:
-    s_rep = s.replace(',', '').replace('<', '').replace('>', '').replace('$', '') \
-        .replace('k', '*1000').replace('K', '*1000') \
-        .replace('m', '*1000000').replace('M', '*1000000') \
-        .replace('B', '*1000000000')
-    try:
-        f = float(eval(s_rep))
-    except Exception as e:
-        print(f'orig: {s}, replaced: {s_rep}')
-        raise e
-    # endtry
-
-    return f
-
-
-def _text2int(s: str) -> int:
-    return int(_text2float(s))
-
-
 class Retriever:
     def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False):
         self.option = {
-            'webdriver': _WebDriver(),
+            'executable_path': GeckoDriverManager(log_level=logging.NOTSET).install(),
             'sec_wait': sec_wait
             }
         self.sec_wait = sec_wait
@@ -118,6 +90,10 @@ class Retriever:
             func = self._retrieve_magiceden
         elif market == Market.XANALIA:
             func = self._retrieve_xanalia
+        elif market == Market.CetoSwap:
+            func = self._retrieve_cetoswap
+        elif market == Market.Coinbase:
+            func = self._retrieve_coinbase
         else:
             raise NotImplementedError(market)
         # endif
@@ -152,21 +128,13 @@ class Retriever:
                     error = None
 
                     try:
-                        name = driver.find_element(by=By.XPATH,
-                                                   value=f'//*[@id="main"]/div/div/div[1]/div[2]/div[3]/h1').text
-                        num_items_all = None
-                        num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                                    value=f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[1]/a/div/div[1]/div/span/div').text)
-                        num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                                   value=f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[2]/a/div/div[1]/div/span/div').text)
-                        floor = _text2float(driver.find_element(by=By.XPATH,
-                                                                value=f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[3]/a/div/div[1]/div/span/div').text)
-                        volume = _text2float(driver.find_element(by=By.XPATH,
-                                                                 value=f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[4]/a/div/div[1]/div/span/div').text)
-
-                        nft = NFTInfo(id=id, name=name,
-                                      num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                                      floor=floor, volume=volume)
+                        nft = NFTInfoBuilder(driver, id) \
+                            .name('//*[@id="main"]/div/div/div[1]/div[2]/div[3]/h1') \
+                            .num_listing(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[1]/a/div/div[1]/div/span/div') \
+                            .num_owners(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[2]/a/div/div[1]/div/span/div') \
+                            .floor(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[3]/a/div/div[1]/div/span/div') \
+                            .volume(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[4]/a/div/div[1]/div/span/div') \
+                            .build()
                         break
                     except NoSuchElementException as e:
                         error = e
@@ -191,19 +159,12 @@ class Retriever:
                     error = None
 
                     try:
-                        name = driver.find_element(by=By.XPATH,
-                                                   value=f'//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[3]/h1').text
-                        num_items_all = None
-                        num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                                    value=f'//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/strong').text)
-                        num_owners = None
-                        floor = _text2float(driver.find_element(by=By.XPATH,
-                                                                value=f'//*[@id="mainListings"]/div[2]/div/div[2]/div[2]/div/div[1]/div/a/div[{c1}]/div/div[4]/p').text)
-                        volume = _text2float(driver.find_element(by=By.XPATH,
-                                                                 value=f'//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong').text)
-                        nft = NFTInfo(id=id, name=name,
-                                      num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                                      floor=floor, volume=volume)
+                        nft = NFTInfoBuilder(driver, id) \
+                            .name('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[3]/h1') \
+                            .num_listing('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/strong') \
+                            .floor(f'//*[@id="mainListings"]/div[2]/div/div[2]/div[2]/div/div[1]/div/a/div[{c1}]/div/div[4]/p') \
+                            .volume('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong') \
+                            .build()
                         break
                     except NoSuchElementException as e:
                         error = e
@@ -226,21 +187,13 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="__next"]/div[2]/div[1]/div[1]/h1').text
-                num_items_all = None
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]').text)
-                num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]').text)
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2] ').text)
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="__next"]/div[2]/div[1]/div[1]/h1') \
+                    .num_listing('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]') \
+                    .num_owners('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]') \
+                    .floor('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]') \
+                    .volume('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2]') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -257,21 +210,13 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[1]/h1').text
-                num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                              value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]').text)
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[2]/div[2]').text)
-                num_owners = None
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]').text)
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[1]/h1') \
+                    .num_items_all('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]') \
+                    .num_listing('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[2]/div[2]') \
+                    .floor('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]') \
+                    .volume('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -293,21 +238,13 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/span').text
-                num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                              value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span').text)
-                num_listing = None
-                num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span').text)
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span').text)
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/span') \
+                    .num_items_all('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
+                    .num_owners('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span') \
+                    .floor('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span') \
+                    .volume('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -317,7 +254,7 @@ class Retriever:
     # enddef
 
     def _retrieve_ghostmarket(self, id: str) -> Tuple[NFTInfo, Exception]:
-        url = f'https://ghostmarket.io/collection/{id}'
+        url = f'https://ghostmarket.io/collection/{id}/?tab=nfts'
 
         nft = None
         try:
@@ -326,21 +263,13 @@ class Retriever:
                     error = None
 
                     try:
-                        name = driver.find_element(by=By.XPATH,
-                                                   value=f'//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]').text
-                        num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                                      value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]').text)
-                        num_listing = None
-                        num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                                   value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/span/div[2]/div/div/div[1]').text)
-                        floor = _text2float(driver.find_element(by=By.XPATH,
-                                                                value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/{c_floor}div/div/div[1]').text)
-                        volume = _text2float(driver.find_element(by=By.XPATH,
-                                                                 value=f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]').text)
-
-                        nft = NFTInfo(id=id, name=name,
-                                      num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                                      floor=floor, volume=volume)
+                        nft = NFTInfoBuilder(driver, id) \
+                            .name('//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]') \
+                            .num_items_all('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]') \
+                            .num_owners('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/span/div[2]/div/div/div[1]') \
+                            .floor(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/{c_floor}div/div/div[1]') \
+                            .volume(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]') \
+                            .build()
                         break
                     except NoSuchElementException as e:
                         error = e
@@ -363,21 +292,13 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[1]').text
-                num_items_all = None
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[1]/span').text)
-                num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[2]/span').text)
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div').text)
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div[1]/div/div[3]/div/div[1]') \
+                    .num_listing('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[1]/span') \
+                    .num_owners('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[2]/span') \
+                    .floor('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div') \
+                    .volume('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -394,21 +315,13 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div').text
-                num_items_all = None
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]').text \
-                                        .replace('results', ''))
-                num_owners = None
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]').text)
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
+                    .num_listing('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]',
+                                 lambda s: s.replace('results', '')) \
+                    .floor('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
+                    .volume('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -427,21 +340,13 @@ class Retriever:
                     error = None
 
                     try:
-                        name = driver.find_element(by=By.XPATH,
-                                                   value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1').text
-                        num_items_all = None
-                        num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                                    value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[3]/div[2]').text)
-                        num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                                   value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[4]/div[2]').text)
-                        floor = _text2float(driver.find_element(by=By.XPATH,
-                                                                value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[1]/div[2]/div[1]').text)
-                        volume = _text2float(driver.find_element(by=By.XPATH,
-                                                                 value=f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[2]/div[2]/div').text)
-
-                        nft = NFTInfo(id=id, name=name,
-                                      num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                                      floor=floor, volume=volume)
+                        nft = NFTInfoBuilder(driver, id) \
+                            .name(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
+                            .num_listing(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[3]/div[2]') \
+                            .num_owners(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[4]/div[2]') \
+                            .floor(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[1]/div[2]/div[1]') \
+                            .volume(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[2]/div[2]/div') \
+                            .build()
                         break
                     except NoSuchElementException as e:
                         error = e
@@ -464,19 +369,11 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]').text
-                num_items_all = None
-                num_listing = None
-                num_owners = None
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[1]/div[2]').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[4]/div[2]').text)
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]') \
+                    .floor('//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[1]/div[2]') \
+                    .volume('//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[4]/div[2]') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -493,25 +390,17 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2').text
-                num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                              value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]').text)
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[3]/div[2]/div[2]/div[2]').text \
-                                        .split(' ')[0])
-                num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]').text)
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]').text \
-                                    .replace('◎', ''))
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[7]/div[1]').text \
-                                     .replace('◎', ''))
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2') \
+                    .num_items_all('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]') \
+                    .num_listing('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[3]/div[2]/div[2]/div[2]',
+                                 lambda s: s.split(' ')[0]) \
+                    .num_owners('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]') \
+                    .floor('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]',
+                           self._remove_sol_mark) \
+                    .volume('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[7]/div[1]',
+                            self._remove_sol_mark) \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -520,10 +409,11 @@ class Retriever:
         return nft, error
     # enddef
 
-    def _retrieve_magiceden(self, id: str) -> Tuple[NFTInfo, Exception]:
-        def _remove_sol_mark(s: str) -> str:
-            return s.strip(" ◎")
+    @staticmethod
+    def _remove_sol_mark(s: str) -> str:
+        return s.strip(" ◎")
 
+    def _retrieve_magiceden(self, id: str) -> Tuple[NFTInfo, Exception]:
         url = f'https://magiceden.io/marketplace/{id}'
 
         nft = None
@@ -531,20 +421,14 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1').text
-                num_items_all = None
-                num_listing = _text2int(driver.find_element(by=By.XPATH,
-                                                            value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]').text)
-                num_owners = None
-                floor = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
-                                                                         value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]').text))
-                volume = _text2float(_remove_sol_mark(driver.find_element(by=By.XPATH,
-                                                                          value=f'//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]').text))
-
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1') \
+                    .num_listing('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]') \
+                    .floor('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]',
+                           self._remove_sol_mark) \
+                    .volume('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]',
+                            self._remove_sol_mark) \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -561,21 +445,87 @@ class Retriever:
             with _WebFetcher(url, **self.option) as driver:
                 error = None
 
-                name = driver.find_element(by=By.XPATH,
-                                           value=f'/html/body/div/div[1]/div[3]/div/div/div/div[2]/div/div[1]').text
-                num_items_all = _text2int(driver.find_element(by=By.XPATH,
-                                                              value=f'//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[1]/h5').text)
-                num_listing = None
-                num_owners = _text2int(driver.find_element(by=By.XPATH,
-                                                           value=f'//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[2]/h5').text)
-                floor = _text2float(driver.find_element(by=By.XPATH,
-                                                        value=f'//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[3]/h5').text)
-                volume = _text2float(driver.find_element(by=By.XPATH,
-                                                         value=f'//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[4]/h5').text)
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="home-page"]/div/div/div/div[2]/div/div[1]') \
+                    .num_items_all('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[1]/h5') \
+                    .num_owners('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[2]/h5') \
+                    .floor('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[3]/h5') \
+                    .volume('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[4]/h5') \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
 
-                nft = NFTInfo(id=id, name=name,
-                              num_items_all=num_items_all, num_listing=num_listing, num_owners=num_owners,
-                              floor=floor, volume=volume)
+        return nft, error
+    # enddef
+
+    def _retrieve_cetoswap(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://7pnex-saaaa-aaaai-qbhwa-cai.raw.ic0.app/#/nftmarket/{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[1]') \
+                    .num_items_all('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[5]/div/div/div/div[1]') \
+                    .num_listing('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[1]/div/div/div/div[1]') \
+                    .num_owners('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[2]/div/div/div/div[1]') \
+                    .floor('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[4]/div/div/div/div[1]/div/div') \
+                    .volume('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[3]/div/div/div/div[1]/div/div') \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_coinbase(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://nft.coinbase.com/collection/{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/h1/span/span[1]') \
+                    .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[1]/span[1]') \
+                    .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[2]/span[1]') \
+                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]',
+                           lambda s: s.split(' ')[0]) \
+                    .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
+                            lambda s: s.split(' ')[0]) \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_empty(self, id: str) -> Tuple[NFTInfo, Exception]:
+        raise NotImplementedError
+        url = f'{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('') \
+                    .num_items_all('') \
+                    .num_listing('') \
+                    .num_owners('') \
+                    .floor('') \
+                    .volume('') \
+                    .build()
             # endwith
         except Exception as e:
             error = e

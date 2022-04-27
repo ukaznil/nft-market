@@ -13,7 +13,6 @@ def sample_opensea():
     print(r.fetch(Market.OpenSea, 'akumaorigins'))  # Akuma Origins
     print(r.fetch(Market.OpenSea, 'boredapeyachtclub'))  # Bored Ape Yacht Club
     print(r.fetch(Market.OpenSea, 'kiwami-genesis'))  # KIWAMI Genesis
-    print(r.fetch(Market.OpenSea, 'shinsekai-portal'))  # Shinsekai Portal
     print(r.fetch(Market.OpenSea, 'impostors-genesis-aliens'))  # Impostors Genesis Aliens
 
 
@@ -190,3 +189,25 @@ def sample_xanalia():
                   'collection-details/61f3a7d25824090df3ee8dc1/61f3a7d25824090df3ee8dc1'))  # Natalia From Moscow
     print(r.fetch(Market.XANALIA,
                   'collection-details/61bd83fa1145b8b8d1524493/0x5bfcfCBfb35298052238E191569f7E300b9b74B1'))  # Angels and Demons
+
+
+def sample_cetoswap():
+    # CetoSwap
+    print(r.fetch(Market.CetoSwap, 'zombie'))  # Crazy Zombie
+    print(r.fetch(Market.CetoSwap, 'shoes'))  # Dragon Boots
+    print(r.fetch(Market.CetoSwap, 'cars'))  # IC CARS
+    # print(r.fetch(Market.CetoSwap, 'eggs'))  # Bobo Eggs
+
+
+def sample_coinbase():
+    # Coinbase
+    print(r.fetch(Market.Coinbase, 'ethereum/0x23581767a106ae21c074b2276D25e5C3e136a68b'))  # Moonbirds
+    print(r.fetch(Market.Coinbase, 'ethereum/0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
+    print(r.fetch(Market.Coinbase, 'ethereum/0x341A1c534248966c4b6AFaD165B98DAED4B964ef'))  # Murakami.Flowers Seed
+    print(r.fetch(Market.Coinbase, 'ethereum/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'))  # Bored Ape Yacht Club
+    print(r.fetch(Market.Coinbase, 'ethereum/0x86825dFCa7A6224cfBd2DA48e85DF2fc3Aa7C4B1'))  # RTFKT - MNLTH 🗿
+    print(r.fetch(Market.Coinbase, 'ethereum/0xba30E5F9Bb24caa003E9f2f0497Ad287FDF95623'))  # Bored Ape Kennel Club
+    print(r.fetch(Market.Coinbase, 'ethereum/0x306b1ea3ecdf94aB739F1910bbda052Ed4A9f949'))  # Beanz
+    print(r.fetch(Market.Coinbase, 'ethereum/0x9378368ba6b85c1FbA5b131b530f5F5bEdf21A18'))  # VeeFriends Series 2
+    print(r.fetch(Market.Coinbase, 'ethereum/0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'))  # CloneX
+    # print(r.fetch(Market.Coinbase, 'ethereum/0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'))  # CryptoPunks

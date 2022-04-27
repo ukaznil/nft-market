@@ -1,6 +1,6 @@
 from nft_market import Market, Retriever
 
-r = Retriever(num_retry=0, verbose=True)
+r = Retriever(num_retry=3, verbose=True)
 
 
 def test_opensea():
@@ -97,3 +97,17 @@ def test_xanalia():
     print(r.fetch(Market.XANALIA, 'collections/blindbox/624d51f705901f306d552f25'))  # Rooster Fighter
     print(r.fetch(Market.XANALIA,
                   'collection-details/623b46a6f9b8020cf8c9c167/0xE737d5A35A41fFd6072503BCA9C3013632287305'))  # XANA Alpha pass
+
+
+def test_cetoswap():
+    # CetoSwap
+    print(r.fetch(Market.CetoSwap, 'zombie'))  # Crazy Zombie
+    print(r.fetch(Market.CetoSwap, 'shoes'))  # Dragon Boots
+    print(r.fetch(Market.CetoSwap, 'cars'))  # IC CARS
+
+
+def test_coinbase():
+    # Coinbase
+    print(r.fetch(Market.Coinbase, 'ethereum/0x23581767a106ae21c074b2276D25e5C3e136a68b'))  # Moonbirds
+    print(r.fetch(Market.Coinbase, 'ethereum/0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
+    print(r.fetch(Market.Coinbase, 'ethereum/0x341A1c534248966c4b6AFaD165B98DAED4B964ef'))  # Murakami.Flowers Seed
