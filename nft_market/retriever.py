@@ -214,7 +214,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[1]/h1') \
-                    .num_items_all('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]') \
+                    .num_supply('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]') \
                     .num_listing('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[2]/div[2]') \
                     .floor('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]') \
                     .volume('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]') \
@@ -242,7 +242,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/span') \
-                    .num_items_all('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
+                    .num_supply('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
                     .num_owners('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span') \
                     .floor('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span') \
                     .volume('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span') \
@@ -267,7 +267,7 @@ class Retriever:
                     try:
                         nft = NFTInfoBuilder(driver, id) \
                             .name('//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]') \
-                            .num_items_all('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]') \
+                            .num_supply('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]') \
                             .num_owners('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/span/div[2]/div/div/div[1]') \
                             .floor(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/{c_floor}div/div/div[1]') \
                             .volume(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]') \
@@ -394,7 +394,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2') \
-                    .num_items_all('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]') \
+                    .num_supply('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]') \
                     .num_listing('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[3]/div[2]/div[2]/div[2]',
                                  lambda s: s.split(' ')[0]) \
                     .num_owners('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]') \
@@ -449,7 +449,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="home-page"]/div/div/div/div[2]/div/div[1]') \
-                    .num_items_all('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[1]/h5') \
+                    .num_supply('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[1]/h5') \
                     .num_owners('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[2]/h5') \
                     .floor('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[3]/h5') \
                     .volume('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[4]/h5') \
@@ -472,7 +472,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[1]') \
-                    .num_items_all('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[5]/div/div/div/div[1]') \
+                    .num_supply('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[5]/div/div/div/div[1]') \
                     .num_listing('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[1]/div/div/div/div[1]') \
                     .num_owners('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[2]/div/div/div/div[1]') \
                     .floor('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[4]/div/div/div/div[1]/div/div') \
@@ -521,7 +521,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[2]/h2') \
-                    .num_items_all('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[5]/div[2]') \
+                    .num_supply('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[5]/div[2]') \
                     .num_listing('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[2]/div[2]') \
                     .num_owners('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[4]/div[2]',
                                 lambda s: None if s == 'N/A' else s) \
@@ -547,7 +547,7 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('') \
-                    .num_items_all('') \
+                    .num_supply('') \
                     .num_listing('') \
                     .num_owners('') \
                     .floor('') \
