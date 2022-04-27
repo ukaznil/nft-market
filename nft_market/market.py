@@ -17,3 +17,4 @@ class Market(Enum):
     XANALIA = auto()
     CetoSwap = auto()
     Coinbase = auto()
+    CCC = auto()

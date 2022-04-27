@@ -89,7 +89,10 @@ class NFTInfoBuilder:
         if post is not None:
             i = post(i)
         # endif
-        i = self._text2int(i)
+
+        if i is not None:
+            i = self._text2int(i)
+        # endif
 
         self._num_items_all = i
         return self
@@ -100,7 +103,10 @@ class NFTInfoBuilder:
         if post is not None:
             i = post(i)
         # endif
-        i = self._text2int(i)
+
+        if i is not None:
+            i = self._text2int(i)
+        # endif
 
         self._num_listing = i
         return self
@@ -111,7 +117,10 @@ class NFTInfoBuilder:
         if post is not None:
             i = post(i)
         # endif
-        i = self._text2int(i)
+
+        if i is not None:
+            i = self._text2int(i)
+        # endif
 
         self._num_owners = i
         return self
@@ -122,7 +131,10 @@ class NFTInfoBuilder:
         if post is not None:
             f = post(f)
         # endif
-        f = self._text2float(f)
+
+        if f is not None:
+            f = self._text2float(f)
+        # endif
 
         self._floor = f
         return self
@@ -133,7 +145,10 @@ class NFTInfoBuilder:
         if post is not None:
             f = post(f)
         # endif
-        f = self._text2float(f)
+
+        if f is not None:
+            f = self._text2float(f)
+        # endif
 
         self._volume = f
         return self

@@ -46,6 +46,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [XANALIA](https://www.xanalia.com/)
 - [CetoSwap](https://7pnex-saaaa-aaaai-qbhwa-cai.raw.ic0.app/)
 - [Coinbase](https://nft.coinbase.com/)
+- [CCC](https://skeh5-daaaa-aaaai-aar4q-cai.raw.ic0.app/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -74,26 +75,28 @@ references.
 ### Available information
 
 What you can retrieve may change by a marketplace you specify, as follows.
-
-| Market      | Name    | # Items | # Listing | # Owners | Floor   | Volume  |
-|-------------|---------|---------|-----------|----------|---------|---------|
-| OpenSea     | &check; |         | &check;   | &check;  | &check; | &check; |
-| Entrepot    | &check; |         | &check;   |          | &check; | &check; |
-| tofuNFT     | &check; |         | &check;   | &check;  | &check; | &check; |
-| PancakeSwap | &check; | &check; | &check;   |          | &check; | &check; |
-| Rarible     | &check; | &check; |           | &check;  | &check; | &check; |
-| GhostMarket | &check; | &check; |           | &check;  | &check; | &check; |
-| Crypto.com  | &check; |         | &check;   | &check;  | &check; | &check; |
-| Gem         | &check; |         | &check;   |          | &check; | &check; |
-| LooksRare   | &check; |         | &check;   | &check;  | &check; | &check; |
-| NFTrade     | &check; |         |           |          | &check; | &check; |
-| Solanart    | &check; | &check; | &check;   | &check;  | &check; | &check; |
-| Magic Eden  | &check; |         | &check;   |          | &check; | &check; |
-| XANALIA     | &check; | &check; |           | &check;  | &check; | &check; | 
-| CetoSwap    | &check; | &check; | &check;   | &check;  | &check; | &check; | 
-| Coinbase    | &check; |         | &check;   | &check;  | &check; | &check; |
-
 Other information may be provided in the future!
+
+| Market      | Name    | # Items | # Listing | # Owners   | Floor   | Volume  |
+|-------------|---------|---------|-----------|------------|---------|---------|
+| OpenSea     | &check; |         | &check;   | &check;    | &check; | &check; |
+| Entrepot    | &check; |         | &check;   |            | &check; | &check; |
+| tofuNFT     | &check; |         | &check;   | &check;    | &check; | &check; |
+| PancakeSwap | &check; | &check; | &check;   |            | &check; | &check; |
+| Rarible     | &check; | &check; |           | &check;    | &check; | &check; |
+| GhostMarket | &check; | &check; |           | &check;    | &check; | &check; |
+| Crypto.com  | &check; |         | &check;   | &check;    | &check; | &check; |
+| Gem         | &check; |         | &check;   |            | &check; | &check; |
+| LooksRare   | &check; |         | &check;   | &check;    | &check; | &check; |
+| NFTrade     | &check; |         |           |            | &check; | &check; |
+| Solanart    | &check; | &check; | &check;   | &check;    | &check; | &check; |
+| Magic Eden  | &check; |         | &check;   |            | &check; | &check; |
+| XANALIA     | &check; | &check; |           | &check;    | &check; | &check; | 
+| CetoSwap    | &check; | &check; | &check;   | &check;    | &check; | &check; | 
+| Coinbase    | &check; |         | &check;   | &check;    | &check; | &check; |
+| CCC         | &check; | &check; | &check;   | &check;(*) | &check; | &check; |
+
+"&check;(*)" means it can return None value depending on items.
 
 ## Installation
 

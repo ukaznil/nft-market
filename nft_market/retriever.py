@@ -94,6 +94,8 @@ class Retriever:
             func = self._retrieve_cetoswap
         elif market == Market.Coinbase:
             func = self._retrieve_coinbase
+        elif market == Market.CCC:
+            func = self._retrieve_ccc
         else:
             raise NotImplementedError(market)
         # endif
@@ -500,6 +502,31 @@ class Retriever:
                            lambda s: s.split(' ')[0]) \
                     .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
                             lambda s: s.split(' ')[0]) \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_ccc(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://skeh5-daaaa-aaaai-aar4q-cai.raw.ic0.app/#/collection/{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[2]/h2') \
+                    .num_items_all('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[5]/div[2]') \
+                    .num_listing('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[2]/div[2]') \
+                    .num_owners('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[4]/div[2]',
+                                lambda s: None if s == 'N/A' else s) \
+                    .floor('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[3]/div[2]/div') \
+                    .volume('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[1]/div[2]/div') \
                     .build()
             # endwith
         except Exception as e:

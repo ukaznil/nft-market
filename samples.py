@@ -211,3 +211,15 @@ def sample_coinbase():
     print(r.fetch(Market.Coinbase, 'ethereum/0x9378368ba6b85c1FbA5b131b530f5F5bEdf21A18'))  # VeeFriends Series 2
     print(r.fetch(Market.Coinbase, 'ethereum/0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'))  # CloneX
     # print(r.fetch(Market.Coinbase, 'ethereum/0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'))  # CryptoPunks
+
+
+def sample_ccc():
+    # CCC
+    print(r.fetch(Market.CCC, 'zombie'))  # Crazy Zombie
+    print(r.fetch(Market.CCC, 'turtles'))  # ICTurtles
+    print(r.fetch(Market.CCC, 'gang'))  # DfinityGangs
+    print(r.fetch(Market.CCC, 'avocado'))  # Avocado Research
+    print(r.fetch(Market.CCC, 'icity'))  # ICity ICmoe
+    print(r.fetch(Market.CCC, 'lion'))  # IC LIONS
+    print(r.fetch(Market.CCC, 'shoe'))  # Dragon Boots
+    print(r.fetch(Market.CCC, 'car'))  # IC CARS
