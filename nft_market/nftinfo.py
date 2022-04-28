@@ -1,4 +1,5 @@
 import dataclasses
+import warnings
 from typing import *
 
 from selenium.webdriver.common.by import By
@@ -9,7 +10,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 class NFTInfo:
     id: str
     name: str
-    num_items_all: Optional[int]
+    num_supply: Optional[int]
     num_listing: Optional[int]
     num_owners: Optional[int]
     floor: float
@@ -22,6 +23,13 @@ class NFTInfo:
         assert self.volume is not None
     # enddef
 
+    @property
+    def num_items_all(self):
+        warnings.warn('The property "num_items_all" has been deprecated. It will be no longer available in future updates. Please use "num_supply" instead.')
+
+        return self.num_supply
+    # enddef
+
 
 class NFTInfoBuilder:
     def __init__(self, driver: WebDriver, id: str):
@@ -30,7 +38,7 @@ class NFTInfoBuilder:
 
         # properties
         self._name = ...
-        self._num_items_all = None
+        self._num_supply = None
         self._num_listing = None
         self._num_owners = None
         self._floor = ...
@@ -65,7 +73,7 @@ class NFTInfoBuilder:
     def build(self) -> NFTInfo:
         nft = NFTInfo(id=self.id,
                       name=self._name,
-                      num_items_all=self._num_items_all,
+                      num_supply=self._num_supply,
                       num_listing=self._num_listing,
                       num_owners=self._num_owners,
                       floor=self._floor,
@@ -84,14 +92,17 @@ class NFTInfoBuilder:
         return self
     # enddef
 
-    def num_items_all(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
+    def num_supply(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
         i = self._find_text(xpath)
         if post is not None:
             i = post(i)
         # endif
-        i = self._text2int(i)
 
-        self._num_items_all = i
+        if i is not None:
+            i = self._text2int(i)
+        # endif
+
+        self._num_supply = i
         return self
     # enddef
 
@@ -100,7 +111,10 @@ class NFTInfoBuilder:
         if post is not None:
             i = post(i)
         # endif
-        i = self._text2int(i)
+
+        if i is not None:
+            i = self._text2int(i)
+        # endif
 
         self._num_listing = i
         return self
@@ -111,7 +125,10 @@ class NFTInfoBuilder:
         if post is not None:
             i = post(i)
         # endif
-        i = self._text2int(i)
+
+        if i is not None:
+            i = self._text2int(i)
+        # endif
 
         self._num_owners = i
         return self
@@ -122,7 +139,10 @@ class NFTInfoBuilder:
         if post is not None:
             f = post(f)
         # endif
-        f = self._text2float(f)
+
+        if f is not None:
+            f = self._text2float(f)
+        # endif
 
         self._floor = f
         return self
@@ -133,7 +153,10 @@ class NFTInfoBuilder:
         if post is not None:
             f = post(f)
         # endif
-        f = self._text2float(f)
+
+        if f is not None:
+            f = self._text2float(f)
+        # endif
 
         self._volume = f
         return self
