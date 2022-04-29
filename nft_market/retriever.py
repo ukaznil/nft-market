@@ -318,11 +318,11 @@ class Retriever:
                 error = None
 
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
-                    .num_listing('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]',
+                    .name('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
+                    .num_listing('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]',
                                  lambda s: s.replace('results', '')) \
-                    .floor('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
-                    .volume('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
+                    .floor('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
+                    .volume('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
                     .build()
             # endwith
         except Exception as e:
@@ -338,16 +338,16 @@ class Retriever:
         nft = None
         try:
             with _WebFetcher(url, **self.option) as driver:
-                for c_name, c_listing in itertools.product([4, 5], [6, 7]):
+                for c_name, c_other in itertools.product([4, 5], [6, 7]):
                     error = None
 
                     try:
                         nft = NFTInfoBuilder(driver, id) \
-                            .name(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
-                            .num_listing(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[3]/div[2]') \
-                            .num_owners(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[4]/div[2]') \
-                            .floor(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[1]/div[2]/div[1]') \
-                            .volume(f'//*[@id="__next"]/div[2]/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_listing}]/div/div/div/div[2]/div[2]/div') \
+                            .name(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
+                            .num_listing(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[3]/div[2]') \
+                            .num_owners(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[4]/div[2]') \
+                            .floor(f'//*[@id="__next"]/div[2]/div/div/div/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/a/div[1]/div[3]/div[1]/div') \
+                            .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[2]/div[2]/div ') \
                             .build()
                         break
                     except NoSuchElementException as e:
@@ -475,8 +475,8 @@ class Retriever:
                     .num_supply('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[5]/div/div/div/div[1]') \
                     .num_listing('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[1]/div/div/div/div[1]') \
                     .num_owners('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[2]/div/div/div/div[1]') \
-                    .floor('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[4]/div/div/div/div[1]/div/div') \
-                    .volume('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[3]/div/div/div/div[1]/div/div') \
+                    .floor('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[3]/div/div/div/div[1]/div/div') \
+                    .volume('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[4]/div/div/div/div[1]/div/div') \
                     .build()
             # endwith
         except Exception as e:

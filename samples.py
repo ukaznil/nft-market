@@ -196,7 +196,7 @@ def sample_cetoswap():
     print(r.fetch(Market.CetoSwap, 'zombie'))  # Crazy Zombie
     print(r.fetch(Market.CetoSwap, 'shoes'))  # Dragon Boots
     print(r.fetch(Market.CetoSwap, 'cars'))  # IC CARS
-    # print(r.fetch(Market.CetoSwap, 'eggs'))  # Bobo Eggs
+    print(r.fetch(Market.CetoSwap, 'eggs'))  # Bobo Eggs
 
 
 def sample_coinbase():
