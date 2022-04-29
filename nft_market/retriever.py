@@ -318,11 +318,11 @@ class Retriever:
                 error = None
 
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
-                    .num_listing('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]',
+                    .name('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
+                    .num_listing('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div[2]/div[1]',
                                  lambda s: s.replace('results', '')) \
-                    .floor('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
-                    .volume('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
+                    .floor('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
+                    .volume('//*[@id="app"]/div/div[3]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
                     .build()
             # endwith
         except Exception as e:
