@@ -1,4 +1,4 @@
-name: test
+name: Check the availability for all the marketplaces.
 
 on:
   push:
