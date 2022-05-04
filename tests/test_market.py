@@ -75,9 +75,11 @@ def test_nftrade():
 
 def test_solanart():
     # Solanart
-    print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
-    print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
-    print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
+    # See this issue: https://github.com/ukaznil/nft-market/issues/2
+    pass
+    # print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
+    # print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
+    # print(r.fetch(Market.Solanart, 'solpunks'))  # SolPunks
 
 
 def test_magiceden():
