@@ -146,6 +146,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -176,6 +178,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -199,6 +203,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -222,6 +228,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -250,6 +258,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -281,6 +291,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -304,6 +316,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -327,6 +341,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -358,6 +374,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -379,6 +397,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -406,6 +426,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -434,6 +456,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -457,6 +481,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -481,6 +507,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -506,6 +534,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -531,6 +561,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
@@ -556,6 +588,8 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
+        finally:
+            driver.quit()
         # endtry
 
         return nft, error
