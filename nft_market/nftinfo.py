@@ -54,7 +54,7 @@ class NFTInfoBuilder:
         try:
             f = float(eval(s_rep))
         except Exception as e:
-            print(f'orig: {s}, replaced: {s_rep}')
+            print(f'ID: {self.id}, orig: {s}, replaced: {s_rep}')
             raise e
         # endtry
 
@@ -90,7 +90,7 @@ class NFTInfoBuilder:
                 s = post(s)
             # endif
         except Exception as e:
-            raise ValueError(f'Cause: name, {e}')
+            raise ValueError(f'ID: {self.id}, Cause: name, {e}')
         # endtry
 
         self._name = s
@@ -109,7 +109,7 @@ class NFTInfoBuilder:
                 i = self._text2int(i)
             # endif
         except Exception as e:
-            raise ValueError(f'Cause: num_supply, {e}')
+            raise ValueError(f'ID: {self.id}, Cause: num_supply, {e}')
         # endtry
 
         self._num_supply = i
@@ -128,7 +128,7 @@ class NFTInfoBuilder:
                 i = self._text2int(i)
             # endif
         except Exception as e:
-            raise ValueError(f'Cause: num_listing, {e}')
+            raise ValueError(f'ID: {self.id}, Cause: num_listing, {e}')
         # endtry
 
         self._num_listing = i
@@ -147,7 +147,7 @@ class NFTInfoBuilder:
                 i = self._text2int(i)
             # endif
         except Exception as e:
-            raise ValueError(f'Cause: num_owners, {e}')
+            raise ValueError(f'ID: {self.id}, Cause: num_owners, {e}')
         # endtry
 
         self._num_owners = i
@@ -166,7 +166,7 @@ class NFTInfoBuilder:
                 f = self._text2float(f)
             # endif
         except Exception as e:
-            raise ValueError(f'Cause: floor, {e}')
+            raise ValueError(f'ID: {self.id}, Cause: floor, {e}')
         # endtry
 
         self._floor = f
@@ -185,7 +185,7 @@ class NFTInfoBuilder:
                 f = self._text2float(f)
             # endif
         except Exception as e:
-            raise ValueError(f'Cause: volume, {e}')
+            raise ValueError(f'ID: {self.id}, Cause: volume, {e}')
         # endtry
 
         self._volume = f
