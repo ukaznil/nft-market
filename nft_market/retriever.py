@@ -426,11 +426,11 @@ class Retriever:
                 error = None
 
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1') \
-                    .num_listing('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]') \
-                    .floor('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]',
+                    .name('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/h1') \
+                    .num_listing('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]') \
+                    .floor('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[1]/div/span[2]',
                            self._remove_sol_mark) \
-                    .volume('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]',
+                    .volume('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]',
                             self._remove_sol_mark) \
                     .build()
             # endwith
