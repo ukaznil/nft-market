@@ -24,7 +24,7 @@ def sample_entrepot():
     print(r.fetch(Market.Entrepot, 'icpunks'))  # ICPunks
     print(r.fetch(Market.Entrepot, 'ogmedals'))  # OG MEDALS
     print(r.fetch(Market.Entrepot, 'cronics'))  # Cronic Critters
-    print(r.fetch(Market.Entrepot, 'icpuppies'))  # ICPuppies
+    # print(r.fetch(Market.Entrepot, 'icpuppies'))  # ICPuppies
     print(r.fetch(Market.Entrepot, 'spaceapes'))  # Dfinity Space Apes
     print(r.fetch(Market.Entrepot, 'icdinos'))  # IC Dinos
     print(r.fetch(Market.Entrepot, 'ethflower'))  # ETH Flower
