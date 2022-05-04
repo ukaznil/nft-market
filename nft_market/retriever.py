@@ -5,7 +5,6 @@ import time
 from typing import *
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import Service
 from webdriver_manager.firefox import GeckoDriverManager
@@ -23,6 +22,11 @@ class _WebFetcher:
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--incognito')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--proxy-server="direct://"')
+        options.add_argument('--proxy-bypass-list=*')
+        options.add_argument('--start-maximized')
+
         self.options = options
     # enddef
 
@@ -30,7 +34,6 @@ class _WebFetcher:
         self.driver = webdriver.Firefox(options=self.options,
                                         service=Service(executable_path=self.executable_path,
                                                         log_path=os.devnull))
-        self.driver.maximize_window()
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
@@ -139,7 +142,7 @@ class Retriever:
                             .volume(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[4]/a/div/div[1]/div/span/div') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -169,7 +172,7 @@ class Retriever:
                             .volume('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -274,7 +277,7 @@ class Retriever:
                             .volume(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -351,7 +354,7 @@ class Retriever:
                             .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[2]/div[2]/div ') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
