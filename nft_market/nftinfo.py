@@ -54,7 +54,7 @@ class NFTInfoBuilder:
         try:
             f = float(eval(s_rep))
         except Exception as e:
-            print(f'orig: {s}, replaced: {s_rep}')
+            print(f'ID: {self.id}, orig: {s}, replaced: {s_rep}')
             raise e
         # endtry
 
@@ -83,80 +83,110 @@ class NFTInfoBuilder:
     # enddef
 
     def name(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
-        s = self._find_text(xpath)
-        if post is not None:
-            s = post(s)
-        # endif
+        try:
+            s = self._find_text(xpath)
+
+            if post is not None:
+                s = post(s)
+            # endif
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: name, {e}')
+        # endtry
 
         self._name = s
         return self
     # enddef
 
     def num_supply(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
-        i = self._find_text(xpath)
-        if post is not None:
-            i = post(i)
-        # endif
+        try:
+            i = self._find_text(xpath)
 
-        if i is not None:
-            i = self._text2int(i)
-        # endif
+            if post is not None:
+                i = post(i)
+                # endif
+
+            if i is not None:
+                i = self._text2int(i)
+            # endif
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: num_supply, {e}')
+        # endtry
 
         self._num_supply = i
         return self
     # enddef
 
     def num_listing(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
-        i = self._find_text(xpath)
-        if post is not None:
-            i = post(i)
-        # endif
+        try:
+            i = self._find_text(xpath)
 
-        if i is not None:
-            i = self._text2int(i)
-        # endif
+            if post is not None:
+                i = post(i)
+                # endif
+
+            if i is not None:
+                i = self._text2int(i)
+            # endif
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: num_listing, {e}')
+        # endtry
 
         self._num_listing = i
         return self
     # enddef
 
     def num_owners(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
-        i = self._find_text(xpath)
-        if post is not None:
-            i = post(i)
-        # endif
+        try:
+            i = self._find_text(xpath)
 
-        if i is not None:
-            i = self._text2int(i)
-        # endif
+            if post is not None:
+                i = post(i)
+                # endif
+
+            if i is not None:
+                i = self._text2int(i)
+            # endif
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: num_owners, {e}')
+        # endtry
 
         self._num_owners = i
         return self
     # enddef
 
     def floor(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
-        f = self._find_text(xpath)
-        if post is not None:
-            f = post(f)
-        # endif
+        try:
+            f = self._find_text(xpath)
 
-        if f is not None:
-            f = self._text2float(f)
-        # endif
+            if post is not None:
+                f = post(f)
+                # endif
+
+            if f is not None:
+                f = self._text2float(f)
+            # endif
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: floor, {e}')
+        # endtry
 
         self._floor = f
         return self
     # enddef
 
     def volume(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
-        f = self._find_text(xpath)
-        if post is not None:
-            f = post(f)
-        # endif
+        try:
+            f = self._find_text(xpath)
 
-        if f is not None:
-            f = self._text2float(f)
-        # endif
+            if post is not None:
+                f = post(f)
+                # endif
+
+            if f is not None:
+                f = self._text2float(f)
+            # endif
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: volume, {e}')
+        # endtry
 
         self._volume = f
         return self

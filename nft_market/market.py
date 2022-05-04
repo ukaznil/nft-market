@@ -18,3 +18,4 @@ class Market(Enum):
     CetoSwap = auto()
     Coinbase = auto()
     CCC = auto()
+    NiftyGateway = auto()

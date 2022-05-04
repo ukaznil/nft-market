@@ -5,7 +5,6 @@ import time
 from typing import *
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import Service
 from webdriver_manager.firefox import GeckoDriverManager
@@ -23,6 +22,11 @@ class _WebFetcher:
         options = Options()
         options.add_argument('--headless')
         options.add_argument('--incognito')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--proxy-server="direct://"')
+        options.add_argument('--proxy-bypass-list=*')
+        options.add_argument('--start-maximized')
+
         self.options = options
     # enddef
 
@@ -30,7 +34,6 @@ class _WebFetcher:
         self.driver = webdriver.Firefox(options=self.options,
                                         service=Service(executable_path=self.executable_path,
                                                         log_path=os.devnull))
-        self.driver.maximize_window()
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
@@ -40,6 +43,7 @@ class _WebFetcher:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         time.sleep(self.sec_wait)
+        self.driver.close()
         self.driver.quit()
     # enddef
 
@@ -96,6 +100,8 @@ class Retriever:
             func = self._retrieve_coinbase
         elif market == Market.CCC:
             func = self._retrieve_ccc
+        elif market == Market.NiftyGateway:
+            func = self._retrieve_niftygateway
         else:
             raise NotImplementedError(market)
         # endif
@@ -114,6 +120,8 @@ class Retriever:
 
                 num_retry += 1
                 time.sleep(self.sec_wait)
+
+                print(f'An error in "{id}" [{num_retry}/{self.num_retry + 1}]')
             # endif
         # endwhile
 
@@ -138,7 +146,7 @@ class Retriever:
                             .volume(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[4]/a/div/div[1]/div/span/div') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -146,8 +154,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -170,7 +176,7 @@ class Retriever:
                             .volume('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -178,8 +184,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -203,8 +207,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -228,8 +230,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -258,9 +258,7 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
-        # endtry
+            # endtry
 
         return nft, error
     # enddef
@@ -283,7 +281,7 @@ class Retriever:
                             .volume(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -291,8 +289,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -316,8 +312,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -341,8 +335,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -366,7 +358,7 @@ class Retriever:
                             .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[2]/div[2]/div ') \
                             .build()
                         break
-                    except NoSuchElementException as e:
+                    except Exception as e:
                         error = e
                         continue
                     # endtry
@@ -374,8 +366,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -397,15 +387,13 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
     # enddef
 
     def _retrieve_solanart(self, id: str) -> Tuple[NFTInfo, Exception]:
-        url = f'https://solanart.io/collections/{id}'
+        url = f'https://solanart.io/collections/{id}?tab=items'
 
         nft = None
         try:
@@ -415,8 +403,6 @@ class Retriever:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2') \
                     .num_supply('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]') \
-                    .num_listing('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[3]/div[2]/div[2]/div[2]',
-                                 lambda s: s.split(' ')[0]) \
                     .num_owners('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]') \
                     .floor('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]',
                            self._remove_sol_mark) \
@@ -426,8 +412,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -446,18 +430,16 @@ class Retriever:
                 error = None
 
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/h1') \
-                    .num_listing('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]') \
-                    .floor('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[3]/div/span[2]',
+                    .name('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/h1') \
+                    .num_listing('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]') \
+                    .floor('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[1]/div/span[2]',
                            self._remove_sol_mark) \
-                    .volume('//*[@id="root"]/div/div/div/div[2]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]',
+                    .volume('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]',
                             self._remove_sol_mark) \
                     .build()
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -481,8 +463,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -507,8 +487,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -534,8 +512,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
@@ -561,8 +537,31 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_niftygateway(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://niftygateway.com/marketplace/collectible/{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div/div[1]/div/div/div[2]/div[1]/div/div[2]/h2') \
+                    .num_listing('//*[@id="tabpanel-0"]/div/div[1]/div/div[1]/p/b') \
+                    .num_owners('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[1]/div/h4/span') \
+                    .floor('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/h4/span',
+                           lambda s: s.split(' ')[0]) \
+                    .volume('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[4]/div/h4/span',
+                            lambda s: s.split(' ')[0]) \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
         # endtry
 
         return nft, error
@@ -588,8 +587,6 @@ class Retriever:
             # endwith
         except Exception as e:
             error = e
-        finally:
-            driver.quit()
         # endtry
 
         return nft, error
