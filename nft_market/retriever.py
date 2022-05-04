@@ -389,7 +389,7 @@ class Retriever:
     # enddef
 
     def _retrieve_solanart(self, id: str) -> Tuple[NFTInfo, Exception]:
-        url = f'https://solanart.io/collections/{id}'
+        url = f'https://solanart.io/collections/{id}?tab=items'
 
         nft = None
         try:
@@ -399,8 +399,6 @@ class Retriever:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2') \
                     .num_supply('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]') \
-                    .num_listing('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[3]/div[2]/div[2]/div[2]',
-                                 lambda s: s.split(' ')[0]) \
                     .num_owners('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[3]/div[1]') \
                     .floor('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[5]/div[1]',
                            self._remove_sol_mark) \

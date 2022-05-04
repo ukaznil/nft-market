@@ -89,7 +89,7 @@ Other information may be provided in the future!
 | Gem         | &check; |         | &check;  |           | &check; | &check; |
 | LooksRare   | &check; |         | &check;  | &check;   | &check; | &check; |
 | NFTrade     | &check; |         |          |           | &check; | &check; |
-| Solanart    | &check; | &check; | &check;  | &check;   | &check; | &check; |
+| Solanart    | &check; | &check; |          | &check;   | &check; | &check; |
 | Magic Eden  | &check; |         | &check;  |           | &check; | &check; |
 | XANALIA     | &check; | &check; |          | &check;   | &check; | &check; | 
 | CetoSwap    | &check; | &check; | &check;  | &check;   | &check; | &check; | 
