@@ -121,7 +121,7 @@ class Retriever:
                 num_retry += 1
                 time.sleep(self.sec_wait)
 
-                print(f'Error in "{id}". Trying... [{num_retry}/{self.num_retry}]')
+                print(f'An error in "{id}" [{num_retry}/{self.num_retry + 1}]')
             # endif
         # endwhile
 
