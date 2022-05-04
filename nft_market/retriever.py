@@ -100,6 +100,8 @@ class Retriever:
             func = self._retrieve_coinbase
         elif market == Market.CCC:
             func = self._retrieve_ccc
+        elif market == Market.NiftyGateway:
+            func = self._retrieve_niftygateway
         else:
             raise NotImplementedError(market)
         # endif
@@ -529,6 +531,31 @@ class Retriever:
                                 lambda s: None if s == 'N/A' else s) \
                     .floor('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[3]/div[2]/div') \
                     .volume('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[1]/div[2]/div') \
+                    .build()
+            # endwith
+        except Exception as e:
+            error = e
+        # endtry
+
+        return nft, error
+    # enddef
+
+    def _retrieve_niftygateway(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://niftygateway.com/marketplace/collectible/{id}'
+
+        nft = None
+        try:
+            with _WebFetcher(url, **self.option) as driver:
+                error = None
+
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div/div[1]/div/div/div[2]/div[1]/div/div[2]/h2') \
+                    .num_listing('//*[@id="tabpanel-0"]/div/div[1]/div/div[1]/p/b') \
+                    .num_owners('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[1]/div/h4/span') \
+                    .floor('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[2]/div/h4/span',
+                           lambda s: s.split(' ')[0]) \
+                    .volume('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[4]/div/h4/span',
+                            lambda s: s.split(' ')[0]) \
                     .build()
             # endwith
         except Exception as e:

@@ -223,3 +223,12 @@ def sample_ccc():
     print(r.fetch(Market.CCC, 'lion'))  # IC LIONS
     print(r.fetch(Market.CCC, 'shoe'))  # Dragon Boots
     print(r.fetch(Market.CCC, 'car'))  # IC CARS
+
+
+def sample_niftygateway():
+    # Nifty Gateway
+    print(r.fetch(Market.NiftyGateway, '0xc71561e12faf378b07eacd36b3d0eb0d13a5fb1c'))  # Awkward Astronauts
+    print(r.fetch(Market.NiftyGateway, '0xa5a1e6972ace6f4ae388fbafcb7ec12013b64f53'))  # NOOBPUNKS
+    print(r.fetch(Market.NiftyGateway, '0x5ae681e32a503abe7bf52a25565bbdc712dbea98'))  # Sellouts
+    print(r.fetch(Market.NiftyGateway, '0xc3f8a0f5841abff777d3eefa5047e8d413a1c9ab'))  # m
+    print(r.fetch(Market.NiftyGateway, '0xc1aa2a21d0c1c861e3b5fa4df8f14db5e24fcd81'))  # Crystal Pop
