@@ -1,5 +1,4 @@
 import itertools
-import logging
 import os
 import time
 from typing import *
@@ -7,16 +6,14 @@ from typing import *
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import Service
-from webdriver_manager.firefox import GeckoDriverManager
 
 from nft_market.market import Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
 class _WebFetcher:
-    def __init__(self, url: str, executable_path: str, sec_wait: int):
+    def __init__(self, url: str, sec_wait: int):
         self.url = url
-        self.executable_path = executable_path
         self.sec_wait = sec_wait
 
         options = Options()
@@ -32,8 +29,7 @@ class _WebFetcher:
 
     def __enter__(self):
         self.driver = webdriver.Firefox(options=self.options,
-                                        service=Service(executable_path=self.executable_path,
-                                                        log_path=os.devnull))
+                                        service=Service(log_path=os.devnull))
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
@@ -51,7 +47,6 @@ class _WebFetcher:
 class Retriever:
     def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False):
         self.option = {
-            'executable_path': GeckoDriverManager(log_level=logging.NOTSET).install(),
             'sec_wait': sec_wait
             }
         self.sec_wait = sec_wait
