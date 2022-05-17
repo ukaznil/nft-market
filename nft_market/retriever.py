@@ -107,16 +107,18 @@ class Retriever:
             nft, error = func(id)
 
             if nft is not None:
-                assert error is None
+                assert error is None, f'nft: {nft}, error: {error}'
 
                 return nft
             else:
-                assert error is not None
+                assert error is not None, f'nft: {nft}, error: {error}'
 
                 num_retry += 1
                 time.sleep(self.sec_wait)
 
-                print(f'An error in "{id}" [{num_retry}/{self.num_retry + 1}]')
+                if self.verbose:
+                    print(f'An error in "{id}" [{num_retry}/{self.num_retry + 1}]')
+                # endif
             # endif
         # endwhile
 
