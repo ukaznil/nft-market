@@ -1,6 +1,7 @@
 import itertools
 import os
 import time
+import warnings
 from typing import *
 
 from selenium import webdriver
@@ -107,7 +108,10 @@ class Retriever:
             nft, error = func(id)
 
             if nft is not None:
-                assert error is None, f'nft: {nft}, error: {error}'
+                # assert error is None, f'nft: {nft}, error: {error}'
+                if error is not None:
+                    warnings.warn(f'{error}')
+                # endif
 
                 return nft
             else:
