@@ -39,9 +39,8 @@ class _WebFetcher:
     # enddef
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        time.sleep(self.sec_wait)
-        self.driver.close()
         self.driver.quit()
+        time.sleep(self.sec_wait)
     # enddef
 
 
@@ -135,23 +134,15 @@ class Retriever:
         nft = None
         try:
             with _WebFetcher(url, **self.option) as driver:
-                for c1 in [4, 5]:
-                    error = None
+                error = None
 
-                    try:
-                        nft = NFTInfoBuilder(driver, id) \
-                            .name('//*[@id="main"]/div/div/div[1]/div[2]/div[3]/h1') \
-                            .num_listing(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[1]/a/div/div[1]/div/span/div') \
-                            .num_owners(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[2]/a/div/div[1]/div/span/div') \
-                            .floor(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[3]/a/div/div[1]/div/span/div') \
-                            .volume(f'//*[@id="main"]/div/div/div[1]/div[2]/div[{c1}]/div/div[4]/a/div/div[1]/div/span/div') \
-                            .build()
-                        break
-                    except Exception as e:
-                        error = e
-                        continue
-                    # endtry
-                # endfor
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="main"]/div/div/div[3]/div/div/div[1]/div/div[2]/h1/div') \
+                    .num_listing(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/a/div/span[1]/div') \
+                    .num_owners(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div') \
+                    .floor(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
+                    .volume(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
+                    .build()
             # endwith
         except Exception as e:
             error = e
@@ -355,7 +346,7 @@ class Retriever:
                             .name(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
                             .num_listing(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[3]/div[2]') \
                             .num_owners(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[4]/div[2]') \
-                            .floor(f'//*[@id="__next"]/div[2]/div/div/div/div[3]/div[2]/div[2]/div[2]/div[1]/div[1]/a/div[1]/div[3]/div[1]/div') \
+                            .floor(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[1]/div[2]/div') \
                             .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[2]/div[2]/div ') \
                             .build()
                         break
