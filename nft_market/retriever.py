@@ -40,8 +40,8 @@ class _WebFetcher:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         time.sleep(self.sec_wait)
-        self.driver.close()
         self.driver.quit()
+        time.sleep(self.sec_wait)
     # enddef
 
 
