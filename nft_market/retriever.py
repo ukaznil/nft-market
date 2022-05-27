@@ -46,7 +46,7 @@ class _WebFetcher:
 
 
 class Retriever:
-    def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False):
+    def __init__(self, sec_wait: int = 5, num_retry: int = 5, verbose: bool = False):
         self.option = {
             'sec_wait': sec_wait
             }
