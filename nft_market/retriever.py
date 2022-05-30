@@ -1,7 +1,6 @@
 import itertools
 import os
 import time
-import warnings
 from typing import *
 
 from selenium import webdriver
@@ -18,7 +17,7 @@ class _WebFetcher:
         self.sec_wait = sec_wait
 
         options = Options()
-        options.add_argument('--headless')
+        options.headless = True
         options.add_argument('--incognito')
         options.add_argument('--disable-extensions')
         options.add_argument('--proxy-server="direct://"')
@@ -40,14 +39,13 @@ class _WebFetcher:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.driver.quit()
-        time.sleep(self.sec_wait)
     # enddef
 
 
 class Retriever:
     def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False):
         self.option = {
-            'sec_wait': sec_wait
+            'sec_wait': sec_wait,
             }
         self.sec_wait = sec_wait
         self.num_retry = num_retry
@@ -109,7 +107,7 @@ class Retriever:
             if nft is not None:
                 # assert error is None, f'nft: {nft}, error: {error}'
                 if error is not None:
-                    warnings.warn(f'{error}')
+                    print(f'[Warning] {error}')
                 # endif
 
                 return nft
