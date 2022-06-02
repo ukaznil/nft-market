@@ -130,10 +130,9 @@ class Retriever:
         url = f'https://opensea.io/collection/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="main"]/div/div/div[3]/div/div/div[1]/div/div[2]/h1/div') \
                     .num_listing(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/a/div/span[1]/div') \
@@ -141,11 +140,10 @@ class Retriever:
                     .floor(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
                     .volume(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -154,29 +152,23 @@ class Retriever:
         url = f'https://entrepot.app/marketplace/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                for c1 in [2, 3]:
-                    error = None
-
-                    try:
-                        nft = NFTInfoBuilder(driver, id) \
-                            .name('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[3]/h1') \
-                            .num_listing('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/strong') \
-                            .floor(f'//*[@id="mainListings"]/div[2]/div/div[2]/div[2]/div/div[1]/div/a/div[{c1}]/div/div[4]/p') \
-                            .volume('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong') \
-                            .build()
-                        break
-                    except Exception as e:
-                        error = e
-                        continue
-                    # endtry
-                # endfor
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+        with _WebFetcher(url, **self.option) as driver:
+            for c1 in [2, 3]:
+                error = None
+                try:
+                    nft = NFTInfoBuilder(driver, id) \
+                        .name('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[3]/h1') \
+                        .num_listing('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[2]/strong') \
+                        .floor(f'//*[@id="mainListings"]/div[2]/div/div[2]/div[2]/div/div[1]/div/a/div[{c1}]/div/div[4]/p') \
+                        .volume('//*[@id="root"]/main/div/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]/strong') \
+                        .build()
+                    break
+                except Exception as e:
+                    error = e
+                    continue
+                # endtry
+            # endfor
+        # endwith
 
         return nft, error
     # enddef
@@ -185,10 +177,9 @@ class Retriever:
         url = f'https://tofunft.com/collection/{id}/items'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div[2]/div[1]/div[1]/h1') \
                     .num_listing('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[3]/div[2]') \
@@ -196,11 +187,10 @@ class Retriever:
                     .floor('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[5]/div[2]') \
                     .volume('//*[@id="__next"]/div[2]/div[1]/div[2]/div[1]/div[4]/div[2]') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -209,10 +199,9 @@ class Retriever:
         url = f'https://pancakeswap.finance/nfts/collections/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[1]/h1') \
                     .num_supply('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]') \
@@ -220,11 +209,10 @@ class Retriever:
                     .floor('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]') \
                     .volume('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -238,10 +226,9 @@ class Retriever:
         # endif
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/span') \
                     .num_supply('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
@@ -249,11 +236,10 @@ class Retriever:
                     .floor('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[2]/span[2]/span') \
                     .volume('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[6]/span[2]/span') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -262,30 +248,24 @@ class Retriever:
         url = f'https://ghostmarket.io/collection/{id}/?tab=nfts'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                for c_floor in ['span/div[2]/', '', ]:
-                    error = None
-
-                    try:
-                        nft = NFTInfoBuilder(driver, id) \
-                            .name('//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]') \
-                            .num_supply('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]') \
-                            .num_owners('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/span/div[2]/div/div/div[1]') \
-                            .floor(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/{c_floor}div/div/div[1]') \
-                            .volume(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]') \
-                            .build()
-                        break
-                    except Exception as e:
-                        error = e
-                        continue
-                    # endtry
-                # endfor
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+        with _WebFetcher(url, **self.option) as driver:
+            for c_floor in ['span/div[2]/', '', ]:
+                error = None
+                try:
+                    nft = NFTInfoBuilder(driver, id) \
+                        .name('//*[@id="__layout"]/div/section/div/div[1]/div[3]/span[1]') \
+                        .num_supply('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[1]/span/div[2]/div/div/div[1]') \
+                        .num_owners('//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[2]/span/div[2]/div/div/div[1]') \
+                        .floor(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[3]/{c_floor}div/div/div[1]') \
+                        .volume(f'//*[@id="__layout"]/div/section/div/div[2]/div[1]/div/div[4]/{c_floor}div/div/div[1]') \
+                        .build()
+                    break
+                except Exception as e:
+                    error = e
+                    continue
+                # endtry
+            # endfor
+        # endwith
 
         return nft, error
     # enddef
@@ -294,10 +274,9 @@ class Retriever:
         url = f'https://crypto.com/nft/collection/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div[1]/div/div[3]/div/div[1]') \
                     .num_listing('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[1]/span') \
@@ -305,11 +284,10 @@ class Retriever:
                     .floor('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div') \
                     .volume('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -318,10 +296,9 @@ class Retriever:
         url = f'https://www.gem.xyz/collection/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
                     .num_listing('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[2]/div[1]',
@@ -329,11 +306,10 @@ class Retriever:
                     .floor('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
                     .volume('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -342,30 +318,24 @@ class Retriever:
         url = f'https://looksrare.org/collections/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                for c_name, c_other in itertools.product([4, 5], [6, 7]):
-                    error = None
-
-                    try:
-                        nft = NFTInfoBuilder(driver, id) \
-                            .name(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
-                            .num_listing(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[3]/div[2]') \
-                            .num_owners(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[4]/div[2]') \
-                            .floor(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[1]/div[2]/div') \
-                            .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[2]/div[2]/div ') \
-                            .build()
-                        break
-                    except Exception as e:
-                        error = e
-                        continue
-                    # endtry
-                # endfor
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+        with _WebFetcher(url, **self.option) as driver:
+            for c_name, c_other in itertools.product([4, 5], [6, 7]):
+                error = None
+                try:
+                    nft = NFTInfoBuilder(driver, id) \
+                        .name(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
+                        .num_listing(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[3]/div[2]') \
+                        .num_owners(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[4]/div[2]') \
+                        .floor(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[1]/div[2]/div') \
+                        .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/div/div/div/div[2]/div[2]/div ') \
+                        .build()
+                    break
+                except Exception as e:
+                    error = e
+                    continue
+                # endtry
+            # endfor
+        # endwith
 
         return nft, error
     # enddef
@@ -374,20 +344,18 @@ class Retriever:
         url = f'https://nftrade.com/assets/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]') \
                     .floor('//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[1]/div[2]') \
                     .volume('//*[@id="__next"]/div/main/div/div/div[1]/div[1]/div[4]/div[2]/div[4]/div[2]') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -396,10 +364,9 @@ class Retriever:
         url = f'https://solanart.io/collections/{id}?tab=items'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[1]/h2') \
                     .num_supply('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]') \
@@ -409,11 +376,10 @@ class Retriever:
                     .volume('//*[@id="__next"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div[7]/div[1]',
                             self._remove_sol_mark) \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -426,10 +392,9 @@ class Retriever:
         url = f'https://magiceden.io/marketplace/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/h1') \
                     .num_listing('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[4]/div/span[2]') \
@@ -438,11 +403,10 @@ class Retriever:
                     .volume('//*[@id="root"]/div/div/div/div[3]/div[2]/div[1]/div/div[4]/div/div/div[2]/div/span[2]',
                             self._remove_sol_mark) \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -451,10 +415,9 @@ class Retriever:
         url = f'https://www.xanalia.com/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="home-page"]/div/div/div/div[2]/div/div[1]') \
                     .num_supply('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[1]/h5') \
@@ -462,11 +425,10 @@ class Retriever:
                     .floor('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[3]/h5') \
                     .volume('//*[@id="home-page"]/div/div/div/div[2]/div/div[2]/div[4]/h5') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -475,10 +437,9 @@ class Retriever:
         url = f'https://7pnex-saaaa-aaaai-qbhwa-cai.raw.ic0.app/#/nftmarket/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[1]') \
                     .num_supply('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[5]/div/div/div/div[1]') \
@@ -487,11 +448,10 @@ class Retriever:
                     .floor('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[3]/div/div/div/div[1]/div/div') \
                     .volume('//*[@id="root"]/section/section/main/div/div[2]/div[1]/div[3]/div[4]/div/div/div/div[1]/div/div') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -500,10 +460,9 @@ class Retriever:
         url = f'https://nft.coinbase.com/collection/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/h1/span/span[1]') \
                     .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[1]/span[1]') \
@@ -513,11 +472,10 @@ class Retriever:
                     .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
                             lambda s: s.split(' ')[0]) \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -526,10 +484,9 @@ class Retriever:
         url = f'https://skeh5-daaaa-aaaai-aar4q-cai.raw.ic0.app/#/collection/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[2]/h2') \
                     .num_supply('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[5]/div[2]') \
@@ -539,11 +496,10 @@ class Retriever:
                     .floor('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[3]/div[2]/div') \
                     .volume('//*[@id="app"]/div[1]/div[2]/main/div/div[1]/div[3]/div[1]/div[2]/div') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -552,10 +508,9 @@ class Retriever:
         url = f'https://niftygateway.com/marketplace/collectible/{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div/div[1]/div/div/div[2]/div[1]/div/div[2]/h2') \
                     .num_listing('//*[@id="tabpanel-0"]/div/div[1]/div/div[1]/p/b') \
@@ -565,11 +520,10 @@ class Retriever:
                     .volume('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[4]/div/h4/span',
                             lambda s: s.split(' ')[0]) \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
@@ -579,10 +533,9 @@ class Retriever:
         url = f'{id}'
 
         nft = None
-        try:
-            with _WebFetcher(url, **self.option) as driver:
-                error = None
-
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('') \
                     .num_supply('') \
@@ -591,11 +544,10 @@ class Retriever:
                     .floor('') \
                     .volume('') \
                     .build()
-            # endwith
-        except Exception as e:
-            driver.quit()
-            error = e
-        # endtry
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
 
         return nft, error
     # enddef
