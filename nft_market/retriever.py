@@ -143,6 +143,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -173,6 +174,7 @@ class Retriever:
                 # endfor
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -196,6 +198,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -219,6 +222,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -239,16 +243,17 @@ class Retriever:
                 error = None
 
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/span') \
-                    .num_supply('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
-                    .num_owners('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[5]/span[2]/span') \
-                    .floor('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/span[2]/span') \
-                    .volume('//*[@id="root"]/div[2]/div[2]/div[2]/div[2]/div/div/div[1]/div[1]/div[2]/div[6]/span[2]/span') \
+                    .name('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/span') \
+                    .num_supply('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
+                    .num_owners('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[5]/span[2]/span') \
+                    .floor('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[2]/span[2]/span') \
+                    .volume('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[6]/span[2]/span') \
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
-            # endtry
+        # endtry
 
         return nft, error
     # enddef
@@ -278,6 +283,7 @@ class Retriever:
                 # endfor
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -301,6 +307,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -317,13 +324,14 @@ class Retriever:
 
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[1]/div') \
-                    .num_listing('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div/div[2]/div[1]',
+                    .num_listing('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[2]/div[1]',
                                  lambda s: s.replace('results', '')) \
                     .floor('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[3]/span[2]') \
                     .volume('//*[@id="app"]/div/div[2]/div[2]/div[1]/div/div[1]/div/div[1]/div[2]/span[1]/span[2]') \
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -355,6 +363,7 @@ class Retriever:
                 # endfor
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -376,6 +385,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -401,6 +411,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -429,6 +440,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -452,6 +464,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -476,6 +489,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -501,6 +515,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -526,6 +541,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -551,6 +567,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -576,6 +593,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
