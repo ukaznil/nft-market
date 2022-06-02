@@ -143,6 +143,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -173,6 +174,7 @@ class Retriever:
                 # endfor
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -196,6 +198,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -219,6 +222,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -247,8 +251,9 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
-            # endtry
+        # endtry
 
         return nft, error
     # enddef
@@ -278,6 +283,7 @@ class Retriever:
                 # endfor
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -301,6 +307,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -324,6 +331,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -355,6 +363,7 @@ class Retriever:
                 # endfor
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -376,6 +385,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -401,6 +411,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -429,6 +440,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -452,6 +464,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -476,6 +489,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -501,6 +515,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -526,6 +541,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -551,6 +567,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
@@ -576,6 +593,7 @@ class Retriever:
                     .build()
             # endwith
         except Exception as e:
+            driver.quit()
             error = e
         # endtry
 
