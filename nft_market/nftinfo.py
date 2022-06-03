@@ -17,10 +17,10 @@ class NFTInfo:
     volume: float
 
     def __post_init__(self):
-        assert self.id is not None
-        assert self.name is not None
-        assert self.floor is not None
-        assert self.volume is not None
+        assert self.id is not None, self.id
+        assert self.name is not None and len(self.name) > 0, self.name
+        assert self.floor is not None, self.floor
+        assert self.volume is not None, self.volume
     # enddef
 
     @property
