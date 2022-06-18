@@ -232,3 +232,8 @@ def sample_niftygateway():
     print(r.fetch(Market.NiftyGateway, '0x5ae681e32a503abe7bf52a25565bbdc712dbea98'))  # Sellouts
     print(r.fetch(Market.NiftyGateway, '0xc3f8a0f5841abff777d3eefa5047e8d413a1c9ab'))  # m
     print(r.fetch(Market.NiftyGateway, '0xc1aa2a21d0c1c861e3b5fa4df8f14db5e24fcd81'))  # Crystal Pop
+
+
+def sample_jelly():
+    # Jelly
+    print(r.fetch(Market.Jelly, 'crowns'))  # Crowns

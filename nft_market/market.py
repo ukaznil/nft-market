@@ -19,3 +19,4 @@ class Market(Enum):
     Coinbase = auto()
     CCC = auto()
     NiftyGateway = auto()
+    Jelly = auto()

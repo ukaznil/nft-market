@@ -48,6 +48,7 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [Coinbase](https://nft.coinbase.com/)
 - [CCC](https://skeh5-daaaa-aaaai-aar4q-cai.raw.ic0.app/)
 - [Nifty Gateway](https://niftygateway.com/)
+- [Jelly](https://jelly.xyz/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
@@ -97,6 +98,7 @@ Other information may be provided in the future!
 | Coinbase      | &check; |         | &check;  | &check;    | &check; | &check; |
 | CCC           | &check; | &check; | &check;  | &check;(*) | &check; | &check; |
 | Nifty Gateway | &check; |         | &check;  | &check;    | &check; | &check; |
+| Jelly         | &check; | &check; |          | &check;    | &check; | &check; |
 
 "&check;(*)" means it can return None value depending on items.
 
