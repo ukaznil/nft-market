@@ -281,11 +281,11 @@ class Retriever:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[1]/div/div[3]/div/div[1]') \
-                    .num_listing('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[1]/span') \
-                    .num_owners('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[2]/span') \
-                    .floor('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div') \
-                    .volume('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div') \
+                    .name('//*[@id="root"]/div[1]/div/div[3]/div/div[1]/div[2]') \
+                    .num_listing('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[1]/span') \
+                    .num_owners('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[2]/span') \
+                    .floor('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[3]/div/div[2]/div/span[2]/div') \
+                    .volume('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[4]/div/span[2]/div') \
                     .build()
             except Exception as e:
                 error = e
@@ -470,7 +470,7 @@ class Retriever:
                     .name('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/h1/span/span[1]') \
                     .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[1]/span[1]') \
                     .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[2]/span[1]') \
-                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]',
+                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]/div/div/div/span[1]',
                            lambda s: s.split(' ')[0]) \
                     .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
                             lambda s: s.split(' ')[0]) \
