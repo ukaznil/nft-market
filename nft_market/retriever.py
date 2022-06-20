@@ -1,6 +1,7 @@
 import itertools
 import os
 import time
+import warnings
 from typing import *
 
 from selenium import webdriver
@@ -95,6 +96,8 @@ class Retriever:
             func = self._retrieve_ccc
         elif market == Market.NiftyGateway:
             func = self._retrieve_niftygateway
+        elif market == Market.Jelly:
+            func = self._retrieve_jelly
         else:
             raise NotImplementedError(market)
         # endif
@@ -278,11 +281,11 @@ class Retriever:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[1]/div/div[3]/div/div[1]') \
-                    .num_listing('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[1]/span') \
-                    .num_owners('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[2]/span') \
-                    .floor('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[3]/div/div[2]/div/span[2]/div') \
-                    .volume('//*[@id="root"]/div[1]/div/div[3]/div/div[2]/div/div[4]/div/span[2]/div') \
+                    .name('//*[@id="root"]/div[1]/div/div[3]/div/div[1]/div[2]') \
+                    .num_listing('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[1]/span') \
+                    .num_owners('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[2]/span') \
+                    .floor('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[3]/div/div[2]/div/span[2]/div') \
+                    .volume('//*[@id="root"]/div[1]/div/div[3]/div/div[3]/div/div[4]/div/span[2]/div') \
                     .build()
             except Exception as e:
                 error = e
@@ -467,7 +470,7 @@ class Retriever:
                     .name('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/h1/span/span[1]') \
                     .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[1]/span[1]') \
                     .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[2]/span[1]') \
-                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]',
+                    .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]/div/div/div/span[1]',
                            lambda s: s.split(' ')[0]) \
                     .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
                             lambda s: s.split(' ')[0]) \
@@ -519,6 +522,31 @@ class Retriever:
                            lambda s: s.split(' ')[0]) \
                     .volume('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[4]/div/h4/span',
                             lambda s: s.split(' ')[0]) \
+                    .build()
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
+
+        return nft, error
+    # enddef
+
+    def _retrieve_jelly(self, id: str) -> Tuple[NFTInfo, Exception]:
+        warnings.warn('Jelly is being under construction. Please care when using `Market.Jelly`.')
+
+        url = 'https://jelly.xyz/'
+        # url = f'{id}'
+
+        nft = None
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="theme-root-element"]/div[3]/div[1]/div/div[2]/div[1]/div[2]/h2') \
+                    .num_supply('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[1]/div[2]') \
+                    .num_owners('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[2]/div[2]') \
+                    .floor('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[3]/div[2]') \
+                    .volume('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[4]/div[2]') \
                     .build()
             except Exception as e:
                 error = e
