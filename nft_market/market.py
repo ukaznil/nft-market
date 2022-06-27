@@ -20,3 +20,4 @@ class Market(Enum):
     CCC = auto()
     NiftyGateway = auto()
     Jelly = auto()
+    YUMI = auto()

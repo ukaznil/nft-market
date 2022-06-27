@@ -237,3 +237,10 @@ def sample_niftygateway():
 def sample_jelly():
     # Jelly
     print(r.fetch(Market.Jelly, 'crowns'))  # Crowns
+
+
+def sample_yumi():
+    # YUMI
+    print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
+    print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
+    print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls
