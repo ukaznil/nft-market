@@ -128,3 +128,15 @@ def test_niftygateway():
     # print(r.fetch(Market.NiftyGateway, '0xc71561e12faf378b07eacd36b3d0eb0d13a5fb1c'))  # Awkward Astronauts
     # print(r.fetch(Market.NiftyGateway, '0xa5a1e6972ace6f4ae388fbafcb7ec12013b64f53'))  # NOOBPUNKS
     # print(r.fetch(Market.NiftyGateway, '0x5ae681e32a503abe7bf52a25565bbdc712dbea98'))  # Sellouts
+
+
+def test_jelly():
+    # Jelly
+    print(r.fetch(Market.Jelly, 'crowns'))  # Crowns
+
+
+def test_yumi():
+    # YUMI
+    print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
+    print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
+    print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls

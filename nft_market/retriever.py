@@ -98,6 +98,8 @@ class Retriever:
             func = self._retrieve_niftygateway
         elif market == Market.Jelly:
             func = self._retrieve_jelly
+        elif market == Market.YUMI:
+            func = self._retrieve_yumi
         else:
             raise NotImplementedError(market)
         # endif
@@ -233,11 +235,11 @@ class Retriever:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div[1]/span') \
-                    .num_supply('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[4]/span[2]/span') \
-                    .num_owners('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[5]/span[2]/span') \
-                    .floor('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[2]/span[2]/span') \
-                    .volume('//*[@id="root"]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[6]/span[2]/span') \
+                    .name('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[2]/div/div/span') \
+                    .num_supply('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[3]/span[2]') \
+                    .num_owners('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[4]/span[2]') \
+                    .floor('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[1]/span[2]') \
+                    .volume('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[2]/span[2]') \
                     .build()
             except Exception as e:
                 error = e
@@ -547,6 +549,28 @@ class Retriever:
                     .num_owners('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[2]/div[2]') \
                     .floor('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[3]/div[2]') \
                     .volume('//*[@id="radix-6-content-items"]/div/div[2]/div/div[1]/div[1]/div[1]/div[4]/div[2]') \
+                    .build()
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
+
+        return nft, error
+    # enddef
+
+    def _retrieve_yumi(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://tppkg-ziaaa-aaaal-qatrq-cai.raw.ic0.app/market/collection-nft-list?id={id}'
+
+        nft = None
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="App"]/section/div/div/div/div/div[1]/div[2]/div[2]') \
+                    .num_listing('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[1]/span[1]') \
+                    .num_owners('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[2]/span[1]') \
+                    .floor('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[3]/span[1]') \
+                    .volume('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[4]/span[1]') \
                     .build()
             except Exception as e:
                 error = e
