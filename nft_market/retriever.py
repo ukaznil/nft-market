@@ -140,7 +140,7 @@ class Retriever:
             try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="main"]/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
-                    .num_listing(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/a/div/span[1]/div') \
+                    .num_supply(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/button/div/span[1]/div') \
                     .num_owners(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div') \
                     .floor(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
                     .volume(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
