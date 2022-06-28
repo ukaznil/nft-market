@@ -140,7 +140,7 @@ class Retriever:
             try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="main"]/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
-                    .num_listing(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/a/div/span[1]/div') \
+                    .num_supply(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/button/div/span[1]/div') \
                     .num_owners(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div') \
                     .floor(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
                     .volume(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
@@ -224,7 +224,7 @@ class Retriever:
 
     def _retrieve_rarible(self, id: str) -> Tuple[NFTInfo, Exception]:
         if id.startswith('0x'):
-            url = f'https://rarible.com/collection/{id}/items'
+            url = f'https://rarible.com/collection/{id}'
         else:
             # Seems that "named" projects have a different URL schema.
             url = f'https://rarible.com/{id}/items'
@@ -236,10 +236,12 @@ class Retriever:
             try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[2]/div/div/span') \
-                    .num_supply('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[3]/span[2]') \
-                    .num_owners('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[4]/span[2]') \
-                    .floor('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[1]/span[2]') \
-                    .volume('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[2]/span[2]') \
+                    .num_supply('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[3]/div/span') \
+                    .num_owners('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[4]/div/span') \
+                    .floor('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[1]/div/span',
+                           post=lambda s: s.replace('ETH', '')) \
+                    .volume('//*[@id="root"]/div[2]/div/div/div[2]/div/div/div[1]/div[3]/div/div[1]/div[2]/div/span',
+                            post=lambda s: s.replace('ETH', '')) \
                     .build()
             except Exception as e:
                 error = e
