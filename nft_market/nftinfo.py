@@ -45,8 +45,7 @@ class NFTInfoBuilder:
         self._volume = ...
     # enddef
 
-    @staticmethod
-    def _text2float(s: str) -> float:
+    def _text2float(self, s: str) -> float:
         s_rep = s.replace(',', '').replace('<', '').replace('>', '').replace('$', '') \
             .replace('k', '*1000').replace('K', '*1000') \
             .replace('m', '*1000000').replace('M', '*1000000') \
@@ -54,16 +53,15 @@ class NFTInfoBuilder:
         try:
             f = float(eval(s_rep))
         except Exception as e:
-            print(f'ID: {self.id}, orig: {s}, replaced: {s_rep}')
+            print(f"ID: {self.id}, orig: '{s}', replaced: {s_rep}")
             raise e
         # endtry
 
         return f
     # enddef
 
-    @staticmethod
-    def _text2int(s: str) -> int:
-        return int(NFTInfoBuilder._text2float(s))
+    def _text2int(self, s: str) -> int:
+        return int(self._text2float(s))
     # enddef
 
     def _find_text(self, xpath: str) -> str:
@@ -141,7 +139,7 @@ class NFTInfoBuilder:
 
             if post is not None:
                 i = post(i)
-                # endif
+            # endif
 
             if i is not None:
                 i = self._text2int(i)

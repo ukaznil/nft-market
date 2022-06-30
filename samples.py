@@ -1,4 +1,4 @@
-from nft_market import Market, Retriever
+from nft_market import Explorer, Market, Retriever
 
 r = Retriever(num_retry=0, verbose=True)
 
@@ -244,3 +244,19 @@ def sample_yumi():
     print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
     print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
     print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls
+
+
+def sample_nftgeek():
+    # NFTGeek
+    print(r.fetch(Explorer.NFTgeek, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
+    print(r.fetch(Explorer.NFTgeek, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Crowns
+    print(r.fetch(Explorer.NFTgeek, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
+    print(r.fetch(Explorer.NFTgeek, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs
+
+
+def sample_icscan():
+    # ICScan
+    print(r.fetch(Explorer.ICScan, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
+    print(r.fetch(Explorer.ICScan, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Cap Crowns
+    print(r.fetch(Explorer.ICScan, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
+    print(r.fetch(Explorer.ICScan, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs

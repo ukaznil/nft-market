@@ -1,4 +1,4 @@
-from nft_market import Market, Retriever
+from nft_market import Explorer, Market, Retriever
 
 r = Retriever(num_retry=3, verbose=True)
 
@@ -8,13 +8,6 @@ def test_opensea():
     print(r.fetch(Market.OpenSea, 'clonex'))  # CLONE X - X TAKASHI MURAKAMI
     print(r.fetch(Market.OpenSea, 'azuki'))  # Azuki
     print(r.fetch(Market.OpenSea, 'mutant-ape-yacht-club'))  # Mutant Ape Yacht Club
-
-
-def test_entrepot():
-    # Entrepot
-    print(r.fetch(Market.Entrepot, 'btcflower'))  # BTC Flower
-    print(r.fetch(Market.Entrepot, 'poked'))  # Poked bots
-    print(r.fetch(Market.Entrepot, 'motoko'))  # Motoko Day Drop
 
 
 def test_tofunft():
@@ -100,25 +93,11 @@ def test_xanalia():
     #               'collection-details/623b46a6f9b8020cf8c9c167/0xE737d5A35A41fFd6072503BCA9C3013632287305'))  # XANA Alpha pass
 
 
-def test_cetoswap():
-    # CetoSwap
-    print(r.fetch(Market.CetoSwap, 'zombie'))  # Crazy Zombie
-    print(r.fetch(Market.CetoSwap, 'shoes'))  # Dragon Boots
-    print(r.fetch(Market.CetoSwap, 'cars'))  # IC CARS
-
-
 def test_coinbase():
     # Coinbase
     print(r.fetch(Market.Coinbase, 'ethereum/0x23581767a106ae21c074b2276D25e5C3e136a68b'))  # Moonbirds
     print(r.fetch(Market.Coinbase, 'ethereum/0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
     print(r.fetch(Market.Coinbase, 'ethereum/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'))  # Bored Ape Yacht Club
-
-
-def test_ccc():
-    # CCC
-    print(r.fetch(Market.CCC, 'zombie'))  # Crazy Zombie
-    print(r.fetch(Market.CCC, 'turtles'))  # ICTurtles
-    print(r.fetch(Market.CCC, 'gang'))  # DfinityGangs
 
 
 def test_niftygateway():
@@ -130,13 +109,24 @@ def test_niftygateway():
     # print(r.fetch(Market.NiftyGateway, '0x5ae681e32a503abe7bf52a25565bbdc712dbea98'))  # Sellouts
 
 
-def test_jelly():
-    # Jelly
-    print(r.fetch(Market.Jelly, 'crowns'))  # Crowns
-
-
 def test_yumi():
     # YUMI
     print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
     print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
     print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls
+
+
+def test_nftgeek():
+    # NFTgeek
+    print(r.fetch(Explorer.NFTgeek, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
+    print(r.fetch(Explorer.NFTgeek, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Crowns
+    print(r.fetch(Explorer.NFTgeek, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
+    print(r.fetch(Explorer.NFTgeek, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs
+
+
+def test_icscan():
+    # ICScan
+    print(r.fetch(Explorer.ICScan, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
+    print(r.fetch(Explorer.ICScan, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Cap Crowns
+    print(r.fetch(Explorer.ICScan, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
+    print(r.fetch(Explorer.ICScan, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs

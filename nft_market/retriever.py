@@ -1,14 +1,14 @@
 import itertools
 import os
 import time
-import warnings
 from typing import *
+from warnings import warn
 
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.webdriver import Service
 
-from nft_market.market import Market
+from nft_market.market import Explorer, Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
@@ -53,7 +53,7 @@ class Retriever:
         self.verbose = verbose
     # enddef
 
-    def fetch(self, market: Market, id: str) -> NFTInfo:
+    def fetch(self, market: Union[Market, Explorer], id: str) -> NFTInfo:
         '''Fetch the current information of the specific NFT.
         Args:
             market (nft_market.Market): One of the enums of nft_market.Market
@@ -64,8 +64,10 @@ class Retriever:
         '''
         if market == Market.OpenSea:
             func = self._retrieve_opensea
-        elif market == Market.Entrepot:
-            func = self._retrieve_entrepot
+        elif market == Explorer.NFTgeek:
+            func = self._retrieve_nftgeek
+        elif market == Explorer.ICScan:
+            func = self._retrieve_icscan
         elif market == Market.tofuNFT:
             func = self._retrieve_tofunft
         elif market == Market.PancakeSwap:
@@ -88,18 +90,25 @@ class Retriever:
             func = self._retrieve_magiceden
         elif market == Market.XANALIA:
             func = self._retrieve_xanalia
-        elif market == Market.CetoSwap:
-            func = self._retrieve_cetoswap
         elif market == Market.Coinbase:
             func = self._retrieve_coinbase
-        elif market == Market.CCC:
-            func = self._retrieve_ccc
         elif market == Market.NiftyGateway:
             func = self._retrieve_niftygateway
-        elif market == Market.Jelly:
-            func = self._retrieve_jelly
         elif market == Market.YUMI:
             func = self._retrieve_yumi
+        # deprecated
+        elif market == Market.Entrepot:
+            warn(f'Please replace `Entrepot` with ICScan.')
+            func = self._retrieve_entrepot
+        elif market == Market.CetoSwap:
+            warn(f'Please replace `CetoSwap` with ICScan.')
+            func = self._retrieve_cetoswap
+        elif market == Market.CCC:
+            warn(f'Please replace `CCC` with ICScan.')
+            func = self._retrieve_ccc
+        elif market == Market.Jelly:
+            warn(f'Please replace `Jelly` with ICScan.')
+            func = self._retrieve_jelly
         else:
             raise NotImplementedError(market)
         # endif
@@ -536,10 +545,7 @@ class Retriever:
     # enddef
 
     def _retrieve_jelly(self, id: str) -> Tuple[NFTInfo, Exception]:
-        warnings.warn('Jelly is being under construction. Please care when using `Market.Jelly`.')
-
         url = 'https://jelly.xyz/'
-        # url = f'{id}'
 
         nft = None
         with _WebFetcher(url, **self.option) as driver:
@@ -573,6 +579,76 @@ class Retriever:
                     .num_owners('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[2]/span[1]') \
                     .floor('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[3]/span[1]') \
                     .volume('//*[@id="App"]/section/div/div/div/div/div[1]/div[3]/div[4]/span[1]') \
+                    .build()
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
+
+        return nft, error
+    # enddef
+
+    def _retrieve_nftgeek(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url_base = f'https://t5t44-naaaa-aaaah-qcutq-cai.raw.ic0.app/collection/{id}'
+        url = f'{url_base}/summary'
+
+        concat_space = lambda s: s.replace(' ', '')
+
+        nft = None
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
+                    .num_supply('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[1]/div/div[2]/span',
+                                post=concat_space) \
+                    .num_listing('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[6]/div/div[2]/span',
+                                 post=concat_space) \
+                    .floor('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[2]/span/span',
+                           post=concat_space) \
+                    .volume('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[4]/div/div[2]/span',
+                            post=concat_space) \
+                    .build()
+            except Exception as e:
+                error = e
+            # endtry
+        # endwith
+
+        url_holders = f'{url_base}/holders'
+        with _WebFetcher(url_holders, **self.option) as driver:
+            error_holders = None
+            try:
+                nft_holders = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
+                    .num_owners('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/span',
+                                post=concat_space) \
+                    .build()
+                nft.num_owners = nft_holders.num_owners
+            except Exception as e:
+                error_holders = e
+            # endtry
+        # endwith
+
+        return nft, error
+    # enddef
+
+    def _retrieve_icscan(self, id: str) -> Tuple[NFTInfo, Exception]:
+        url = f'https://icscan.io/nft/collection/{id}'
+
+        nft = None
+        with _WebFetcher(url, **self.option) as driver:
+            error = None
+            try:
+                nft = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="__next"]/div/div/main/div[2]/div[4]/div/div[1]/div[1]/div/div[1]') \
+                    .num_supply('//*[@id="__next"]/div/div/main/div[2]/div[4]/div/div[2]/div[2]/div[1]/div[2]/div[2]') \
+                    .num_listing('//*[@id="__next"]/div/div/main/div[2]/div[4]/div/div[2]/div[2]/div[1]/div[3]/div[2]') \
+                    .num_owners('//*[@id="__next"]/div/div/main/div[2]/div[4]/div/div[2]/div[1]/div[2]/div[2]',
+                                post=lambda s: s.split('\n')[0]) \
+                    .floor('//*[@id="__next"]/div/div/main/div[2]/div[4]/div/div[2]/div[1]/div[1]/div[2]',
+                           post=lambda s: s.split(' ')[0]) \
+                    .volume('//*[@id="__next"]/div/div/main/div[2]/div[4]/div/div[2]/div[2]/div[2]/div[1]/div[2]',
+                            post=lambda s: s.replace('ICP', '')) \
                     .build()
             except Exception as e:
                 error = e
