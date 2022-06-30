@@ -19,6 +19,8 @@ def sample_opensea():
 def sample_entrepot():
     # Entrepot
     print(r.fetch(Market.Entrepot, 'btcflower'))  # BTC Flower
+    print(r.fetch(Market.Entrepot, 'dogfinity'))  # DogFinity
+    print(r.fetch(Market.Entrepot, 'dripbang'))  # Drip Bang
     print(r.fetch(Market.Entrepot, 'poked'))  # Poked bots
     print(r.fetch(Market.Entrepot, 'motoko'))  # Motoko Day Drop
     print(r.fetch(Market.Entrepot, 'icpunks'))  # ICPunks
@@ -118,7 +120,6 @@ def sample_looksrare():
     # LooksRare
     print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
     print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
-    print(r.fetch(Market.LooksRare, '0xcE25E60A89F200B1fA40f6c313047FFe386992c3'))  # dotdotdot
     print(r.fetch(Market.LooksRare, '0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7'))  # Meebits
     print(r.fetch(Market.LooksRare, '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'))  # Bored Ape Yacht Club
     print(r.fetch(Market.LooksRare, '0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
