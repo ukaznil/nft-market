@@ -32,7 +32,7 @@ print(r.fetch(Market.OpenSea, 'boredapeyachtclub'))  # Bored Ape Yacht Club
 At this moment, the following marketplaces are supported in **nft-market**.
 
 - [OpenSea](https://opensea.io/)
-- [Entrepot](https://entrepot.app/)
+- [Entrepot](https://entrepot.app/) (depreacated)
 - [tofuNFT](https://tofunft.com/)
 - [PancakeSwap](https://pancakeswap.finance/nfts/)
 - [Rarible](https://rarible.com/)
@@ -44,15 +44,23 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [Solanart](https://solanart.io/)
 - [Magic Eden](https://magiceden.io/)
 - [XANALIA](https://www.xanalia.com/)
-- [CetoSwap](https://7pnex-saaaa-aaaai-qbhwa-cai.raw.ic0.app/)
+- [CetoSwap](https://7pnex-saaaa-aaaai-qbhwa-cai.raw.ic0.app/) (depreacated)
 - [Coinbase](https://nft.coinbase.com/)
-- [CCC](https://skeh5-daaaa-aaaai-aar4q-cai.raw.ic0.app/)
+- [CCC](https://skeh5-daaaa-aaaai-aar4q-cai.raw.ic0.app/) (depreacated)
 - [Nifty Gateway](https://niftygateway.com/)
-- [Jelly](https://jelly.xyz/)
+- [Jelly](https://jelly.xyz/) (depreacated)
 - [YUMI](https://tppkg-ziaaa-aaaal-qatrq-cai.raw.ic0.app/)
 
 Other marketplaces will be added into the list in the future. You can, off course, request them in issues if needed
 immediately. Either PRs or issues are always welcome!
+
+### Currently supported explorers
+
+The following explorers are supported in **nft-market**.
+If possible, using these explorers is recommended rather than using the above marketplaces, such as Enterpot, for more stability.
+
+- [ICScan](https://icscan.io/nft) (Supporting: ICP)
+- [NFTgeek](https://t5t44-naaaa-aaaah-qcutq-cai.raw.ic0.app/) (Supporting: ICP)
 
 ### How to get the ID of a NFT?
 
@@ -100,7 +108,12 @@ Other information may be provided in the future!
 | CCC           | &check; | &check; | &check;  | &check;(*) | &check; | &check; |
 | Nifty Gateway | &check; |         | &check;  | &check;    | &check; | &check; |
 | Jelly         | &check; | &check; |          | &check;    | &check; | &check; |
-| YUMI          | &check; |         | &check;  | &check;    | &check; | &check; |  
+| YUMI          | &check; |         | &check;  | &check;    | &check; | &check; |
+
+| Explorer | Ecosystem | Name    | #Supply | #Listing  | #Owners | Floor   | Volume  |
+|----------|-----------|---------|---------|-----------|---------|---------|---------|
+| ICScan   | ICP       | &check; | &check; | &check;   | &check; | &check; | &check; |
+| NFTgeek  | ICP       | &check; | &check; | &check;   | &check; | &check; | &check; |
 
 "&check;(*)" means it can return None value depending on items.
 

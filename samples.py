@@ -1,4 +1,4 @@
-from nft_market import Market, Retriever
+from nft_market import Explorer, Market, Retriever
 
 r = Retriever(num_retry=0, verbose=True)
 
@@ -19,6 +19,8 @@ def sample_opensea():
 def sample_entrepot():
     # Entrepot
     print(r.fetch(Market.Entrepot, 'btcflower'))  # BTC Flower
+    print(r.fetch(Market.Entrepot, 'dogfinity'))  # DogFinity
+    print(r.fetch(Market.Entrepot, 'dripbang'))  # Drip Bang
     print(r.fetch(Market.Entrepot, 'poked'))  # Poked bots
     print(r.fetch(Market.Entrepot, 'motoko'))  # Motoko Day Drop
     print(r.fetch(Market.Entrepot, 'icpunks'))  # ICPunks
@@ -118,7 +120,6 @@ def sample_looksrare():
     # LooksRare
     print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
     print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
-    print(r.fetch(Market.LooksRare, '0xcE25E60A89F200B1fA40f6c313047FFe386992c3'))  # dotdotdot
     print(r.fetch(Market.LooksRare, '0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7'))  # Meebits
     print(r.fetch(Market.LooksRare, '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'))  # Bored Ape Yacht Club
     print(r.fetch(Market.LooksRare, '0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
@@ -244,3 +245,19 @@ def sample_yumi():
     print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
     print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
     print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls
+
+
+def sample_nftgeek():
+    # NFTGeek
+    print(r.fetch(Explorer.NFTgeek, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
+    print(r.fetch(Explorer.NFTgeek, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Crowns
+    print(r.fetch(Explorer.NFTgeek, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
+    print(r.fetch(Explorer.NFTgeek, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs
+
+
+def sample_icscan():
+    # ICScan
+    print(r.fetch(Explorer.ICScan, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
+    print(r.fetch(Explorer.ICScan, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Cap Crowns
+    print(r.fetch(Explorer.ICScan, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
+    print(r.fetch(Explorer.ICScan, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs

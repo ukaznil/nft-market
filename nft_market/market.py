@@ -4,7 +4,6 @@ from enum import Enum, auto
 class Market(Enum):
     OpenSea = auto()
     tofuNFT = auto()
-    Entrepot = auto()
     PancakeSwap = auto()
     Rarible = auto()
     GhostMarket = auto()
@@ -15,9 +14,16 @@ class Market(Enum):
     Solanart = auto()
     MagicEden = auto()
     XANALIA = auto()
-    CetoSwap = auto()
     Coinbase = auto()
-    CCC = auto()
     NiftyGateway = auto()
-    Jelly = auto()
     YUMI = auto()
+    # deprecated
+    Entrepot = auto()
+    CetoSwap = auto()
+    CCC = auto()
+    Jelly = auto()
+
+
+class Explorer(Enum):
+    NFTgeek = auto()
+    ICScan = auto()
