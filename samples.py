@@ -16,22 +16,6 @@ def sample_opensea():
     print(r.fetch(Market.OpenSea, 'impostors-genesis-aliens'))  # Impostors Genesis Aliens
 
 
-def sample_entrepot():
-    # Entrepot
-    print(r.fetch(Market.Entrepot, 'btcflower'))  # BTC Flower
-    print(r.fetch(Market.Entrepot, 'dogfinity'))  # DogFinity
-    print(r.fetch(Market.Entrepot, 'dripbang'))  # Drip Bang
-    print(r.fetch(Market.Entrepot, 'poked'))  # Poked bots
-    print(r.fetch(Market.Entrepot, 'motoko'))  # Motoko Day Drop
-    print(r.fetch(Market.Entrepot, 'icpunks'))  # ICPunks
-    print(r.fetch(Market.Entrepot, 'ogmedals'))  # OG MEDALS
-    print(r.fetch(Market.Entrepot, 'cronics'))  # Cronic Critters
-    # print(r.fetch(Market.Entrepot, 'icpuppies'))  # ICPuppies
-    print(r.fetch(Market.Entrepot, 'spaceapes'))  # Dfinity Space Apes
-    print(r.fetch(Market.Entrepot, 'icdinos'))  # IC Dinos
-    print(r.fetch(Market.Entrepot, 'ethflower'))  # ETH Flower
-
-
 def sample_tofunft():
     # tofuNFT
     print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
@@ -192,14 +176,6 @@ def sample_xanalia():
                   'collection-details/61bd83fa1145b8b8d1524493/0x5bfcfCBfb35298052238E191569f7E300b9b74B1'))  # Angels and Demons
 
 
-def sample_cetoswap():
-    # CetoSwap
-    print(r.fetch(Market.CetoSwap, 'zombie'))  # Crazy Zombie
-    print(r.fetch(Market.CetoSwap, 'shoes'))  # Dragon Boots
-    print(r.fetch(Market.CetoSwap, 'cars'))  # IC CARS
-    print(r.fetch(Market.CetoSwap, 'eggs'))  # Bobo Eggs
-
-
 def sample_coinbase():
     # Coinbase
     print(r.fetch(Market.Coinbase, 'ethereum/0x23581767a106ae21c074b2276D25e5C3e136a68b'))  # Moonbirds
@@ -214,18 +190,6 @@ def sample_coinbase():
     # print(r.fetch(Market.Coinbase, 'ethereum/0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'))  # CryptoPunks
 
 
-def sample_ccc():
-    # CCC
-    print(r.fetch(Market.CCC, 'zombie'))  # Crazy Zombie
-    print(r.fetch(Market.CCC, 'turtles'))  # ICTurtles
-    print(r.fetch(Market.CCC, 'gang'))  # DfinityGangs
-    print(r.fetch(Market.CCC, 'avocado'))  # Avocado Research
-    print(r.fetch(Market.CCC, 'icity'))  # ICity ICmoe
-    print(r.fetch(Market.CCC, 'lion'))  # IC LIONS
-    print(r.fetch(Market.CCC, 'shoe'))  # Dragon Boots
-    print(r.fetch(Market.CCC, 'car'))  # IC CARS
-
-
 def sample_niftygateway():
     # Nifty Gateway
     print(r.fetch(Market.NiftyGateway, '0xc71561e12faf378b07eacd36b3d0eb0d13a5fb1c'))  # Awkward Astronauts
@@ -233,11 +197,6 @@ def sample_niftygateway():
     print(r.fetch(Market.NiftyGateway, '0x5ae681e32a503abe7bf52a25565bbdc712dbea98'))  # Sellouts
     print(r.fetch(Market.NiftyGateway, '0xc3f8a0f5841abff777d3eefa5047e8d413a1c9ab'))  # m
     print(r.fetch(Market.NiftyGateway, '0xc1aa2a21d0c1c861e3b5fa4df8f14db5e24fcd81'))  # Crystal Pop
-
-
-def sample_jelly():
-    # Jelly
-    print(r.fetch(Market.Jelly, 'crowns'))  # Crowns
 
 
 def sample_yumi():
