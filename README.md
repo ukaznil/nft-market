@@ -39,7 +39,6 @@ At this moment, the following marketplaces are supported in **nft-market**.
 - [GhostMarket](https://ghostmarket.io/)
 - [Crypto.com](https://crypto.com/nft/)
 - [Gem](https://www.gem.xyz/)
-- [LooksRare](https://looksrare.org/)
 - [NFTrade](https://nftrade.com/)
 - [Solanart](https://solanart.io/)
 - [Magic Eden](https://magiceden.io/)
@@ -98,7 +97,6 @@ Other information may be provided in the future!
 | GhostMarket   | &check; | &check; |          | &check;    | &check; | &check; |
 | Crypto.com    | &check; |         | &check;  | &check;    | &check; | &check; |
 | Gem           | &check; |         | &check;  |            | &check; | &check; |
-| LooksRare     | &check; |         | &check;  | &check;    | &check; | &check; |
 | NFTrade       | &check; |         |          |            | &check; | &check; |
 | Solanart      | &check; | &check; |          | &check;    | &check; | &check; |
 | Magic Eden    | &check; |         | &check;  |            | &check; | &check; |

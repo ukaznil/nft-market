@@ -52,12 +52,6 @@ def test_gem():
     print(r.fetch(Market.Gem, 'los-muertos-world'))  # Los Muertos World
 
 
-def test_looksrare():
-    # LooksRare
-    print(r.fetch(Market.LooksRare, '0x4E1f41613c9084FdB9E34E11fAE9412427480e56'))  # Terraforms
-    print(r.fetch(Market.LooksRare, '0x1dfe7Ca09e99d10835Bf73044a23B73Fc20623DF'))  # More Loot
-
-
 def test_nftrade():
     # NFTrade
     print(r.fetch(Market.NFTrade, 'polygon/0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
