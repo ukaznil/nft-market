@@ -9,7 +9,6 @@ class Market(Enum):
     GhostMarket = auto()
     Cryptocom = auto()
     Gem = auto()
-    LooksRare = auto()
     NFTrade = auto()
     Solanart = auto()
     MagicEden = auto()

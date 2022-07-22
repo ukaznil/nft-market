@@ -80,8 +80,6 @@ class Retriever:
             func = self._retrieve_cryptocom
         elif market == Market.Gem:
             func = self._retrieve_gem
-        elif market == Market.LooksRare:
-            func = self._retrieve_looksrare
         elif market == Market.NFTrade:
             func = self._retrieve_nftrade
         elif market == Market.Solanart:
@@ -325,32 +323,6 @@ class Retriever:
             except Exception as e:
                 error = e
             # endtry
-        # endwith
-
-        return nft, error
-    # enddef
-
-    def _retrieve_looksrare(self, id: str) -> Tuple[NFTInfo, Exception]:
-        url = f'https://looksrare.org/collections/{id}'
-
-        nft = None
-        with _WebFetcher(url, **self.option) as driver:
-            for c_name, c_other in itertools.product([4, 5], [6, 7]):
-                error = None
-                try:
-                    nft = NFTInfoBuilder(driver, id) \
-                        .name(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_name}]/div/div[2]/div[1]/h1') \
-                        .num_listing(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/ul/div[1]/div[1]') \
-                        .num_owners(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/ul/div[2]/div[1]/div') \
-                        .floor(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/ul/div[4]/div[1]/div') \
-                        .volume(f'//*[@id="__next"]/div[2]/div/div/div/div[1]/div[2]/div[2]/div[2]/div[{c_other}]/ul/div[3]/div[1]/div') \
-                        .build()
-                    break
-                except Exception as e:
-                    error = e
-                    continue
-                # endtry
-            # endfor
         # endwith
 
         return nft, error
