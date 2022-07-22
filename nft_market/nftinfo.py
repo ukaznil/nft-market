@@ -158,7 +158,7 @@ class NFTInfoBuilder:
 
             if post is not None:
                 f = post(f)
-                # endif
+            # endif
 
             if f is not None:
                 f = self._text2float(f)

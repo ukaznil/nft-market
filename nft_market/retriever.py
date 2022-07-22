@@ -576,7 +576,7 @@ class Retriever:
                                 post=concat_space) \
                     .num_listing('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[6]/div/div[2]/span',
                                  post=concat_space) \
-                    .floor('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[2]/span/span',
+                    .floor('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[2]/span',
                            post=concat_space) \
                     .volume('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[4]/div/div[2]/span',
                             post=concat_space) \
