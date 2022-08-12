@@ -15,12 +15,12 @@ class Market(Enum):
     XANALIA = auto()
     Coinbase = auto()
     NiftyGateway = auto()
-    YUMI = auto()
     # deprecated
     Entrepot = auto()
     CetoSwap = auto()
     CCC = auto()
     Jelly = auto()
+    YUMI = auto()
 
 
 class Explorer(Enum):

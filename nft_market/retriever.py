@@ -92,21 +92,22 @@ class Retriever:
             func = self._retrieve_coinbase
         elif market == Market.NiftyGateway:
             func = self._retrieve_niftygateway
-        elif market == Market.YUMI:
-            func = self._retrieve_yumi
         # deprecated
         elif market == Market.Entrepot:
-            warn(f'Please replace `Entrepot` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_entrepot
         elif market == Market.CetoSwap:
-            warn(f'Please replace `CetoSwap` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_cetoswap
         elif market == Market.CCC:
-            warn(f'Please replace `CCC` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_ccc
         elif market == Market.Jelly:
-            warn(f'Please replace `Jelly` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_jelly
+        elif market == Market.YUMI:
+            warn(f'Please replace NFTGeek instead.')
+            func = self._retrieve_yumi
         else:
             raise NotImplementedError(market)
         # endif
