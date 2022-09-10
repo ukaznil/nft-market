@@ -102,13 +102,6 @@ def test_niftygateway():
     # print(r.fetch(Market.NiftyGateway, '0x5ae681e32a503abe7bf52a25565bbdc712dbea98'))  # Sellouts
 
 
-def test_yumi():
-    # YUMI
-    print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
-    print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
-    print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls
-
-
 def test_nftgeek():
     # NFTgeek
     print(r.fetch(Explorer.NFTgeek, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower

@@ -1,4 +1,3 @@
-import itertools
 import os
 import time
 from typing import *
@@ -13,12 +12,12 @@ from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
 class _WebFetcher:
-    def __init__(self, url: str, sec_wait: int):
+    def __init__(self, url: str, sec_wait: int, headless: bool = True):
         self.url = url
         self.sec_wait = sec_wait
 
         options = Options()
-        options.headless = True
+        options.headless = headless
         options.add_argument('--incognito')
         options.add_argument('--disable-extensions')
         options.add_argument('--proxy-server="direct://"')
@@ -92,21 +91,22 @@ class Retriever:
             func = self._retrieve_coinbase
         elif market == Market.NiftyGateway:
             func = self._retrieve_niftygateway
-        elif market == Market.YUMI:
-            func = self._retrieve_yumi
         # deprecated
         elif market == Market.Entrepot:
-            warn(f'Please replace `Entrepot` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_entrepot
         elif market == Market.CetoSwap:
-            warn(f'Please replace `CetoSwap` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_cetoswap
         elif market == Market.CCC:
-            warn(f'Please replace `CCC` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_ccc
         elif market == Market.Jelly:
-            warn(f'Please replace `Jelly` with ICScan.')
+            warn(f'Please replace NFTGeek instead.')
             func = self._retrieve_jelly
+        elif market == Market.YUMI:
+            warn(f'Please replace NFTGeek instead.')
+            func = self._retrieve_yumi
         else:
             raise NotImplementedError(market)
         # endif
@@ -146,11 +146,11 @@ class Retriever:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="main"]/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
-                    .num_supply(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/button/div/span[1]/div') \
-                    .num_owners(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div') \
-                    .floor(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
-                    .volume(f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
+                    .name('//*[@id="main"]/div/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
+                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/button/div/span[1]/div') \
+                    .num_owners('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div') \
+                    .floor('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
+                    .volume('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
                     .build()
             except Exception as e:
                 error = e
@@ -456,9 +456,9 @@ class Retriever:
                     .num_listing('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[1]/span[1]') \
                     .num_owners('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[2]/span[1]') \
                     .floor('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[3]/span[1]/div/div/div/span[1]',
-                           lambda s: s.split(' ')[0]) \
+                           lambda s: s.replace('ETH', '')) \
                     .volume('//*[@id="app"]/div[3]/div/div/main/div[1]/div[2]/div[2]/div/div[4]/span[1]',
-                            lambda s: s.split(' ')[0]) \
+                            lambda s: s.replace('ETH', '')) \
                     .build()
             except Exception as e:
                 error = e
