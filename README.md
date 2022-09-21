@@ -89,7 +89,7 @@ Other information may be provided in the future!
 
 | Market        | Name    | #Supply | #Listing | #Owners    | Floor   | Volume  |
 |---------------|---------|---------|----------|------------|---------|---------|
-| OpenSea       | &check; | &check; |          | &check;    | &check; | &check; |
+| OpenSea       | &check; | &check; |          |            | &check; | &check; |
 | Entrepot      | &check; |         | &check;  |            | &check; | &check; |
 | tofuNFT       | &check; |         | &check;  | &check;    | &check; | &check; |
 | PancakeSwap   | &check; | &check; | &check;  |            | &check; | &check; |

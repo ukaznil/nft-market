@@ -147,10 +147,9 @@ class Retriever:
             try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="main"]/div/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
-                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/button/div/span[1]/div') \
-                    .num_owners('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div') \
-                    .floor('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[8]/a/div/span[1]/div') \
-                    .volume('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div') \
+                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[1]/div[1]/span/span[1]/span') \
+                    .floor('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[4]/a/div/span[1]/div') \
+                    .volume('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[2]/a/div/span[1]/div') \
                     .build()
             except Exception as e:
                 error = e
