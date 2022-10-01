@@ -33,9 +33,8 @@ class _WebFetcher:
     # enddef
 
     def __enter__(self):
-        p = GeckoDriverManager(log_level=logging.ERROR).install()
+        p = GeckoDriverManager(cache_valid_range=30, log_level=logging.ERROR).install()
         self.driver = webdriver.Firefox(options=self.options,
-                                        executable_path=p,
                                         service=FirefoxService(log_path=os.devnull, executable_path=p),
                                         )
         self.driver.get(url=self.url)
