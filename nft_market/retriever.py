@@ -1,4 +1,3 @@
-import logging
 import os
 import time
 from typing import *
@@ -7,7 +6,6 @@ from warnings import warn
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
 
 from nft_market.market import Explorer, Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
@@ -33,9 +31,9 @@ class _WebFetcher:
     # enddef
 
     def __enter__(self):
-        p = GeckoDriverManager(cache_valid_range=30, log_level=logging.ERROR).install()
+        # p = GeckoDriverManager(cache_valid_range=30, log_level=logging.ERROR).install()
         self.driver = webdriver.Firefox(options=self.options,
-                                        service=FirefoxService(log_path=os.devnull, executable_path=p),
+                                        service=FirefoxService(log_path=os.devnull),
                                         )
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
