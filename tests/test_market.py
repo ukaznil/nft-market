@@ -110,10 +110,14 @@ def test_niftygateway():
 
 def test_nftgeek():
     # NFTgeek
+    pass
+    # headless mode will fail as it is detected by the site
+    '''
     print(r.fetch(Explorer.NFTgeek, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
     print(r.fetch(Explorer.NFTgeek, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Crowns
     print(r.fetch(Explorer.NFTgeek, 'o7ehd-5qaaa-aaaah-qc2zq-cai'))  # ICyber Skull
     print(r.fetch(Explorer.NFTgeek, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs
+    '''
 
 
 def test_icscan():

@@ -1,24 +1,29 @@
+import logging
 import os
 import time
 from typing import *
 from warnings import warn
 
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.webdriver import Service
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 
 from nft_market.market import Explorer, Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
 class _WebFetcher:
-    def __init__(self, url: str, sec_wait: int, headless: bool = True):
+    def __init__(self, url: str, sec_wait: int, headless: bool):
         self.url = url
         self.sec_wait = sec_wait
 
-        options = Options()
+        options = FirefoxOptions()
         options.headless = headless
+        options.accept_insecure_certs = True
+        options.add_argument('--no-sandbox')
         options.add_argument('--incognito')
+        options.add_argument('--disable-gpu')
         options.add_argument('--disable-extensions')
         options.add_argument('--proxy-server="direct://"')
         options.add_argument('--proxy-bypass-list=*')
@@ -28,8 +33,11 @@ class _WebFetcher:
     # enddef
 
     def __enter__(self):
+        p = GeckoDriverManager(log_level=logging.ERROR).install()
         self.driver = webdriver.Firefox(options=self.options,
-                                        service=Service(log_path=os.devnull))
+                                        executable_path=p,
+                                        service=FirefoxService(log_path=os.devnull, executable_path=p),
+                                        )
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
@@ -43,9 +51,10 @@ class _WebFetcher:
 
 
 class Retriever:
-    def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False):
+    def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False, headless: bool = True):
         self.option = {
             'sec_wait': sec_wait,
+            'headless': headless,
             }
         self.sec_wait = sec_wait
         self.num_retry = num_retry
