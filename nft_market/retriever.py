@@ -33,7 +33,7 @@ class _WebFetcher:
     def __enter__(self):
         # p = GeckoDriverManager(cache_valid_range=30, log_level=logging.ERROR).install()
         self.driver = webdriver.Firefox(options=self.options,
-                                        service=FirefoxService(log_path=os.devnull),
+                                        service=FirefoxService(log_path=os.devnull),  # needed to suppress geckodriver.log
                                         )
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
@@ -153,9 +153,9 @@ class Retriever:
             try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="main"]/div/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
-                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[1]/div[1]/span/span[1]/span') \
-                    .floor('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[4]/a/div/span[1]/div') \
-                    .volume('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[2]/a/div/span[1]/div') \
+                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[1]/div[1]/span/div[2]/span[1]/span') \
+                    .floor('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[6]/a/div/span[1]/div', post=lambda s: s.split(' ')[0]) \
+                    .volume('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[3]/a/div/span[1]/div', post=lambda s: s.split(' ')[0]) \
                     .build()
             except Exception as e:
                 error = e
