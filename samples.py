@@ -14,6 +14,7 @@ def sample_opensea():
     print(r.fetch(Market.OpenSea, 'boredapeyachtclub'))  # Bored Ape Yacht Club
     print(r.fetch(Market.OpenSea, 'kiwami-genesis'))  # KIWAMI Genesis
     print(r.fetch(Market.OpenSea, 'impostors-genesis-aliens'))  # Impostors Genesis Aliens
+    print(r.fetch(Market.OpenSea, 'pancake-squad'))  # BNB
 
 
 def sample_tofunft():
