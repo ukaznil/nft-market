@@ -25,8 +25,8 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt upgrade -y
-          sudo apt install -y firefox
-          sudo apt install -y firefox-geckodriver
+          sudo apt install -y firefox=107.0+build2-0ubuntu0.20.04.1 --allow-downgrades
+          sudo apt install -y firefox-geckodriver=107.0+build2-0ubuntu0.20.04.1 --allow-downgrades
           pip install --user --upgrade pip
           pip install --user pytest
           if [ -f requirements.txt ]; then pip install --user -r requirements.txt; fi
