@@ -147,15 +147,13 @@ class Retriever:
     def _retrieve_opensea(self, id: str) -> Tuple[NFTInfo, Exception]:
         url = f'https://opensea.io/collection/{id}'
 
-        # remove_eth = lambda s: s.strip('ETH')
-
         nft = None
         with _WebFetcher(url, **self.option) as driver:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="main"]/div/div/div/div[3]/div/div/div[1]/div/div[2]/h1') \
-                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[1]/div[1]/span/div[2]/span[1]/span') \
+                    .num_supply('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[1]/div[1]/span/div[2]/span/div/span[1]/div/div[2]/span/div/div[2]/span') \
                     .floor('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[6]/a/div/span[1]/div', post=lambda s: s.split('\n')[0]) \
                     .volume('//*[@id="main"]/div/div/div/div[5]/div/div[1]/div/div[2]/div[3]/div/div[3]/a/div/span[1]/div', post=lambda s: s.split('\n')[0]) \
                     .build()
