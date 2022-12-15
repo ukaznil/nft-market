@@ -23,8 +23,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends firefox firefox-geckodriver
+          sudo apt update
+          sudo apt install -y firefox
+          sudo apt install -y firefox-geckodriver
           pip install --user --upgrade pip
           pip install --user pytest
           if [ -f requirements.txt ]; then pip install --user -r requirements.txt; fi

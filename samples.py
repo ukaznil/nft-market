@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from nft_market import Explorer, Market, Retriever
 
 r = Retriever(num_retry=0, verbose=True)
