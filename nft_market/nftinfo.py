@@ -18,7 +18,8 @@ class NFTInfo:
 
     def __post_init__(self):
         assert self.id is not None, self.id
-        assert self.name is not None and len(self.name) > 0, self.name
+        # assert self.name is not None and len(self.name) > 0, self.name
+        assert self.name is not None, self.name
         assert self.floor is not None, self.floor
         assert self.volume is not None, self.volume
     # enddef
