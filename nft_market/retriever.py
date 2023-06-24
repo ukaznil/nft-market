@@ -1,9 +1,12 @@
 import os
 import time
+from enum import Enum, auto
 from typing import *
 from warnings import warn
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service as FirefoxService
 
@@ -11,12 +14,24 @@ from nft_market.market import Explorer, Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
 
 
+class Browser(Enum):
+    Firefox = auto()
+    Chrome = auto()
+
+
 class _WebFetcher:
-    def __init__(self, url: str, sec_wait: int, headless: bool):
+    def __init__(self, url: str, browser: Browser, sec_wait: int, headless: bool):
+        self.browser = browser
         self.url = url
         self.sec_wait = sec_wait
 
-        options = FirefoxOptions()
+        if self.browser == Browser.Firefox:
+            options = FirefoxOptions()
+        elif self.browser == Browser.Chrome:
+            options = ChromeOptions()
+        else:
+            raise NotImplementedError(self.browser)
+        # endif
         options.headless = headless
         options.accept_insecure_certs = True
         options.add_argument('--no-sandbox')
@@ -31,10 +46,21 @@ class _WebFetcher:
     # enddef
 
     def __enter__(self):
-        # p = GeckoDriverManager(cache_valid_range=30, log_level=logging.ERROR).install()
-        self.driver = webdriver.Firefox(options=self.options,
-                                        service=FirefoxService(log_path=os.devnull),  # needed to suppress geckodriver.log
-                                        )
+        if self.browser == Browser.Firefox:
+            self.driver = webdriver.Firefox(options=self.options,
+                                            service=FirefoxService(log_path=os.devnull),
+                                            )
+        elif self.browser == Browser.Chrome:
+            import chromedriver_binary
+            _ = chromedriver_binary.chromedriver_filename
+
+            self.driver = webdriver.Chrome(options=self.options,
+                                           service=ChromeService(log_path=os.devnull),
+                                           )
+        else:
+            raise NotImplementedError(self.browser)
+        # endif
+
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
@@ -48,8 +74,9 @@ class _WebFetcher:
 
 
 class Retriever:
-    def __init__(self, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False, headless: bool = True):
+    def __init__(self, browser: Browser, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False, headless: bool = True):
         self.option = {
+            'browser': browser,
             'sec_wait': sec_wait,
             'headless': headless,
             }

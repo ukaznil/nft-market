@@ -1,11 +1,13 @@
-#!/usr/bin/env python3
+from nft_market import Browser, Explorer, Market, Retriever
 
-from nft_market import Explorer, Market, Retriever
+options = {
+    'num_retry': 0,
+    'verbose': True,
+    }
 
-r = Retriever(num_retry=0, verbose=True)
 
-
-def sample_opensea():
+def sample_opensea(browser: Browser):
+    r = Retriever(browser, **options)
     # OpenSea
     print(r.fetch(Market.OpenSea, 'clonex'))  # CLONE X - X TAKASHI MURAKAMI
     print(r.fetch(Market.OpenSea, 'azuki'))  # Azuki
@@ -19,7 +21,8 @@ def sample_opensea():
     print(r.fetch(Market.OpenSea, 'pancake-squad'))  # BNB
 
 
-def sample_tofunft():
+def sample_tofunft(browser: Browser):
+    r = Retriever(browser, **options)
     # tofuNFT
     print(r.fetch(Market.tofuNFT, 'gh0stlygh0sts-eth'))  # Gh0stly Gh0sts
     print(r.fetch(Market.tofuNFT, 'samurise'))  # Lost SamuRise
@@ -33,7 +36,8 @@ def sample_tofunft():
     print(r.fetch(Market.tofuNFT, 'node-whales'))  # Node Whales
 
 
-def sample_pancakeswap():
+def sample_pancakeswap(browser: Browser):
+    r = Retriever(browser, **options)
     # PancakeSwap
     print(r.fetch(Market.PancakeSwap, '0x0a8901b0e25deb55a87524f0cc164e9644020eba'))  # Pancake Squad
     print(r.fetch(Market.PancakeSwap, '0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07'))  # Pancake Bunnies
@@ -47,7 +51,8 @@ def sample_pancakeswap():
     print(r.fetch(Market.PancakeSwap, '0x57A7c5d10c3F87f5617Ac1C60DA60082E44D539e'))  # Dauntless Alpies
 
 
-def sample_rarible():
+def sample_rarible(browser: Browser):
+    r = Retriever(browser, **options)
     # Rarible
     print(r.fetch(Market.Rarible, '0x4a8c9d751eeabc5521a68fb080dd7e72e46462af'))  # Arcade Land
     print(r.fetch(Market.Rarible, '0x3110ef5f612208724ca51f5761a69081809f03b7'))  # Impostors Genesis Aliens
@@ -61,7 +66,8 @@ def sample_rarible():
     print(r.fetch(Market.Rarible, '0x98b82d9efc577b1c3aa6578342121231db2b47b9'))  # Shinsekai Portal
 
 
-def sample_ghostmarket():
+def sample_ghostmarket(browser: Browser):
+    r = Retriever(browser, **options)
     # GhostMarket
     print(r.fetch(Market.GhostMarket, 'neoverse'))  # Neoverse
     print(r.fetch(Market.GhostMarket, 'tothemoon'))  # TOTHEMOON
@@ -75,7 +81,8 @@ def sample_ghostmarket():
     print(r.fetch(Market.GhostMarket, 'luckytiger'))  # LuckyTiger
 
 
-def sample_cryptocom():
+def sample_cryptocom(browser: Browser):
+    r = Retriever(browser, **options)
     # Crypto.com
     print(r.fetch(Market.Cryptocom, '6c7b1a68479f2fc35e9f81e42bcb7397'))  # Ballies Origins
     print(r.fetch(Market.Cryptocom, '82421cf8e15df0edcaa200af752a344f'))  # Loaded Lions
@@ -89,7 +96,8 @@ def sample_cryptocom():
     print(r.fetch(Market.Cryptocom, '6e656ea14b0863f3cf1dbd41554302d3'))  # The Art of Giving
 
 
-def sample_gem():
+def sample_gem(browser: Browser):
+    r = Retriever(browser, **options)
     # Gem
     print(r.fetch(Market.Gem, 'official-moar-by-joan-cornella'))  # "MOAR" by Joan Cornella
     print(r.fetch(Market.Gem, 'hakinft-io'))  # HAKI NFT
@@ -103,7 +111,8 @@ def sample_gem():
     print(r.fetch(Market.Gem, 'mutant-ape-yacht-club'))  # Mutant Ape Yacht Club
 
 
-def sample_nftrade():
+def sample_nftrade(browser: Browser):
+    r = Retriever(browser, **options)
     # NFTrade
     print(r.fetch(Market.NFTrade, 'polygon/0xc93c53de60d1a28df01e41f5bc04619039d2ef4f'))  # League of Kingdoms Skin
     print(r.fetch(Market.NFTrade, 'bsc/0x8815fae8feb5e1b2f8a6c7c948d9fd1866e07a4f'))  # Mines of Dalarnia Land Plots
@@ -117,7 +126,8 @@ def sample_nftrade():
     print(r.fetch(Market.NFTrade, 'avalanche/0x6cc4cc814c7154fb67965c8044cc803b3199ec53'))  # Pizza Game Chef Tools
 
 
-def sample_solanart():
+def sample_solanart(browser: Browser):
+    r = Retriever(browser, **options)
     # Solanart
     print(r.fetch(Market.Solanart, 'degenape'))  # Degenerate Ape Academy
     print(r.fetch(Market.Solanart, 'aurory'))  # Aurory
@@ -131,7 +141,8 @@ def sample_solanart():
     print(r.fetch(Market.Solanart, 'verseestatexvincentfaudemer'))  # Verse Estate
 
 
-def sample_magiceden():
+def sample_magiceden(browser: Browser):
+    r = Retriever(browser, **options)
     # MagicEden
     print(r.fetch(Market.MagicEden, 'solgods'))  # SOLgods
     print(r.fetch(Market.MagicEden, 'tombstoned'))  # TombStoned High Society
@@ -145,7 +156,8 @@ def sample_magiceden():
     print(r.fetch(Market.MagicEden, 'fellowapes'))  # Fellow Apes
 
 
-def sample_xanalia():
+def sample_xanalia(browser: Browser):
+    r = Retriever(browser, **options)
     # XANALIA
     print(r.fetch(Market.XANALIA, 'collections/blindbox/62113e1774d1af3e04bc313d'))  # ULTRAMAN
     print(r.fetch(Market.XANALIA, 'collections/blindbox/624d51f705901f306d552f25'))  # Rooster Fighter
@@ -166,7 +178,8 @@ def sample_xanalia():
                   'collection-details/61bd83fa1145b8b8d1524493/0x5bfcfCBfb35298052238E191569f7E300b9b74B1'))  # Angels and Demons
 
 
-def sample_coinbase():
+def sample_coinbase(browser: Browser):
+    r = Retriever(browser, **options)
     # Coinbase
     print(r.fetch(Market.Coinbase, 'ethereum/0x23581767a106ae21c074b2276D25e5C3e136a68b'))  # Moonbirds
     print(r.fetch(Market.Coinbase, 'ethereum/0x60E4d786628Fea6478F785A6d7e704777c86a7c6'))  # Mutant Ape Yacht Club
@@ -180,7 +193,8 @@ def sample_coinbase():
     # print(r.fetch(Market.Coinbase, 'ethereum/0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'))  # CryptoPunks
 
 
-def sample_niftygateway():
+def sample_niftygateway(browser: Browser):
+    r = Retriever(browser, **options)
     # Nifty Gateway
     print(r.fetch(Market.NiftyGateway, '0xc71561e12faf378b07eacd36b3d0eb0d13a5fb1c'))  # Awkward Astronauts
     print(r.fetch(Market.NiftyGateway, '0xa5a1e6972ace6f4ae388fbafcb7ec12013b64f53'))  # NOOBPUNKS
@@ -189,14 +203,16 @@ def sample_niftygateway():
     print(r.fetch(Market.NiftyGateway, '0xc1aa2a21d0c1c861e3b5fa4df8f14db5e24fcd81'))  # Crystal Pop
 
 
-def sample_yumi():
+def sample_yumi(browser: Browser):
+    r = Retriever(browser, **options)
     # YUMI
     print(r.fetch(Market.YUMI, 'slzze-ciaaa-aaaah-aa7ra-cai'))  # Mora Planet
     print(r.fetch(Market.YUMI, 'ahos3-5yaaa-aaaah-abbna-cai'))  # ICFlowers Airdrops
     print(r.fetch(Market.YUMI, 'xarx3-ayaaa-aaaah-abjbq-cai'))  # Girls
 
 
-def sample_nftgeek():
+def sample_nftgeek(browser: Browser):
+    r = Retriever(browser, **options)
     # NFTGeek
     print(r.fetch(Explorer.NFTgeek, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
     print(r.fetch(Explorer.NFTgeek, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Crowns
@@ -204,7 +220,8 @@ def sample_nftgeek():
     print(r.fetch(Explorer.NFTgeek, 'tz5ae-2yaaa-aaaai-aci2q-cai'))  # Bobo Eggs
 
 
-def sample_icscan():
+def sample_icscan(browser: Browser):
+    r = Retriever(browser, **options)
     # ICScan
     print(r.fetch(Explorer.ICScan, 'pk6rk-6aaaa-aaaae-qaazq-cai'))  # BTC Flower
     print(r.fetch(Explorer.ICScan, 'vlhm2-4iaaa-aaaam-qaatq-cai'))  # Cap Crowns
