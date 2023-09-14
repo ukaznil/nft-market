@@ -247,11 +247,11 @@ class Retriever:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[1]/h1') \
-                    .num_supply('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[1]/div[2]') \
-                    .num_listing('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[2]/div[2]') \
-                    .floor('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[3]/div[2]') \
-                    .volume('//*[@id="__next"]/div[1]/div[3]/div/div[1]/div/div[3]/div[2]/div/div[4]/div[2]') \
+                    .name('//*[@id="__next"]/div[1]/div[3]/div/div[2]/div/div[3]/div[1]/h1') \
+                    .num_supply('//*[@id="__next"]/div[1]/div[3]/div/div[2]/div/div[3]/div[2]/div/div[1]/div[2]') \
+                    .num_listing('//*[@id="__next"]/div[1]/div[3]/div/div[2]/div/div[3]/div[2]/div/div[2]/div[2]') \
+                    .floor('//*[@id="__next"]/div[1]/div[3]/div/div[2]/div/div[3]/div[2]/div/div[3]/div[2]') \
+                    .volume('//*[@id="__next"]/div[1]/div[3]/div/div[2]/div/div[3]/div[2]/div/div[4]/div[2]') \
                     .build()
             except Exception as e:
                 error = e
