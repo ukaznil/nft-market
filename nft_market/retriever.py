@@ -80,6 +80,7 @@ class Retriever:
             'sec_wait': sec_wait,
             'headless': headless,
             }
+        self.sec_wait_original = sec_wait
         self.sec_wait = sec_wait
         self.num_retry = num_retry
         self.verbose = verbose
@@ -160,6 +161,7 @@ class Retriever:
                 assert error is not None, f'nft: {nft}, error: {error}'
 
                 num_retry += 1
+                self.sec_wait += self.sec_wait_original
                 time.sleep(self.sec_wait)
 
                 if self.verbose:
