@@ -1,4 +1,3 @@
-import os
 import time
 from enum import Enum, auto
 from typing import *
@@ -6,9 +5,7 @@ from warnings import warn
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.firefox.service import Service as FirefoxService
 
 from nft_market.market import Explorer, Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
@@ -47,16 +44,12 @@ class _WebFetcher:
 
     def __enter__(self):
         if self.browser == Browser.Firefox:
-            self.driver = webdriver.Firefox(options=self.options,
-                                            service=FirefoxService(log_path=os.devnull),
-                                            )
+            self.driver = webdriver.Firefox(options=self.options)
         elif self.browser == Browser.Chrome:
             import chromedriver_binary
             _ = chromedriver_binary.chromedriver_filename
 
-            self.driver = webdriver.Chrome(options=self.options,
-                                           service=ChromeService(log_path=os.devnull),
-                                           )
+            self.driver = webdriver.Chrome(options=self.options)
         else:
             raise NotImplementedError(self.browser)
         # endif
