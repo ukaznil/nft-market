@@ -5,7 +5,9 @@ from warnings import warn
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from webdriver_manager.chrome import ChromeDriverManager
 
 from nft_market.market import Explorer, Market
 from nft_market.nftinfo import NFTInfo, NFTInfoBuilder
@@ -49,7 +51,7 @@ class _WebFetcher:
             import chromedriver_binary
             _ = chromedriver_binary.chromedriver_filename
 
-            self.driver = webdriver.Chrome(options=self.options)
+            self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=self.options)
         else:
             raise NotImplementedError(self.browser)
         # endif
