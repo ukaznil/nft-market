@@ -1,3 +1,4 @@
+import datetime
 import time
 from enum import Enum, auto
 from typing import *
@@ -617,7 +618,6 @@ class Retriever:
 
         url_holders = f'{url_base}/holders'
         with _WebFetcher(url_holders, **self.option) as driver:
-            error_holders = None
             try:
                 nft_holders = NFTInfoBuilder(driver, id) \
                     .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
@@ -626,7 +626,22 @@ class Retriever:
                     .build()
                 nft.num_owners = nft_holders.num_owners
             except Exception as e:
-                error_holders = e
+                error = e
+            # endtry
+        # endwith
+
+        url_transactions = f'{url_base}/transactions'
+        with _WebFetcher(url_transactions, **self.option) as driver:
+            try:
+                nft_transactions = NFTInfoBuilder(driver, id) \
+                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
+                    .days_from_last_trade('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[5]/div[2]/div/div/div/div/div/table/tbody/tr[2]/td[8]',
+                                          post=lambda s: (datetime.date.today() - datetime.datetime.strptime(f'{s} UTC', '%Y/%m/%d %I:%M:%S.%f %p %Z').date()) \
+                                                         / datetime.timedelta(days=1)) \
+                    .build()
+                nft.days_from_last_trade = nft_transactions.days_from_last_trade
+            except Exception as e:
+                error = e
             # endtry
         # endwith
 
