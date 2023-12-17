@@ -15,6 +15,7 @@ class NFTInfo:
     num_owners: Optional[int]
     floor: float
     volume: float
+    days_from_last_trade: Optional[int]
 
     def __post_init__(self):
         assert self.id is not None, self.id
@@ -44,6 +45,7 @@ class NFTInfoBuilder:
         self._num_owners = None
         self._floor = ...
         self._volume = ...
+        self._days_from_last_trade = None
     # enddef
 
     def _text2float(self, s: str) -> float:
@@ -76,7 +78,8 @@ class NFTInfoBuilder:
                       num_listing=self._num_listing,
                       num_owners=self._num_owners,
                       floor=self._floor,
-                      volume=self._volume)
+                      volume=self._volume,
+                      days_from_last_trade=self._days_from_last_trade)
 
         return nft
     # enddef
@@ -178,7 +181,7 @@ class NFTInfoBuilder:
 
             if post is not None:
                 f = post(f)
-                # endif
+            # endif
 
             if f is not None:
                 f = self._text2float(f)
@@ -188,5 +191,22 @@ class NFTInfoBuilder:
         # endtry
 
         self._volume = f
+        return self
+    # enddef
+
+    def days_from_last_trade(self, xpath: str, post: Callable[str, str] = None) -> 'NFTInfoBuilder':
+        try:
+            f = self._find_text(xpath)
+
+            if post is not None:
+                f = post(f)
+            # endif
+
+            f = int(f)
+        except Exception as e:
+            raise ValueError(f'ID: {self.id}, Cause: days_from_last_trade, {e}')
+        # endtry
+
+        self._days_from_last_trade = f
         return self
     # enddef
