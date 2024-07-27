@@ -601,12 +601,12 @@ class Retriever:
             error = None
             try:
                 nft = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
+                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span[1]') \
                     .num_supply('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[1]/div/div[2]/span',
                                 post=concat_space) \
-                    .num_listing('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[6]/div/div[2]/span',
+                    .num_listing('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[6]/div/div[2]/span/span',
                                  post=concat_space) \
-                    .floor('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[2]/span',
+                    .floor('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[2]/span/span',
                            post=concat_space) \
                     .volume('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[4]/div/div[2]/span',
                             post=concat_space) \
