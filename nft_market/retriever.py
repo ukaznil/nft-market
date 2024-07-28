@@ -604,7 +604,7 @@ class Retriever:
                     .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span[1]') \
                     .num_supply('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[1]/div/div[2]/span',
                                 post=concat_space) \
-                    .num_listing('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[6]/div/div[2]/span/span',
+                    .num_listing('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[6]/div/div[2]/span',
                                  post=concat_space) \
                     .floor('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[2]/span/span',
                            post=concat_space) \
@@ -616,34 +616,36 @@ class Retriever:
             # endtry
         # endwith
 
-        url_holders = f'{url_base}/holders'
-        with _WebFetcher(url_holders, **self.option) as driver:
-            try:
-                nft_holders = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
-                    .num_owners('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]/span',
-                                post=concat_space) \
-                    .build()
-                nft.num_owners = nft_holders.num_owners
-            except Exception as e:
-                error = e
-            # endtry
-        # endwith
+        if error is None:
+            url_holders = f'{url_base}/holders'
+            with _WebFetcher(url_holders, **self.option) as driver:
+                try:
+                    nft_holders = NFTInfoBuilder(driver, id) \
+                        .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span[1]') \
+                        .num_owners('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[3]/div/div/div/div[2]',
+                                    post=concat_space) \
+                        .build()
+                    nft.num_owners = nft_holders.num_owners
+                except Exception as e:
+                    error = e
+                # endtry
+            # endwith
 
-        url_transactions = f'{url_base}/transactions'
-        with _WebFetcher(url_transactions, **self.option) as driver:
-            try:
-                nft_transactions = NFTInfoBuilder(driver, id) \
-                    .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span') \
-                    .days_from_last_trade('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[5]/div[2]/div/div/div/div/div/table/tbody/tr[2]/td[8]',
-                                          post=lambda s: (datetime.date.today() - datetime.datetime.strptime(f'{s} UTC', '%Y/%m/%d %I:%M:%S.%f %p %Z').date()) \
-                                                         / datetime.timedelta(days=1)) \
-                    .build()
-                nft.days_from_last_trade = nft_transactions.days_from_last_trade
-            except Exception as e:
-                error = e
-            # endtry
-        # endwith
+            url_transactions = f'{url_base}/transactions'
+            with _WebFetcher(url_transactions, **self.option) as driver:
+                try:
+                    nft_transactions = NFTInfoBuilder(driver, id) \
+                        .name('//*[@id="root"]/div[2]/div[2]/div/div/div[1]/div/div/span[1]') \
+                        .days_from_last_trade('//*[@id="root"]/div[2]/div[2]/div/div/div[2]/div[5]/div[2]/div/div/div/div/div/table/tbody/tr[2]/td[8]',
+                                              post=lambda s: (datetime.date.today() - datetime.datetime.strptime(f'{s} UTC', '%Y/%m/%d %I:%M:%S.%f %p %Z').date()) \
+                                                             / datetime.timedelta(days=1)) \
+                        .build()
+                    nft.days_from_last_trade = nft_transactions.days_from_last_trade
+                except Exception as e:
+                    error = e
+                # endtry
+            # endwith
+        # endif
 
         return nft, error
     # enddef
