@@ -8,6 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 
 from nft_market.market import Explorer, Market
@@ -20,15 +21,21 @@ class Browser(Enum):
 
 
 class _WebFetcher:
-    def __init__(self, url: str, browser: Browser, sec_wait: int, headless: bool):
+    def __init__(self, url: str, browser: Browser, sec_wait: int, headless: bool, serv: dict[str, Any] = None):
         self.browser = browser
         self.url = url
         self.sec_wait = sec_wait
 
         if self.browser == Browser.Firefox:
             options = FirefoxOptions()
+            if serv is not None:
+                self.serv = FirefoxService(**serv)
+            else:
+                self.serv = None
+            # endif
         elif self.browser == Browser.Chrome:
             options = ChromeOptions()
+            self.serv = ChromeService(ChromeDriverManager().install())
         else:
             raise NotImplementedError(self.browser)
         # endif
@@ -41,18 +48,21 @@ class _WebFetcher:
         options.add_argument('--proxy-server="direct://"')
         options.add_argument('--proxy-bypass-list=*')
         options.add_argument('--start-maximized')
-
         self.options = options
     # enddef
 
     def __enter__(self):
         if self.browser == Browser.Firefox:
-            self.driver = webdriver.Firefox(options=self.options)
+            if self.serv is not None:
+                self.driver = webdriver.Firefox(options=self.options, service=self.serv)
+            else:
+                self.driver = webdriver.Firefox(options=self.options)
+            # endif
         elif self.browser == Browser.Chrome:
-            import chromedriver_binary
-            _ = chromedriver_binary.chromedriver_filename
+            # import chromedriver_binary
+            # _ = chromedriver_binary.chromedriver_filename
 
-            self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=self.options)
+            self.driver = webdriver.Chrome(options=self.options, service=self.serv)
         else:
             raise NotImplementedError(self.browser)
         # endif
