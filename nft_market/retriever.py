@@ -80,11 +80,12 @@ class _WebFetcher:
 
 
 class Retriever:
-    def __init__(self, browser: Browser, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False, headless: bool = True):
+    def __init__(self, browser: Browser, sec_wait: int = 10, num_retry: int = 5, verbose: bool = False, headless: bool = True, serv: dict[str, Any] = None):
         self.option = {
             'browser': browser,
             'sec_wait': sec_wait,
             'headless': headless,
+            'serv': serv,
             }
         self.sec_wait_original = sec_wait
         self.sec_wait = sec_wait
