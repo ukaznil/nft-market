@@ -1,4 +1,5 @@
 import dataclasses
+import sys
 import warnings
 from typing import *
 
@@ -56,7 +57,7 @@ class NFTInfoBuilder:
         try:
             f = float(eval(s_rep))
         except Exception as e:
-            print(f"ID: {self.id}, orig: '{s}', replaced: {s_rep}")
+            print(f"ID: {self.id}, orig: '{s}', replaced: {s_rep}", file=sys.stderr)
             raise e
         # endtry
 
