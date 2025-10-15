@@ -1,4 +1,5 @@
 import datetime
+import sys
 import time
 from enum import Enum, auto
 from typing import *
@@ -160,7 +161,7 @@ class Retriever:
             if nft is not None:
                 # assert error is None, f'nft: {nft}, error: {error}'
                 if error is not None:
-                    print(f'[Warning] {error}')
+                    print(f'[Warning] {error}', file=sys.stderr)
                 # endif
 
                 return nft
@@ -172,7 +173,7 @@ class Retriever:
                 time.sleep(self.sec_wait)
 
                 if self.verbose:
-                    print(f'An error in "{id}" [{num_retry}/{self.num_retry + 1}]')
+                    print(f'An error in "{id}" [{num_retry}/{self.num_retry + 1}]', file=sys.stderr)
                 # endif
             # endif
         # endwhile
