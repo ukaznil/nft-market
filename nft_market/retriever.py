@@ -75,15 +75,27 @@ class _WebFetcher:
             raise NotImplementedError(self.browser)
         # endif
 
-        self.driver.get(url=self.url)
-        self.driver.implicitly_wait(self.sec_wait)
-        time.sleep(self.sec_wait)
+        try:
+            self.driver.get(url=self.url)
+            self.driver.implicitly_wait(self.sec_wait)
+            time.sleep(self.sec_wait)
+        except:
+            try:
+                self.driver.quit()
+            except:
+                pass
+            # endtry
+        # endtry
 
         return self.driver
     # enddef
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.driver.quit()
+        try:
+            self.driver.quit()
+        except:
+            pass
+        # endtry
     # enddef
 
 
