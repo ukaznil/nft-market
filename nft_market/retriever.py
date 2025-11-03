@@ -40,9 +40,16 @@ class _WebFetcher:
         else:
             raise NotImplementedError(self.browser)
         # endif
-        options.headless = headless
+
         options.accept_insecure_certs = True
-        options.add_argument('--no-sandbox')
+        if headless:
+            if self.browser == Browser.Firefox:
+                options.headless = True
+            elif self.browser == Browser.Chrome:
+                options.add_argument('--headless=new')
+            # endif
+        # endif
+        # options.add_argument('--no-sandbox')
         options.add_argument('--incognito')
         options.add_argument('--disable-gpu')
         options.add_argument('--disable-extensions')
