@@ -75,9 +75,6 @@ class _WebFetcher:
             raise NotImplementedError(self.browser)
         # endif
 
-        self.driver.set_page_load_timeout(30)
-        self.driver.set_script_timeout(30)
-
         self.driver.get(url=self.url)
         self.driver.implicitly_wait(self.sec_wait)
         time.sleep(self.sec_wait)
@@ -206,12 +203,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -236,12 +227,6 @@ class Retriever:
                 except Exception as e:
                     error = e
                     continue
-                finally:
-                    try:
-                        driver.quit()
-                    except:
-                        pass
-                    # endtry
                 # endtry
             # endfor
         # endwith
@@ -265,12 +250,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -293,12 +272,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -328,12 +301,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -359,12 +326,6 @@ class Retriever:
                 except Exception as e:
                     error = e
                     continue
-                finally:
-                    try:
-                        driver.quit()
-                    except:
-                        pass
-                    # endtry
                 # endtry
             # endfor
         # endwith
@@ -388,12 +349,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -416,12 +371,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -442,12 +391,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -472,12 +415,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -505,12 +442,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -533,12 +464,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -562,12 +487,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -592,12 +511,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -622,12 +535,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -652,12 +559,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -680,12 +581,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -708,12 +603,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -743,12 +632,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
@@ -764,12 +647,6 @@ class Retriever:
                     nft.num_owners = nft_holders.num_owners
                 except Exception as e:
                     error = e
-                finally:
-                    try:
-                        driver.quit()
-                    except:
-                        pass
-                    # endtry
                 # endtry
             # endwith
 
@@ -785,12 +662,6 @@ class Retriever:
                     nft.days_from_last_trade = nft_transactions.days_from_last_trade
                 except Exception as e:
                     error = e
-                finally:
-                    try:
-                        driver.quit()
-                    except:
-                        pass
-                    # endtry
                 # endtry
             # endwith
         # endif
@@ -818,12 +689,6 @@ class Retriever:
                     .build()
             except Exception as e:
                 error = e
-            finally:
-                try:
-                    driver.quit()
-                except:
-                    pass
-                # endtry
             # endtry
         # endwith
 
