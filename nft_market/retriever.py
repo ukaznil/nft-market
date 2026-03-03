@@ -44,9 +44,9 @@ class _WebFetcher:
         options.accept_insecure_certs = True
         if headless:
             if self.browser == Browser.Firefox:
-                options.headless = True
+                options.add_argument("-headless")
             elif self.browser == Browser.Chrome:
-                options.add_argument('--headless=new')
+                options.add_argument('--headless')
             # endif
         # endif
         # options.add_argument('--no-sandbox')
